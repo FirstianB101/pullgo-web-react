@@ -23,3 +23,7 @@ input {
 button {
     border: none;
 }
+
+button:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,57 @@
+.sign_up__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign_up__page > h1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.render_field {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.render_field > label {
+    margin-bottom: 10px;
+}
+
+.render_field > input {
+    width: 400px;
+    height: 50px;
+    border: 1px solid #cececc;
+}
+
+.render_field > input:focus {
+   outline: 1.5px solid #858ffb;
+}
+
+.render_field > .error {
+    color: red;
+    font-size: 13px;
+}
+
+.render_field:nth-child(4) {
+    padding-top: 20px;
+}
+
+.render_field:nth-child(5) {
+    padding-bottom: 0px;
+}
+
+.render_field:nth-child(8) {
+    padding-bottom: 0px;
+}
+
+.sign_up__form > button {
+    width: 400px;
+    height: 50px;
+    background: #858ffb;
+    color: white;
+    font-size: 15px;
+    border-radius: 15px;
+    outline: none;
+}
