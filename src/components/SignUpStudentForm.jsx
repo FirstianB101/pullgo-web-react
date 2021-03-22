@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Field, reduxForm } from "redux-form";
 // import { render } from "@testing-library/react";
-import { regID, regPW, deleteHyphenFromPhoneNum } from "../module/SignUp";
+import { regID, regPW, deleteHyphenFromPhoneNum, addSchool } from "../module/SignUp";
 
 const RenderField = memo(({
     input,
@@ -82,9 +82,23 @@ function validate(values) {
     }
 
     // 전화번호
-    if (values.phone_num) {
-        if (values.phone_num.includes("-")) {
-            values.phone_num = deleteHyphenFromPhoneNum(values.phone_num);
+    if (values.phone_number) {
+        if (values.phone_number.includes("-")) {
+            values.phone_number = deleteHyphenFromPhoneNum(values.phone_number);
+        }
+    }
+
+    // 부모님 전화번호
+    if (values.parent_phone_number) {
+        if (values.parent_phone_number.includes("-")) {
+            values.parent_phone_number = deleteHyphenFromPhoneNum(values.parent_phone_number);
+        }
+    }
+
+    // 학교
+    if (values.school_name) {
+        if (!values.school_name.includes("학교")) {
+            errors.school_name = `"~학교" 형식으로 입력해주세요. e.g. 광운중학교`;
         }
     }
 
