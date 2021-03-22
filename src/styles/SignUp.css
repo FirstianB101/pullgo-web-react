@@ -26,7 +26,7 @@
 }
 
 .render_field > input:focus {
-   outline: 1.5px solid #858ffb;
+    outline: 1.5px solid #858ffb;
 }
 
 .render_field > .error {
@@ -46,7 +46,7 @@
     padding-bottom: 0px;
 }
 
-.sign_up__form > button {
+.sign_up__form button {
     width: 400px;
     height: 50px;
     background: #858ffb;
@@ -54,4 +54,31 @@
     font-size: 15px;
     border-radius: 15px;
     outline: none;
+}
+
+.sign_up__form .phone_field {
+    display: flex;
+    position: relative;
+}
+
+.sign_up__form .phone_field:nth-child(5) input {
+    width: 270px;
+}
+
+.phone_field .btn__phone_certification_request {
+    width: 120px;
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
+}
+
+.sign_up__form .phone_field:nth-child(6) input {
+    width: 240px;
+}
+
+.phone_field .btn__phone_certification_check {
+    width: 150px;
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
 }

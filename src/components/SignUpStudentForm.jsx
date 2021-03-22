@@ -1,50 +1,34 @@
 import React, { memo } from "react";
 import { Field, reduxForm } from "redux-form";
 // import { render } from "@testing-library/react";
-import { regID, regPW, deleteHyphenFromPhoneNum, addSchool } from "../module/SignUp";
+import { regID, regPW, deleteHyphenFromPhoneNum } from "../module/SignUp";
 
-const RenderField = memo(({
-    input,
-    type,
-    label,
-    placeholder,
-    meta: { touched, error },
-    min,
-    max
-}) => {
-    // const [value, setValue] = useState("");
-    // const onChangeInput = (e) => {
-    //     setValue(e.target.value);
-    // };
-    // 입력된 전화번호에 "-" 포함되어 있으면 제거
-    // const onBlurInput = (e) => {
-    //     if (!value.includes("-")) {
-    //         return;
-    //     }
-    //     setValue(deleteHyphenFromPhoneNum(value));
-    // };
-
-    return (
-        <div className="render_field">
-            <label>{label}</label>
-            <input
-                {...input}
-                type={type}
-                placeholder={placeholder}
-                required
-                min={min}
-                max={max}
-            // value={type === "tel" ? value : null}
-            // onChange={type === "tel" ? onChangeInput : null}
-            // value={value}
-            // onChange={onChangeInput}
-            // onBlur={type === "tel" ? `; ${onBlurInput}` : `;`}
-            />
-            {touched && error &&
-                <span className="error">{error}</span>}
-        </div>
-    );
-});
+const RenderField = memo(
+    ({
+        input,
+        type,
+        label,
+        placeholder,
+        meta: { touched, error },
+        min,
+        max
+    }) => {
+        return (
+            <div className="render_field">
+                <label>{label}</label>
+                <input
+                    {...input}
+                    type={type}
+                    placeholder={placeholder}
+                    required
+                    min={min}
+                    max={max}
+                />
+                {touched && error && <span className="error">{error}</span>}
+            </div>
+        );
+    }
+);
 
 function validate(values) {
     const errors = {};
@@ -91,7 +75,9 @@ function validate(values) {
     // 부모님 전화번호
     if (values.parent_phone_number) {
         if (values.parent_phone_number.includes("-")) {
-            values.parent_phone_number = deleteHyphenFromPhoneNum(values.parent_phone_number);
+            values.parent_phone_number = deleteHyphenFromPhoneNum(
+                values.parent_phone_number
+            );
         }
     }
 
@@ -141,20 +127,34 @@ const SignUpStudentForm = memo(({ handleSubmit, pristine, submitting }) => {
                 component={RenderField}
             />
 
-            <Field
-                name="phone_number"
-                type="tel"
-                label="휴대전화"
-                placeholder="전화번호 입력('-' 없이 입력)"
-                component={RenderField}
-            />
+            <div className="phone_field">
+                <Field
+                    name="phone_number"
+                    type="tel"
+                    label="휴대전화"
+                    placeholder="전화번호 입력('-' 없이 입력)"
+                    component={RenderField}
+                />
+                <button
+                    type="button"
+                    className="btn__phone_certification_request">
+                    인증 요청
+                </button>
+            </div>
 
-            <Field
-                name="phone_certification"
-                type="text"
-                placeholder="인증번호 입력"
-                component={RenderField}
-            />
+            <div className="phone_field">
+                <Field
+                    name="phone_certification"
+                    type="text"
+                    placeholder="인증번호 입력"
+                    component={RenderField}
+                />
+                <button
+                    type="button"
+                    className="btn__phone_certification_check">
+                    인증번호 확인
+                </button>
+            </div>
 
             <Field
                 name="parent_phone_number"
