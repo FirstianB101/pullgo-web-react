@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -47,7 +47,7 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.background.paper
+        // backgroundColor: theme.palette.background.paper
         // width: 500
     }
 }));
@@ -124,6 +124,9 @@ const LogIn = () => {
 
                     <button type="submit">로그인</button>
                 </form>
+
+                <Link to="/signup_menu">회원 가입</Link>
+                {/* <Link to="/signup_student">계정 찾기</Link> */}
             </div>
         </div>
     );
