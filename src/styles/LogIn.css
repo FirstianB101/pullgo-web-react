@@ -79,12 +79,12 @@
     font-size: 14px;
 }
 
-/* .login__form__container > a:nth-child(5) {
+.login__form__container > a:nth-child(5) {
     position: relative;
     bottom: -20px;
-    left: 70px;
+    left: 200px;
     font-size: 14px;
-} */
+}
 
 /* 반응형(모바일) */
 @media only screen and (max-width: 501px) {

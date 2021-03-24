@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -60,8 +60,8 @@ const userTypeList = {
 const LogIn = () => {
     // Tabs
     const classes = useStyles();
-    const [userType, setUserType] = useState(userTypeList[0]);
     const [value, setValue] = useState(0);
+    const [userType, setUserType] = useState(userTypeList[0]);
 
     // input(id, pw)
     const [id, setId] = useState("");
@@ -126,7 +126,7 @@ const LogIn = () => {
                 </form>
 
                 <Link to="/signup_menu">회원 가입</Link>
-                {/* <Link to="/signup_student">계정 찾기</Link> */}
+                <Link to="/find_account">계정 찾기</Link>
             </div>
         </div>
     );

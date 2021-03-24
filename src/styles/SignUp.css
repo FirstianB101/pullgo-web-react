@@ -9,40 +9,40 @@
     padding-bottom: 30px;
 }
 
-.render_field {
+.sign_up__form .render_field {
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
 }
 
-.render_field > label {
+.sign_up__form .render_field > label {
     margin-bottom: 10px;
 }
 
-.render_field > input {
+.sign_up__form .render_field > input {
     width: 400px;
     height: 50px;
     border: 1px solid #cececc;
 }
 
-.render_field > input:focus {
+.sign_up__form .render_field > input:focus {
     outline: 1.5px solid #858ffb;
 }
 
-.render_field > .error {
+.sign_up__form .render_field > .error {
     color: red;
     font-size: 13px;
 }
 
-.render_field:nth-child(4) {
+.sign_up__form .render_field:nth-child(4) {
     padding-top: 20px;
 }
 
-.render_field:nth-child(5) {
+.sign_up__form .render_field:nth-child(5) {
     padding-bottom: 0px;
 }
 
-.render_field:nth-child(8) {
+.sign_up__form .render_field:nth-child(8) {
     padding-bottom: 0px;
 }
 
