@@ -1,0 +1,81 @@
+.find_account__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 250px;
+}
+
+.find_account__page h3 {
+    margin-bottom: 50px;
+}
+
+.find_account__page header {
+    width: 500px;
+    border-radius: 5px;
+}
+
+.find_account__page div#full-width-tabpanel-0 {
+    display: flex;
+    flex-direction: column;
+}
+
+.find_id__form .render_field input,
+.find_pw__form .render_field input {
+    width: 420px;
+    height: 50px;
+    margin-top: 10px;
+    background-color: #d8dcfe;
+    border: 1px solid #cececc;
+    border-radius: 5px;
+}
+
+/* 이름 input */
+.find_id__form > :first-child input {
+    position: relative;
+    left: 43px;
+}
+
+/* 휴대전화(아이디 찾기) input */
+.find_id__form > :nth-child(2) input {
+    position: relative;
+    left: 15px;
+}
+
+/* 아이디 input */
+.find_pw__form > :first-child input {
+    position: relative;
+    left: 32px;
+}
+
+/* 휴대전화(비밀번호 찾기) input */
+.find_pw__form > :nth-child(2) input {
+    position: relative;
+    left: 15px;
+}
+
+.find_id__form .render_field input::placeholder,
+.find_pw__form .render_field input::placeholder {
+    color: #c1c6e6;
+    font-size: 15px;
+}
+
+.find_id__form .render_field input:focus,
+.find_pw__form .render_field input:focus {
+    outline: 1.5px solid black;
+}
+
+.find_id__form button,
+.find_pw__form button {
+    margin-top: 30px;
+    width: 500px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #858ffb;
+    color: white;
+    font-size: 16px;
+}
+
+.find_id__form button:focus,
+.find_pw__form button:focus {
+    border: 2px solid black;
+}

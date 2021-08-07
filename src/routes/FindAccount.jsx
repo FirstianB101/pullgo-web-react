@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+// import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
+import "../styles/FindAccount.css";
 import FindIdForm from "../components/FindIdForm";
 import FindPwForm from "../components/FindPwForm";
 
@@ -44,37 +46,38 @@ function a11yProps(index) {
     };
 }
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        width: 500
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         backgroundColor: theme.palette.background.paper,
+//         width: 500
+//     }
+// }));
 
 const findTypeList = {
     0: "id",
     1: "pw"
 };
 
-const FindAccount = () => {
+const FindAccount = memo(() => {
     // Tabs
-    const classes = useStyles();
+    // const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = useState(0);
     const [findType, setFindType] = useState(findTypeList[0]);
 
     const onChangeTabs = (event, newValue) => {
         setValue(newValue);
+        setFindType(findTypeList[newValue]);
     };
 
     // FindIdForm에게 props로 전달
     const onSubmitFindIdForm = (e) => {
-        alert(``);
+        alert(`${e.name}, ${e.phone_number}`);
     };
 
     // FindPwForm에게 props로 전달
     const onSubmitFindPwForm = (e) => {
-        alert(``);
+        alert(`${e.id}, ${e.phone_number}`);
     };
 
     return (
@@ -90,8 +93,8 @@ const FindAccount = () => {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                     centered>
-                    <Tab label="Item One" {...a11yProps(0)} />
-                    <Tab label="Item Two" {...a11yProps(1)} />
+                    <Tab label="아이디" {...a11yProps(0)} />
+                    <Tab label="비밀번호" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
 
@@ -104,6 +107,6 @@ const FindAccount = () => {
             </TabPanel>
         </div>
     );
-};
+});
 
-export default FindAccount;
+export default connect()(FindAccount);

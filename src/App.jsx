@@ -10,10 +10,12 @@ import SignUpTeacher from "./routes/SignUpTeacher";
 import SignUpMenu from "./routes/SignUpMenu";
 import FindAccount from "./routes/FindAccount";
 
+import LessonScheduleTeacher from "./routes/LessonScheduleTeacher";
+
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
+            {/* <BrowserRouter>
                 <Switch>
                     <Route path="/" component={LogIn} exact={true} />
                     <Route path="/signup_menu" component={SignUpMenu} />
@@ -23,7 +25,9 @@ function App() {
 
                     <LogIn />
                 </Switch>
-            </BrowserRouter>
+            </BrowserRouter> */}
+
+            <LessonScheduleTeacher />
         </Provider>
     );
 }

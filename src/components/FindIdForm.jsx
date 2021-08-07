@@ -33,13 +33,13 @@ function validate(values) {
     return errors;
 }
 
-const FindIdForm = ({ onSubmitFindIdForm, pristine, submitting }) => {
+const FindIdForm = memo(({ handleSubmit, pristine, submitting }) => {
     return (
-        <form className="find_id__form" onSubmit={onSubmitFindIdForm}>
+        <form className="find_id__form" onSubmit={handleSubmit}>
             <Field
                 name="name"
                 type="text"
-                label="이름"
+                label="이 름"
                 placeholder="이름을 입력해주세요"
                 component={RenderField}
             />
@@ -55,7 +55,7 @@ const FindIdForm = ({ onSubmitFindIdForm, pristine, submitting }) => {
             <button type="submit">아이디 찾기</button>
         </form>
     );
-};
+});
 
 export default reduxForm({
     form: "FindIdForm",

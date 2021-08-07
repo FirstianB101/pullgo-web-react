@@ -33,11 +33,11 @@ function validate(values) {
     return errors;
 }
 
-const FindPwForm = ({ onSubmitFindPwForm, pristine, submitting }) => {
+const FindPwForm = memo(({ handleSubmit, pristine, submitting }) => {
     return (
-        <form className="find_pw__form" onSubmit={onSubmitFindPwForm}>
+        <form className="find_pw__form" onSubmit={handleSubmit}>
             <Field
-                name="name"
+                name="id"
                 type="text"
                 label="아이디"
                 placeholder="아이디를 입력해주세요"
@@ -55,7 +55,7 @@ const FindPwForm = ({ onSubmitFindPwForm, pristine, submitting }) => {
             <button type="submit">비밀번호 찾기</button>
         </form>
     );
-};
+});
 
 export default reduxForm({
     form: "FindPwForm",
