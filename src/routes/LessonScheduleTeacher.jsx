@@ -1,6 +1,6 @@
 import React from "react";
 
-// import LessonCalendarTeacher from "../components/LessonCalendarTeacher";
+import LessonCalendarTeacher from "../components/LessonCalendarTeacher";
 import "../styles/Calendar.css";
 
 import Demo from "../components/TestCalendar";
@@ -8,8 +8,8 @@ import Demo from "../components/TestCalendar";
 const LessonScheduleTeacher = () => {
 	return (
 		<>
-			<Demo />
-			{/* <LessonCalendarTeacher /> */}
+			{/* <Demo /> */}
+			<LessonCalendarTeacher />
 		</>
 	);
 };

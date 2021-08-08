@@ -5,7 +5,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/ko";
-// import events from "../module/events";
+import events from "../module/events";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -18,6 +18,16 @@ import Draggable from "react-draggable";
 
 // moment.locale("en-GB");
 // BigCalendar.momentLocalizer(moment);
+
+function getTodayDateStr() {
+	let today = new Date();
+
+	let year = today.getFullYear();
+	let month = ('0' + (today.getMonth() + 1)).slice(-2);
+	let day = ('0' + today.getDate()).slice(-2);
+
+	return year + '-' + month + '-' + day;
+}
 
 function dateToStr(date) {
 	let year = date.getFullYear();
@@ -43,24 +53,6 @@ function dateToStr(date) {
 	return { year, month, day };
 }
 
-let events = [
-	{
-		title: "[고2 이과] 미적분2",
-		allDay: true,
-		start: new Date(2021, 6, 4, 12, 0), // 1월: 0
-		end: new Date(2021, 6, 4, 14, 0) // 년, 월, 일, 시, 분
-	},
-	{
-		title: "[고3 이과] 확통",
-		allDay: true,
-		start: new Date(2021, 6, 7, 10, 0),
-		end: new Date(2021, 6, 7, 14, 0)
-	}
-];
-
-let title, allDay;
-let start, end;
-
 // let selectingStart = false;
 // let selectingEnd = false;
 
@@ -79,12 +71,9 @@ const LessonCalendarTeacher = () => {
 	const localizer = momentLocalizer(moment);
 	// const localizer = BigCalendar.momentLocalizer(moment);
 
-	// 일정 추가: start, end 선택
+	// 일정 추가
 	const onSelectSlot = (e) => {
 		console.log(e.slots[0]); // click한 날짜
-
-		let startDate, endDate;
-		let hh, mm;
 
 		// if (selectingStart) {
 		//     console.log(dateToStr(e.slots[0]));
@@ -97,9 +86,9 @@ const LessonCalendarTeacher = () => {
 		// }
 	};
 
+	// 등록된 수업 일정 수정
 	const onSelectEvent = (e) => {
-		// console.log(e.title);
-		console.log(e);
+		console.log(e);			// 등록된 수업 일정 등 클릭 시
 	};
 
 	const onClickBtn = (e) => {
@@ -114,6 +103,11 @@ const LessonCalendarTeacher = () => {
 		// console.log(title, allDay, selectingStart, selectingEnd);
 	};
 
+	const [classRoom, setClassRoom] = useState();	// 반 이름
+	const [title, setTitle] = useState();			// 수업 이름
+	const [date, setDate] = useState();				// 날짜
+	const [start, setStart] = useState();			// 시작 시각
+	const [end, setEnd] = useState();				// 종료 시각
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
@@ -122,6 +116,24 @@ const LessonCalendarTeacher = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	// 수업 생성 Form 입력 값들 유효 확인 및 서버로 전송, 캘린더에 수업 추가
+	const onSubmitForm = () => {
+		console.log("Form Send or Not");
+		setOpen(false);
+	};
+
+	const onChangeSelectClassRoom = (e) => {
+		setClassRoom(e.target.value);
+	};
+
+	const onChangeInputTitle = (e) => {
+		setTitle(e.target.value);
+	};
+
+	const onChangeInputDate = (e) => {
+		setDate(e.target.value);
 	};
 
 	return (
@@ -146,21 +158,60 @@ const LessonCalendarTeacher = () => {
 					style={{ cursor: "move" }}
 					id="draggable-dialog-title"
 				>
-					Subscribe
+					수업 생성
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						To subscribe to this website, please enter your email
-						address here. We will send updates occasionally.
+						<form className="lesson_create__form" onSubmit={onSubmitForm}>
+							반
+							<select name="classRoom" value={classRoom}
+								onChange={onChangeSelectClassRoom} required>
+								<option value="">반 선택</option>
+								<option value="high_2_math">고2 이과</option>
+								<option value="high_3_math">고3 이과</option>
+							</select>
+							<br />
+
+							수업 이름
+							<input
+								type="text"
+								name="title"
+								value={title}
+								onChange={onChangeInputTitle}
+								required
+							/>
+							<br />
+
+							날짜
+							<input
+								type="date"
+								name="date"
+								min={getTodayDateStr()}
+								value={date}
+								onChange={onChangeInputDate}
+								required
+							/>
+							<br />
+
+							시작 시각, 종료 시각
+							<br /><br />
+
+							<Button autoFocus onClick={handleClose} color="primary">
+								취소
+							</Button>
+							<Button type="submit" color="primary">
+								생성
+							</Button>
+						</form>
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
-					<Button autoFocus onClick={handleClose} color="primary">
-						Cancel
+					{/* <Button autoFocus onClick={handleClose} color="primary">
+						취소
 					</Button>
-					<Button onClick={handleClose} color="primary">
-						Subscribe
-					</Button>
+					<Button onClick={handleSubmit} color="primary">
+						생성
+					</Button> */}
 				</DialogActions>
 			</Dialog>
 
@@ -181,7 +232,7 @@ const LessonCalendarTeacher = () => {
 				culture="ko"
 				onSelectEvent={onSelectEvent}
 				onSelectSlot={onSelectSlot}
-				// eventPropGetter={eventStyleGetter}
+			// eventPropGetter={eventStyleGetter}
 			/>
 		</div>
 	);
