@@ -19,42 +19,13 @@ import Draggable from "react-draggable";
 // moment.locale("en-GB");
 // BigCalendar.momentLocalizer(moment);
 
-function getTodayDateStr() {
-	let today = new Date();
-
-	let year = today.getFullYear();
-	let month = ('0' + (today.getMonth() + 1)).slice(-2);
-	let day = ('0' + today.getDate()).slice(-2);
-
-	return year + '-' + month + '-' + day;
-}
-
 function dateToStr(date) {
 	let year = date.getFullYear();
-	let month = date.getMonth() + 1;
-	if (month < 10) month = "0" + month;
-	month = parseInt(month);
+	let month = ("0" + (date.getMonth() + 1)).slice(-2);
+	let day = ("0" + date.getDate()).slice(-2);
 
-	let day = date.getDate();
-	if (day < 10) day = "0" + day;
-	day = parseInt(day);
-
-	// let hour = date.getHours();
-	// if(hour < 10) hour = '0' + hour;
-
-	// let min = date.getMinutes();
-	// if(min < 10) min = '0' + min;
-
-	// let sec = date.getSeconds();
-	// if(sec < 10) sec = '0' + sec;
-
-	// return year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
-
-	return { year, month, day };
+	return year + "-" + month + "-" + day;
 }
-
-// let selectingStart = false;
-// let selectingEnd = false;
 
 function PaperComponent(props) {
 	return (
@@ -71,24 +42,16 @@ const LessonCalendarTeacher = () => {
 	const localizer = momentLocalizer(moment);
 	// const localizer = BigCalendar.momentLocalizer(moment);
 
-	// 일정 추가
+	// 수업 추가(날짜 선택)
 	const onSelectSlot = (e) => {
-		console.log(e.slots[0]); // click한 날짜
-
-		// if (selectingStart) {
-		//     console.log(dateToStr(e.slots[0]));
-
-		//     hh = prompt("일정 시작 시간(h)");
-		// }
-
-		// if (selectingEnd) {
-
-		// }
+		console.log(dateToStr(e.slots[0])); // click한 날짜
+		setDate(dateToStr(e.slots[0]));
+		setOpen(true);
 	};
 
 	// 등록된 수업 일정 수정
 	const onSelectEvent = (e) => {
-		console.log(e);			// 등록된 수업 일정 등 클릭 시
+		console.log(e); // 등록된 수업 일정 등 클릭 시
 	};
 
 	const onClickBtn = (e) => {
@@ -103,11 +66,11 @@ const LessonCalendarTeacher = () => {
 		// console.log(title, allDay, selectingStart, selectingEnd);
 	};
 
-	const [classRoom, setClassRoom] = useState();	// 반 이름
-	const [title, setTitle] = useState();			// 수업 이름
-	const [date, setDate] = useState();				// 날짜
-	const [start, setStart] = useState();			// 시작 시각
-	const [end, setEnd] = useState();				// 종료 시각
+	const [classRoom, setClassRoom] = useState(); // 반 이름
+	const [title, setTitle] = useState(); // 수업 이름
+	const [date, setDate] = useState(); // 날짜
+	const [start, setStart] = useState(); // 시작 시각
+	const [end, setEnd] = useState(); // 종료 시각
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
@@ -119,7 +82,8 @@ const LessonCalendarTeacher = () => {
 	};
 
 	// 수업 생성 Form 입력 값들 유효 확인 및 서버로 전송, 캘린더에 수업 추가
-	const onSubmitForm = () => {
+	const onSubmitForm = (e) => {
+		e.preventDefault();
 		console.log("Form Send or Not");
 		setOpen(false);
 	};
@@ -134,6 +98,14 @@ const LessonCalendarTeacher = () => {
 
 	const onChangeInputDate = (e) => {
 		setDate(e.target.value);
+	};
+
+	const onChangeInputStart = (e) => {
+		setStart(e.target.value);
+	};
+
+	const onChangeInputEnd = (e) => {
+		setEnd(e.target.value);
 	};
 
 	return (
@@ -162,16 +134,22 @@ const LessonCalendarTeacher = () => {
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						<form className="lesson_create__form" onSubmit={onSubmitForm}>
+						<form
+							className="lesson_create__form"
+							onSubmit={onSubmitForm}
+						>
 							반
-							<select name="classRoom" value={classRoom}
-								onChange={onChangeSelectClassRoom} required>
+							<select
+								name="classRoom"
+								value={classRoom}
+								onChange={onChangeSelectClassRoom}
+								required
+							>
 								<option value="">반 선택</option>
 								<option value="high_2_math">고2 이과</option>
 								<option value="high_3_math">고3 이과</option>
 							</select>
 							<br />
-
 							수업 이름
 							<input
 								type="text"
@@ -181,22 +159,42 @@ const LessonCalendarTeacher = () => {
 								required
 							/>
 							<br />
-
 							날짜
 							<input
 								type="date"
 								name="date"
-								min={getTodayDateStr()}
+								// min={getTodayDateStr()}
+								min={dateToStr(new Date())}
 								value={date}
 								onChange={onChangeInputDate}
 								required
 							/>
 							<br />
-
-							시작 시각, 종료 시각
-							<br /><br />
-
-							<Button autoFocus onClick={handleClose} color="primary">
+							시작 시각
+							<input
+								type="time"
+								name="start"
+								value={start}
+								onChange={onChangeInputStart}
+								required
+							/>
+							<br />
+							종료 시각
+							<input
+								type="time"
+								name="start"
+								value={end}
+								min={start}
+								onChange={onChangeInputEnd}
+								required
+							/>
+							<br />
+							<br />
+							<Button
+								autoFocus
+								onClick={handleClose}
+								color="primary"
+							>
 								취소
 							</Button>
 							<Button type="submit" color="primary">
@@ -232,7 +230,7 @@ const LessonCalendarTeacher = () => {
 				culture="ko"
 				onSelectEvent={onSelectEvent}
 				onSelectSlot={onSelectSlot}
-			// eventPropGetter={eventStyleGetter}
+				// eventPropGetter={eventStyleGetter}
 			/>
 		</div>
 	);
