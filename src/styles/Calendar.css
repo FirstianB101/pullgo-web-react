@@ -1,3 +1,71 @@
+.div__lesson_add__btn {
+	display: flex;
+	justify-content: flex-end;
+}
+
 .calendar_title {
 	text-align: center;
+}
+
+.rbc-toolbar-label {
+	position: relative;
+	bottom: 10px;
+	right: 90px;
+	font-size: 24px;
+}
+
+button.MuiButton-outlined {
+	position: relative;
+	top: 28px;
+}
+
+/* 수업 생성 Form 제목 h2 */
+h2.MuiTypography-root {
+	margin-top: 10px;
+}
+
+.lesson_create__form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.lesson_create__form div {
+	margin-bottom: 10px;
+}
+
+.lesson_create__form input {
+	width: 150px;
+	height: 25px;
+	border: 2px solid #d8dcfe;
+	border-radius: 5px;
+}
+
+.lesson_create__form input:focus {
+	outline: 1.5px solid black;
+}
+
+.lesson_create__form__label {
+	margin-right: 15px;
+}
+
+/* 반 선택 */
+.lesson_create__form select {
+	margin-left: 52px;
+	width: 150px;
+	height: 25px;
+	border: 2px solid #d8dcfe;
+	border-radius: 5px;
+}
+
+/* 날짜 입력 */
+.lesson_create__form input[name="date"] {
+	margin-left: 37px;
+}
+
+button.MuiButton-text {
+	position: relative;
+	left: 120px;
+	top: 15px;
+	font-size: 16px;
 }
