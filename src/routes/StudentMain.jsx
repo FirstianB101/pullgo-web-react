@@ -46,11 +46,10 @@ const StudentMain = memo(({ history }) => {
 	// 	setStudentId(studentId);
 	// }, [studentId]);
 
-	// useEffect(() => {
-	// 	// onFetchStudentJoinedAcademyList(studentId);
-	// 	console.log("StudentMain 렌더링");
-
-	// }, []);
+	useEffect(() => {
+		console.log("StudentMain 렌더링");
+		onFetchStudentJoinedAcademyList(SID);
+	}, []);
 
 	const studentJoinedAcademyList = useSelector(
 		(state) =>
