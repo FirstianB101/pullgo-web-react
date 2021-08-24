@@ -11,6 +11,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
+import "../styles/MenuBar.css";
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1
@@ -23,19 +25,15 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const logOut = () => {
-	alert("로그아웃");
-};
-
-const applyAcademy = () => {
-	alert("학원 가입");
-};
-
 const editAccountInfo = () => {
 	alert("회원정보 수정");
 };
 
-const MenuDrawer = memo(({ isJoinedAcademy }) => {
+const logOut = () => {
+	alert("로그아웃");
+};
+
+const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 	const toggleDrawer = (open) => (event) => {
@@ -51,8 +49,19 @@ const MenuDrawer = memo(({ isJoinedAcademy }) => {
 	const menuList = () => {
 		const onClickBtn = (btnText) => {
 			switch (btnText) {
+				case "수업 일정":
+					history.push("/student_main");
+					break;
+
+				case "오답 노트":
+					break;
+
+				case "반 가입":
+					history.push("/student_classroom_info");
+					break;
+
 				case "학원 가입":
-					applyAcademy();
+					history.push("/student_academy_info");
 					break;
 
 				case "회원정보 수정":
@@ -125,17 +134,31 @@ const MenuDrawer = memo(({ isJoinedAcademy }) => {
 	);
 });
 
-const MenuBarStudent = memo(({ isJoinedAcademy }) => {
+const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar>
-					<MenuDrawer isJoinedAcademy={isJoinedAcademy} />
-					<Typography variant="h6" className={classes.title}>
-						Firstian
-					</Typography>
+					<MenuDrawer
+						isJoinedAcademy={isJoinedAcademy}
+						history={history}
+					/>
+
+					<Button
+						color="inherit"
+						onClick={() => history.push("/student_main")}
+					>
+						<Typography variant="h6" className={classes.title}>
+							Pull-Go
+						</Typography>
+					</Button>
+
+					{/* <Typography variant="h6" className={classes.title}>
+						Pull-Go
+					</Typography> */}
+
 					<Button color="inherit" onClick={logOut}>
 						로그아웃
 					</Button>
@@ -145,4 +168,4 @@ const MenuBarStudent = memo(({ isJoinedAcademy }) => {
 	);
 });
 
-export default MenuBarStudent;
+export default MenuBar_S;

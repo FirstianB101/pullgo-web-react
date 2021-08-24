@@ -97,7 +97,10 @@ const LogIn = memo(
 			alert(`id: ${id} pw: ${pw}, userType: ${userType}`);
 
 			// studentId 서버로부터 조회
-			onFetchStudentId(1);
+			onFetchStudentId(21);
+			// studentId: 0 => 1
+
+			// onFetchStudentId(1);
 			// studentId: 0 => 3
 
 			// onFetchStudentId(2);

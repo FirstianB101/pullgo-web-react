@@ -1,7 +1,7 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_STUDENT_INFO = "fetchStudentInfo/FETCH_STUDENT_INFO";
+const FETCH_STUDENT_INFO = "FETCH_STUDENT_INFO";
 
 /* action 생성 함수 정의 */
 export const fetchStudentInfo = (studentInfo) => {

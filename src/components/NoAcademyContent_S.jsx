@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
 
-const NoAcademyStudentContent = memo(({ history }) => {
+const NoAcademyContent_S = memo(({ history }) => {
 	const studentInfo = useSelector(
 		(state) => state.fetchStudentInfoReducer.studentInfo
 	);
@@ -30,4 +30,4 @@ const NoAcademyStudentContent = memo(({ history }) => {
 	);
 });
 
-export default NoAcademyStudentContent;
+export default NoAcademyContent_S;

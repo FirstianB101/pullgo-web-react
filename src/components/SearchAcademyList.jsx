@@ -87,53 +87,58 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 });
 
 /* SearchAcademyListContainer로부터 redux 전역 state를 props로 전달받음 */
-const SearchAcademyList = memo(({ academyList, onFetchAcademyList }) => {
-	const [academyName, setAcademyName] = useState("");
+const SearchAcademyList = memo(
+	({ academyList, onFetchAcademyListByAcademyName }) => {
+		const [academyName, setAcademyName] = useState("");
 
-	const onSubmitForm = (e) => {
-		e.preventDefault();
+		const onSubmitForm = (e) => {
+			e.preventDefault();
 
-		onFetchAcademyList(academyName);
-		console.log(academyList);
-	};
+			onFetchAcademyListByAcademyName(academyName);
+			console.log(academyList);
+		};
 
-	const onChangeInputAcademyName = (e) => {
-		setAcademyName(e.target.value);
-	};
+		const onChangeInputAcademyName = (e) => {
+			setAcademyName(e.target.value);
+		};
 
-	return (
-		<form className="search_academy_form" onSubmit={onSubmitForm}>
-			<div className="search_academy_input">
-				<input
-					type="text"
-					name="academyName"
-					value={academyName}
-					onChange={onChangeInputAcademyName}
-					placeholder="학원 이름 검색"
-					required
-				/>
-				<button type="submit" autoFocus>
-					검색
-				</button>
-			</div>
+		return (
+			<form className="search_academy_form" onSubmit={onSubmitForm}>
+				<div className="search_academy_input">
+					<input
+						type="text"
+						name="academyName"
+						value={academyName}
+						onChange={onChangeInputAcademyName}
+						placeholder="학원 이름 검색"
+						required
+					/>
+					<button type="submit" autoFocus>
+						검색
+					</button>
+				</div>
 
-			<ul className="academy_list">
-				{academyList !== []
-					? academyList.map((academy) => (
-							<div key={academy.id} className="academy_list_item">
-								<AlertDialog
-									academyId={academy.id}
-									academyName={academy.name}
-								/>
-								<br />
-								<span>주소: {academy.address}</span>
-								<span>전화번호: {academy.phone}</span>
-							</div>
-					  ))
-					: ""}
-			</ul>
-		</form>
-	);
-});
+				<ul className="academy_list">
+					{academyList.length !== 0
+						? academyList.map((academy) => (
+								<div
+									key={academy.id}
+									className="academy_list_item"
+								>
+									<AlertDialog
+										academyId={academy.id}
+										academyName={academy.name}
+									/>
+									<br />
+									<span>주소: {academy.address}</span>
+									<span>전화번호: {academy.phone}</span>
+								</div>
+						  ))
+						: ""}
+				</ul>
+			</form>
+		);
+	}
+);
 
 export default SearchAcademyList;

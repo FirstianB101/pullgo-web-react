@@ -4,7 +4,6 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/ko";
-import events from "../module/events";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -15,22 +14,24 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 
+import events from "../module/events";
+
 // 서버에서 수업 목록 Fetch
 let lessons = events;
 
 // Date 객체를 인자로 받아서 "2021-08-09" 형식의 string으로 반환
-function dateToStr(date) {
+const dateToStr = (date) => {
 	let year = date.getFullYear();
 	let month = ("0" + (date.getMonth() + 1)).slice(-2);
 	let day = ("0" + date.getDate()).slice(-2);
 
 	return year + "-" + month + "-" + day;
-}
+};
 
 // state인 date("2021-08-09" 형태)와
 // state인 시간을 나타내는 start 또는 end("14:05" 형태)를 인자로 받아서
 // 날짜 + 시간 형태의 Date 객체로 반환
-function dateWithTime(date, time) {
+const dateWithTime = (date, time) => {
 	let year = date.slice(0, 4);
 	let month = date.slice(5, 7);
 	let day = date.slice(8, 10);
@@ -40,9 +41,9 @@ function dateWithTime(date, time) {
 	let min = time.slice(3, 5);
 
 	return new Date(year, month - 1, day, hour, min);
-}
+};
 
-function PaperComponent(props) {
+const PaperComponent = (props) => {
 	return (
 		<Draggable
 			handle="#draggable-dialog-title"
@@ -51,9 +52,9 @@ function PaperComponent(props) {
 			<Paper {...props} />
 		</Draggable>
 	);
-}
+};
 
-const LessonCalendarTeacher = () => {
+const LessonCalendar_S = () => {
 	// const [lessons, setLessons] = useState(); // 등록된 수업들(배열)
 	const [classroom, setClassroom] = useState(); // 반 이름
 	const [title, setTitle] = useState(); // 수업 이름
@@ -159,7 +160,7 @@ const LessonCalendarTeacher = () => {
 
 	return (
 		<div className="div__calendar" style={{ height: "500pt" }}>
-			<h2 className="calendar_title">수업 일정</h2>
+			<h2 className="calendar_title">학생 수업 일정</h2>
 			{/* <button onClick={onClickBtn}>일정 추가</button> */}
 			<div className="div__lesson_add__btn">
 				<Button
@@ -312,4 +313,4 @@ const LessonCalendarTeacher = () => {
 	);
 };
 
-export default LessonCalendarTeacher;
+export default LessonCalendar_S;

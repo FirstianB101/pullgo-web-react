@@ -1,0 +1,59 @@
+div.student_academy_info {
+	display: flex;
+	flex-direction: column;
+}
+
+/* JoinedAcademyList_S 컴포넌트 */
+div.student_joined_academy_list {
+	padding: 30px;
+}
+
+div.student_joined_academy_list li {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+div.student_joined_academy_list span {
+	display: block;
+	font-size: 17px;
+}
+
+div.academy_list_item {
+	margin-bottom: 10px;
+}
+
+/* ApplyingAcademyList_S 컴포넌트 */
+div.student_applying_academy_list {
+	padding: 30px;
+	position: relative;
+	top: -30px;
+}
+
+div.student_applying_academy_list li {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+div.student_applying_academy_list span {
+	display: block;
+	font-size: 17px;
+}
+
+/* 학원 가입신청 하기 button */
+div.student_academy_info button.btn_apply_academy {
+	border-radius: 12px;
+	background-color: #858ffb;
+	border-color: #eff3f7;
+	color: white;
+	width: 180px;
+	height: 50px;
+	font-size: 18px;
+	/* button 가운데 정렬 */
+	display: block;
+	margin: auto;
+	margin-bottom: 50px;
+}
+
+div.student_applying_academy button.btn_apply_academy:focus {
+	border: 2px solid black;
+}

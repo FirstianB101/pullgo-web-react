@@ -1,12 +1,12 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_ACADEMY_LIST = "fetchAcademyList/FETCH_ACADEMY_LIST";
+const FETCH_ACADEMY_LIST_BY_ACADEMY_NAME = "FETCH_ACADEMY_LIST_BY_ACADEMY_NAME";
 
 /* action 생성 함수 정의 */
-export const fetchAcademyList = (academyList) => {
+export const fetchAcademyListByAcademyName = (academyList) => {
 	return {
-		type: FETCH_ACADEMY_LIST,
+		type: FETCH_ACADEMY_LIST_BY_ACADEMY_NAME,
 		academyList
 	};
 };
@@ -17,7 +17,7 @@ const initState = {
 };
 
 /* 서버 API로부터 academyName과 관련된 학원들 조회 */
-export const apiFetchAcademyList = (academyName) => {
+export const apiFetchAcademyListByAcademyName = (academyName) => {
 	return async (dispatch) => {
 		try {
 			const response = await axios({
@@ -25,7 +25,7 @@ export const apiFetchAcademyList = (academyName) => {
 				url: `/v1/academies?nameLike=${academyName}`
 			});
 			// action 생성 함수 dispatch
-			dispatch(fetchAcademyList(response.data));
+			dispatch(fetchAcademyListByAcademyName(response.data));
 		} catch (error) {
 			throw error;
 		}
@@ -33,9 +33,12 @@ export const apiFetchAcademyList = (academyName) => {
 };
 
 /* reducer 정의 */
-export const fetchAcademyListReducer = (state = initState, action) => {
+export const fetchAcademyListByAcademyNameReducer = (
+	state = initState,
+	action
+) => {
 	switch (action.type) {
-		case FETCH_ACADEMY_LIST:
+		case FETCH_ACADEMY_LIST_BY_ACADEMY_NAME:
 			return {
 				...state,
 				academyList: action.academyList

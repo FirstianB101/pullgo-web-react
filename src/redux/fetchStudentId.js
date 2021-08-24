@@ -1,7 +1,7 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_STUDENT_ID = "fetchStudentId/FETCH_STUDENT_ID";
+const FETCH_STUDENT_ID = "FETCH_STUDENT_ID";
 
 /* action 생성 함수 정의 */
 export const fetchStudentId = (studentId) => {

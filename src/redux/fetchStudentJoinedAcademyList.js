@@ -1,8 +1,7 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_STUDENT_JOINED_ACADEMY_LIST =
-	"fetchStudentJoinedAcademyList/FETCH_STUDENT_JOINED_ACADEMY_LIST";
+const FETCH_STUDENT_JOINED_ACADEMY_LIST = "FETCH_STUDENT_JOINED_ACADEMY_LIST";
 
 /* action 생성 함수 정의 */
 export const fetchStudentJoinedAcademyList = (studentJoinedAcademyList) => {
