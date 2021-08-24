@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { apiFetchStudentJoinedAcademyList } from "../redux/fetchStudentJoinedAcademyList";
 import MenuBar_S from "../components/MenuBar_S";
-// import SearchClassroomListContainer
+import SearchClassroomListContainer from "../container/SearchClassroomListContainer";
 // import "../styles/ApplyClassroom_S.css;"
 
 const ApplyClassroom_S = ({ history }) => {
@@ -31,7 +31,7 @@ const ApplyClassroom_S = ({ history }) => {
 	return (
 		<div className="student_apply_classroom">
 			<MenuBar_S isJoinedAcademy={isJoinedAcademy} history={history} />
-			<h3>SearchClassroomListContainer</h3>
+			<SearchClassroomListContainer />
 		</div>
 	);
 };
