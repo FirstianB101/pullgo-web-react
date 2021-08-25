@@ -22,7 +22,7 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 		(state) => state.fetchStudentIdReducer.studentId
 	);
 
-	const onClickBtnJoinAcademy = (clickedAcademy) => {
+	const onClickBtnApplyAcademy = (clickedAcademy) => {
 		console.log(clickedAcademy);
 
 		const postApplyAcademy = async () => {
@@ -75,7 +75,7 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 						취소
 					</Button>
 					<Button
-						onClick={() => onClickBtnJoinAcademy(academyName)}
+						onClick={() => onClickBtnApplyAcademy(academyName)}
 						color="primary"
 					>
 						확인

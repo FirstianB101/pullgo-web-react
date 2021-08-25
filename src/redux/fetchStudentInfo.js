@@ -20,10 +20,7 @@ const initState = {
 export const apiFetchStudentInfo = (studentId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios({
-				method: "GET",
-				url: `/v1/students/${studentId}`
-			});
+			const response = await axios.get(`/v1/students/${studentId}`);
 			// action 생성 함수 dispatch
 			dispatch(fetchStudentInfo(response.data));
 		} catch (error) {

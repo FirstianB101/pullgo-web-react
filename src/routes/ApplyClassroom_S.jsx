@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { apiFetchStudentJoinedAcademyList } from "../redux/fetchStudentJoinedAcademyList";
 import MenuBar_S from "../components/MenuBar_S";
 import SearchClassroomListContainer from "../container/SearchClassroomListContainer";
-// import "../styles/ApplyClassroom_S.css;"
+import "../styles/ApplyClassroom_S.css";
 
-const ApplyClassroom_S = ({ history }) => {
+const ApplyClassroom_S = memo(({ history }) => {
 	const dispatch = useDispatch();
 	const onFetchStudentJoinedAcademyList = (studentId) => {
 		console.log("onFetchStudentJoinedAcademyList()");
@@ -34,6 +34,6 @@ const ApplyClassroom_S = ({ history }) => {
 			<SearchClassroomListContainer />
 		</div>
 	);
-};
+});
 
 export default ApplyClassroom_S;

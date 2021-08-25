@@ -20,9 +20,10 @@ const initState = {
 export const apiFetchAcademyListByAcademyName = (academyName) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios({
-				method: "GET",
-				url: `/v1/academies?nameLike=${academyName}`
+			const response = await axios.get("/v1/academies?", {
+				params: {
+					nameLike: academyName
+				}
 			});
 			// action 생성 함수 dispatch
 			dispatch(fetchAcademyListByAcademyName(response.data));

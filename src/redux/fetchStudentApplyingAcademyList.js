@@ -21,9 +21,10 @@ const initState = {
 export const apiFetchStudentApplyingAcademyList = (studentId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios({
-				method: "GET",
-				url: `/v1/academies?applyingStudentId=${studentId}`
+			const response = await axios.get("/v1/academies?", {
+				params: {
+					applyingStudentId: studentId
+				}
 			});
 			// action 생성 함수 dispatch
 			dispatch(fetchStudentApplyingAcademyList(response.data));

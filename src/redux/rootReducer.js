@@ -12,6 +12,7 @@ import { fetchStudentJoinedAcademyListReducer } from "./fetchStudentJoinedAcadem
 import { fetchStudentApplyingAcademyListReducer } from "./fetchStudentApplyingAcademyList";
 import { fetchStudentJoinedClassroomListReducer } from "./fetchStudentJoinedClassroomList";
 import { fetchStudentApplyingClassroomListReducer } from "./fetchStudentApplyingClassroomList";
+import { fetchClassroomListByAcademyIdAndNameReducer } from "./fetchClassroomListByAcademyIdAndName";
 
 // reducer들을 rootReducer로 combine
 export const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ export const rootReducer = combineReducers({
 	fetchStudentJoinedAcademyListReducer,
 	fetchStudentApplyingAcademyListReducer,
 	fetchStudentJoinedClassroomListReducer,
-	fetchStudentApplyingClassroomListReducer
+	fetchStudentApplyingClassroomListReducer,
+	fetchClassroomListByAcademyIdAndNameReducer
 });
 
 export const persistConfig = {
