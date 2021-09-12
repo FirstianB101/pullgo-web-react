@@ -1,28 +1,28 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_STUDENT_ID = "FETCH_STUDENT_ID";
+const FETCH_TEACHER_ID = "FETCH_TEACHER_ID";
 
 /* action 생성 함수 정의 */
-export const fetchStudentId = (studentId) => {
+export const fetchTeacherId = (teacherId) => {
 	return {
-		type: FETCH_STUDENT_ID,
-		studentId
+		type: FETCH_TEACHER_ID,
+		teacherId
 	};
 };
 
 /* 초기 state 정의 */
 const initState = {
-	studentId: 0
+	teacherId: 0
 };
 
-/* 서버 API로부터 studentId 수신 */
-export const apiFetchStudentId = (id) => {
+/* 서버 API로부터 teacherId 수신 */
+export const apiFetchTeacherId = (id) => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(`/v1/academies/${id}`);
 			// action 생성 함수 dispatch
-			dispatch(fetchStudentId(response.data.ownerId));
+			dispatch(fetchTeacherId(response.data.ownerId));
 		} catch (error) {
 			throw error;
 		}
@@ -30,13 +30,13 @@ export const apiFetchStudentId = (id) => {
 };
 
 /* reducer 정의 */
-export const fetchStudentIdReducer = (state = initState, action) => {
+export const teacherIdReducer = (state = initState, action) => {
 	switch (action.type) {
-		case FETCH_STUDENT_ID:
+		case FETCH_TEACHER_ID:
 			return {
 				...state,
-				studentId: action.studentId
-				// studentId: state.studentId
+				teacherId: action.teacherId
+				// teacherId: state.teacherId
 			};
 
 		default:

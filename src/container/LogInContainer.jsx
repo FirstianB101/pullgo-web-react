@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { apiFetchStudentId } from "../redux/fetchStudentId";
+import { apiFetchStudentId } from "../redux/student/fetchStudentId";
+import { apiFetchTeacherId } from "../redux/teacher/fetchTeacherId";
 import LogIn from "../routes/LogIn";
 
 /* LogIn 라우터(Presenter)를 관리하는 Container */
@@ -24,16 +25,16 @@ const LogInContainer = ({ history }) => {
 		console.log("onFetchStudentId()");
 		dispatch(apiFetchStudentId(studentId));
 	};
+	const onFetchTeacherId = (teacherId) => {
+		console.log("onFetchTeacherId()");
+		dispatch(apiFetchTeacherId(teacherId));
+	};
 
 	return (
 		<LogIn
 			history={history}
 			onFetchStudentId={onFetchStudentId}
-			// studentId={studentId}
-			// studentJoinedAcademyList={studentJoinedAcademyList}
-			// studentInfo={studentInfo}
-			// onFetchStudentJoinedAcademyList={onFetchStudentJoinedAcademyList}
-			// onFetchStudentInfo={onFetchStudentInfo}
+			onFetchTeacherId={onFetchTeacherId}
 		/>
 	);
 };

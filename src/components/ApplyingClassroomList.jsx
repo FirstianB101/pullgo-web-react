@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect, memo } from "react";
 
-const ApplyingClassroomList_S = memo(({ studentApplyingClassroomList }) => {
+const ApplyingClassroomList = memo((props) => {
 	const [applyingClassroomList, setApplyingClassroomList] = useState(
-		studentApplyingClassroomList
+		props.applyingClassroomList
 	);
 	const [academyList, setAcademyList] = useState([]);
 	const [teachersList, setTeachersList] = useState([]);
@@ -102,7 +102,7 @@ const ApplyingClassroomList_S = memo(({ studentApplyingClassroomList }) => {
 	};
 
 	return (
-		<div className="student_applying_classroom_list">
+		<div className="applying_classroom_list">
 			<h3>가입 신청한 반 목록</h3>
 			<ul>
 				{applyingClassroomList.length !== 0
@@ -113,4 +113,4 @@ const ApplyingClassroomList_S = memo(({ studentApplyingClassroomList }) => {
 	);
 });
 
-export default ApplyingClassroomList_S;
+export default ApplyingClassroomList;

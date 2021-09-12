@@ -31,9 +31,7 @@ const AlertDialog = memo(({ classroomId, classroomName }) => {
 		setOpen(false);
 	};
 
-	const studentId = useSelector(
-		(state) => state.fetchStudentIdReducer.studentId
-	);
+	const studentId = useSelector((state) => state.studentIdReducer.studentId);
 
 	const onClickBtnApplyClassroom = (clickedClassroom) => {
 		console.log(clickedClassroom);
@@ -49,7 +47,7 @@ const AlertDialog = memo(({ classroomId, classroomName }) => {
 					alert("반 가입 요청이 완료되었습니다.");
 				setOpen(false);
 
-				// 학생이 가입 요청한 반 목록 Store 갱신 (Action Dispatch)
+				// 사용자가 가입 요청한 반 목록 Store 갱신 (Action Dispatch)
 			} catch (e) {
 				alert("이미 가입된 반입니다.");
 				console.log(e);
@@ -105,10 +103,8 @@ const SearchClassroomList = memo(
 		// 반 이름 or 선생님 이름으로 반 검색
 		const [searchName, setSearchName] = useState("");
 
-		const studentJoinedAcademyList = useSelector(
-			(state) =>
-				state.fetchStudentJoinedAcademyListReducer
-					.studentJoinedAcademyList
+		const joinedAcademyList = useSelector(
+			(state) => state.joinedAcademyListReducer.joinedAcademyList
 		);
 
 		const onSubmitForm = (e) => {
@@ -149,8 +145,8 @@ const SearchClassroomList = memo(
 								<em>None</em>
 							</MenuItem> */}
 
-							{studentJoinedAcademyList.length !== 0
-								? studentJoinedAcademyList.map((academy) => (
+							{joinedAcademyList.length !== 0
+								? joinedAcademyList.map((academy) => (
 										<MenuItem value={academy.id}>
 											{academy.name}
 										</MenuItem>

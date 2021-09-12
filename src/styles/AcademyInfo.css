@@ -1,19 +1,19 @@
-div.student_academy_info {
+div.academy_info {
 	display: flex;
 	flex-direction: column;
 }
 
-/* JoinedAcademyList_S 컴포넌트 */
-div.student_joined_academy_list {
+/* JoinedAcademyList 컴포넌트 */
+div.joined_academy_list {
 	padding: 30px;
 }
 
-div.student_joined_academy_list li {
+div.joined_academy_list li {
 	font-size: 18px;
 	font-weight: 600;
 }
 
-div.student_joined_academy_list span {
+div.joined_academy_list span {
 	display: block;
 	font-size: 17px;
 }
@@ -22,25 +22,37 @@ div.academy_list_item {
 	margin-bottom: 10px;
 }
 
-/* ApplyingAcademyList_S 컴포넌트 */
-div.student_applying_academy_list {
+div.joined_academy_list ul span.no_joined_academy {
+	font-size: 17px;
+	position: relative;
+	left: -40px;
+}
+
+/* ApplyingAcademyList 컴포넌트 */
+div.applying_academy_list {
 	padding: 30px;
 	position: relative;
 	top: -30px;
 }
 
-div.student_applying_academy_list li {
+div.applying_academy_list li {
 	font-size: 18px;
 	font-weight: 600;
 }
 
-div.student_applying_academy_list span {
+div.applying_academy_list span {
 	display: block;
 	font-size: 17px;
 }
 
+div.applying_academy_list ul span.no_applying_academy {
+	font-size: 17px;
+	position: relative;
+	left: -40px;
+}
+
 /* 학원 가입신청 하기 button */
-div.student_academy_info button.btn_apply_academy {
+div.academy_info button.btn_apply_academy {
 	border-radius: 12px;
 	background-color: #858ffb;
 	border-color: #eff3f7;
@@ -54,6 +66,6 @@ div.student_academy_info button.btn_apply_academy {
 	margin-bottom: 50px;
 }
 
-div.student_applying_academy button.btn_apply_academy:focus {
+div.academy_info button.btn_apply_academy:focus {
 	border: 2px solid black;
 }

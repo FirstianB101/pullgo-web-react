@@ -1,0 +1,55 @@
+h2.calendar_title {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.rbc-toolbar-label {
+	position: relative;
+	bottom: 10px;
+	right: 90px;
+	font-size: 24px;
+}
+
+.div__lesson_add__btn > button.MuiButton-outlined {
+	position: absolute;
+	right: 10px;
+}
+
+.div__selected_lesson_list {
+	margin-top: 100px;
+}
+
+.div__selected_lesson_list > h3 {
+	margin-left: 30px;
+}
+
+.ul__selected_lesson_list {
+	margin-left: 10px;
+	margin-bottom: 80px;
+}
+
+.div__selected_lesson_list_menu {
+	display: flex;
+}
+
+.div__selected_lesson_list_menu_buttons {
+	margin-left: 20px;
+}
+
+.div__selected_lesson_list_menu_buttons button {
+	font-size: 18px;
+}
+
+.ul__selected_lesson_list li {
+	font-size: 18px;
+	font-weight: 550;
+	margin-bottom: 5px;
+}
+
+.ul__selected_lesson_list > span {
+	font-size: 18px;
+	font-weight: 550;
+	position: relative;
+	left: -20px;
+}

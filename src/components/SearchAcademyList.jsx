@@ -9,7 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 // import DialogContent from "@material-ui/core/DialogContent";
 // import DialogContentText from "@material-ui/core/DialogContentText";
 
-const AlertDialog = memo(({ academyId, academyName }) => {
+const AlertDialog = memo(({ userType, academyId, academyName }) => {
 	const [open, setOpen] = useState(false);
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -18,17 +18,20 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 		setOpen(false);
 	};
 
-	const studentId = useSelector(
-		(state) => state.fetchStudentIdReducer.studentId
-	);
+	const studentId = useSelector((state) => state.studentIdReducer.studentId);
+	const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
+
+	// studentId 또는 teacherId (userType: "student" 또는 "teacher")
+	const userId = userType === "student" ? studentId : teacherId;
 
 	const onClickBtnApplyAcademy = (clickedAcademy) => {
 		console.log(clickedAcademy);
 
 		const postApplyAcademy = async () => {
 			try {
+				// userType에 따라 studentId 또는 teacherId 로 post
 				const response = await axios.post(
-					`/v1/students/${studentId}/apply-academy`,
+					`/v1/${userType}s/${userId}/apply-academy`,
 					{ academyId }
 				);
 
@@ -36,7 +39,7 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 					alert("학원 가입 요청이 완료되었습니다.");
 				setOpen(false);
 
-				// 학생이 가입 요청한 학원 목록 Store 갱신 (Action Dispatch)
+				// 사용자가 가입 요청한 학원 목록 Store 갱신 (Action Dispatch)
 			} catch (e) {
 				alert("이미 가입된 학원입니다.");
 				console.log(e);
@@ -88,7 +91,7 @@ const AlertDialog = memo(({ academyId, academyName }) => {
 
 /* SearchAcademyListContainer로부터 redux 전역 state를 props로 전달받음 */
 const SearchAcademyList = memo(
-	({ academyList, onFetchAcademyListByAcademyName }) => {
+	({ userType, academyList, onFetchAcademyListByAcademyName }) => {
 		const [academyName, setAcademyName] = useState("");
 
 		const onSubmitForm = (e) => {
@@ -126,6 +129,7 @@ const SearchAcademyList = memo(
 									className="academy_list_item"
 								>
 									<AlertDialog
+										userType={userType}
 										academyId={academy.id}
 										academyName={academy.name}
 									/>

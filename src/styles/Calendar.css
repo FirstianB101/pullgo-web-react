@@ -1,22 +1,7 @@
+/* 수업 추가 button */
 .div__lesson_add__btn {
 	display: flex;
 	justify-content: flex-end;
-}
-
-.calendar_title {
-	text-align: center;
-}
-
-.rbc-toolbar-label {
-	position: relative;
-	bottom: 10px;
-	right: 90px;
-	font-size: 24px;
-}
-
-button.MuiButton-outlined {
-	position: relative;
-	top: 28px;
 }
 
 /* 수업 생성 Form 제목 h2 */

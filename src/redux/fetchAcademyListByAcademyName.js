@@ -34,10 +34,7 @@ export const apiFetchAcademyListByAcademyName = (academyName) => {
 };
 
 /* reducer 정의 */
-export const fetchAcademyListByAcademyNameReducer = (
-	state = initState,
-	action
-) => {
+export const academyListByAcademyNameReducer = (state = initState, action) => {
 	switch (action.type) {
 		case FETCH_ACADEMY_LIST_BY_ACADEMY_NAME:
 			return {

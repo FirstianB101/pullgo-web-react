@@ -1,6 +1,11 @@
 import React, { useState, memo } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
+import { apiFetchUserType } from "../redux/fetchUserType";
+import Banner from "../components/Banner";
+import Logo from "../components/Logo";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,8 +15,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 import "../styles/LogIn.css";
-import Banner from "../components/Banner";
-import Logo from "../components/Logo";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -59,103 +62,105 @@ const userTypeList = {
 };
 
 /* LoginContainer로부터 redux 전역 state를 props로 전달받음 */
-const LogIn = memo(
-	({
-		history,
-		onFetchStudentId
-		// studentId,
-		// studentJoinedAcademyList,
-		// studentInfo,
-		// onFetchStudentJoinedAcademyList,
-		// onFetchStudentInfo
-	}) => {
-		// Tabs
-		const classes = useStyles();
-		const [value, setValue] = useState(0);
-		const [userType, setUserType] = useState(userTypeList[0]);
+const LogIn = memo(({ history, onFetchStudentId, onFetchTeacherId }) => {
+	const dispatch = useDispatch();
+	const onFetchUserType = (userType) => {
+		console.log("onFetchUserType()");
+		dispatch(apiFetchUserType(userType));
+	};
 
-		// input(id, pw)
-		const [id, setId] = useState("");
-		const [pw, setPw] = useState("");
+	// Tabs
+	const classes = useStyles();
+	const [value, setValue] = useState(0);
+	const [userType, setUserType] = useState(userTypeList[0]);
 
-		const onChangeTabs = (event, newValue) => {
-			setValue(newValue);
-			setUserType(userTypeList[newValue]);
-		};
+	// input(id, pw)
+	const [id, setId] = useState("");
+	const [pw, setPw] = useState("");
 
-		const onChangeInputId = (e) => {
-			setId(e.target.value);
-		};
+	const onChangeTabs = (event, newValue) => {
+		setValue(newValue);
+		setUserType(userTypeList[newValue]);
+	};
 
-		const onChangeInputPw = (e) => {
-			setPw(e.target.value);
-		};
+	const onChangeInputId = (e) => {
+		setId(e.target.value);
+	};
 
-		const onSubmitForm = (e) => {
-			// 서버에 id, pw 전달
-			e.preventDefault();
-			alert(`id: ${id} pw: ${pw}, userType: ${userType}`);
+	const onChangeInputPw = (e) => {
+		setPw(e.target.value);
+	};
 
-			// studentId 서버로부터 조회
-			onFetchStudentId(21);
-			// studentId: 0 => 1
+	const onSubmitForm = (e) => {
+		// 서버에 id, pw 전달
+		e.preventDefault();
+		alert(`id: ${id} pw: ${pw}, userType: ${userType}`);
 
-			// onFetchStudentId(1);
-			// studentId: 0 => 3
+		// studentId 서버로부터 조회
+		// onFetchStudentId(21);
+		// studentId: 0 => 1
 
-			// onFetchStudentId(2);
-			// studentId: 0 => 2
+		// onFetchStudentId(1);
+		// studentId: 0 => 3
 
-			// 링크 이동
-			history.push("/student_main");
-		};
+		// onFetchStudentId(2);
+		// studentId: 0 => 2
 
-		return (
-			<div className={`login__page ${classes.root}`}>
-				<Banner />
+		onFetchUserType(userType); // userTypeReducer에 userType 저장
 
-				<div className="login__form__container">
-					<Logo />
-					<AppBar position="static" color="default">
-						<Tabs
-							value={value}
-							onChange={onChangeTabs}
-							indicatorColor="primary"
-							textColor="primary"
-							variant="fullWidth"
-							aria-label="full width tabs example"
-							centered
-						>
-							<Tab label="학생" {...a11yProps(0)} />
-							<Tab label="선생님" {...a11yProps(1)} />
-						</Tabs>
-					</AppBar>
+		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(2);
 
-					<form className="login__form" onSubmit={onSubmitForm}>
-						<input
-							type="text"
-							name="id"
-							placeholder="아이디"
-							value={id}
-							onChange={onChangeInputId}
-						/>
-						<input
-							type="password"
-							name="pw"
-							placeholder="비밀번호"
-							value={pw}
-							onChange={onChangeInputPw}
-						/>
+		// 링크 이동 => 사용자 타입(student, teacher)에 따라서
+		userType === "student"
+			? history.push("/student/main")
+			: history.push("/teacher/main");
+	};
 
-						<button type="submit">로그인</button>
-					</form>
+	return (
+		<div className={`login__page ${classes.root}`}>
+			<Banner />
 
-					<Link to="/signup_menu">회원 가입</Link>
-					<Link to="/find_account">계정 찾기</Link>
-				</div>
+			<div className="login__form__container">
+				<Logo />
+				<AppBar position="static" color="default">
+					<Tabs
+						value={value}
+						onChange={onChangeTabs}
+						indicatorColor="primary"
+						textColor="primary"
+						variant="fullWidth"
+						aria-label="full width tabs example"
+						centered
+					>
+						<Tab label="학생" {...a11yProps(0)} />
+						<Tab label="선생님" {...a11yProps(1)} />
+					</Tabs>
+				</AppBar>
+
+				<form className="login__form" onSubmit={onSubmitForm}>
+					<input
+						type="text"
+						name="id"
+						placeholder="아이디"
+						value={id}
+						onChange={onChangeInputId}
+					/>
+					<input
+						type="password"
+						name="pw"
+						placeholder="비밀번호"
+						value={pw}
+						onChange={onChangeInputPw}
+					/>
+
+					<button type="submit">로그인</button>
+				</form>
+
+				<Link to="/signup_menu">회원 가입</Link>
+				<Link to="/find_account">계정 찾기</Link>
 			</div>
-		);
-	}
-);
+		</div>
+	);
+});
 
 export default LogIn;

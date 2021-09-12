@@ -8,13 +8,13 @@ import SignUp_T from "./routes/SignUp_T";
 import SignUpMenu from "./routes/SignUpMenu";
 import FindAccount from "./routes/FindAccount";
 
-import MainPage_S from "./routes/MainPage_S";
-import AcademyInfo_S from "./routes/AcademyInfo_S";
-import ApplyAcademy_S from "./routes/ApplyAcademy_S";
-import ClassroomInfo_S from "./routes/ClassroomInfo_S";
-import ApplyClassroom_S from "./routes/ApplyClassroom_S";
+import AcademyInfo from "./routes/AcademyInfo";
+import ApplyAcademy from "./routes/ApplyAcademy";
+import ClassroomInfo from "./routes/ClassroomInfo";
+import ApplyClassroom from "./routes/ApplyClassroom";
+import MainPage from "./routes/MainPage";
 
-import LessonSchedule_T from "./routes/LessonSchedule_T";
+// import LessonSchedule_T from "./routes/LessonSchedule_T";
 
 function App() {
 	return (
@@ -26,24 +26,32 @@ function App() {
 				<Route path="/signup_teacher" component={SignUp_T} />
 				<Route path="/find_account" component={FindAccount} />
 
-				<Route path="/student_main" component={MainPage_S} />
-
-				{/* MenuBar의 학원 가입 */}
-				<Route path="/student_academy_info" component={AcademyInfo_S} />
+				{/* ---------- Student, Teacher 공통 메뉴 ---------- */}
+				{/* MenuBar의 학원 가입 요청 */}
+				<Route path="/student/academy_info" component={AcademyInfo} />
+				<Route path="/teacher/academy_info" component={AcademyInfo} />
+				<Route path="/student/apply_academy" component={ApplyAcademy} />
+				<Route path="/teacher/apply_academy" component={ApplyAcademy} />
+				{/* MenuBar의 반 가입 요청 */}
 				<Route
-					path="/student_apply_academy"
-					component={ApplyAcademy_S}
-				/>
-
-				{/* MenuBar의 반 가입 */}
-				<Route
-					path="/student_classroom_info"
-					component={ClassroomInfo_S}
+					path="/student/classroom_info"
+					component={ClassroomInfo}
 				/>
 				<Route
-					path="/student_apply_classroom"
-					component={ApplyClassroom_S}
+					path="/teacher/classroom_info"
+					component={ClassroomInfo}
 				/>
+				<Route
+					path="/student/apply_classroom"
+					component={ApplyClassroom}
+				/>
+				<Route
+					path="/teacher/apply_classroom"
+					component={ApplyClassroom}
+				/>
+				{/* Main 메뉴 => YesAcademy 또는 NoAcademy */}
+				<Route path="/student/main" component={MainPage} />
+				<Route path="/teacher/main" component={MainPage} />
 
 				<LogInContainer />
 			</Switch>

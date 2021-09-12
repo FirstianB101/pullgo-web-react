@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect, memo } from "react";
 
-const JoinedClassroomList_S = memo(({ studentJoinedClassroomList }) => {
+const JoinedClassroomList = memo((props) => {
 	const [joinedClassroomList, setJoinedClassroomList] = useState(
-		studentJoinedClassroomList
+		props.joinedClassroomList
 	);
 	const [academyList, setAcademyList] = useState([]);
 	const [teachersList, setTeachersList] = useState([]);
@@ -100,7 +100,7 @@ const JoinedClassroomList_S = memo(({ studentJoinedClassroomList }) => {
 	};
 
 	return (
-		<div className="student_joined_classroom_list">
+		<div className="joined_classroom_list">
 			<h3>가입된 반 목록</h3>
 			<ul>
 				{joinedClassroomList.length !== 0
@@ -111,4 +111,4 @@ const JoinedClassroomList_S = memo(({ studentJoinedClassroomList }) => {
 	);
 });
 
-export default JoinedClassroomList_S;
+export default JoinedClassroomList;

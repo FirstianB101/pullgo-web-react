@@ -36,7 +36,7 @@ export const apiFetchClassroomListByAcademyIdAndName = (academyId, name) => {
 };
 
 /* reducer 정의 */
-export const fetchClassroomListByAcademyIdAndNameReducer = (
+export const classroomListByAcademyIdAndNameReducer = (
 	state = initState,
 	action
 ) => {

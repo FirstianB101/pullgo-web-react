@@ -50,18 +50,33 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 		const onClickBtn = (btnText) => {
 			switch (btnText) {
 				case "수업 일정":
-					history.push("/student/main");
+					history.push("/teacher/main");
 					break;
 
-				case "오답 노트":
+				case "반 관리":
 					break;
 
 				case "반 가입 요청":
-					history.push("/student/classroom_info");
+					history.push("/teacher/classroom_info");
+					break;
+
+				case "반 가입 승인":
+					break;
+
+				case "시험 관리":
+					break;
+
+				case "학원 관리":
 					break;
 
 				case "학원 가입 요청":
-					history.push("/student/academy_info");
+					history.push("/teacher/academy_info");
+					break;
+
+				case "학원 가입 승인":
+					break;
+
+				case "다른 학원 선택":
 					break;
 
 				case "회원정보 수정":
@@ -81,14 +96,38 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 				onClick={toggleDrawer(false)}
 				onKeyDown={toggleDrawer(false)}
 			>
-				{/* 학생이 가입된 학원이 있는 경우 보여줄 List */}
+				{/* 선생님이 가입된 학원이 있는 경우 보여줄 List */}
 				{isJoinedAcademy === true ? (
 					<List>
 						{[
 							"수업 일정",
-							"시험 목록",
-							"오답 노트",
-							"반 가입 요청"
+							"반 관리",
+							"반 가입 요청",
+							"반 가입 승인",
+							"시험 관리"
+						].map((text) => (
+							<ListItem
+								button
+								key={text}
+								onClick={() => onClickBtn(text)}
+							>
+								<ListItemText primary={text} />
+							</ListItem>
+						))}
+					</List>
+				) : (
+					""
+				)}
+
+				<Divider />
+
+				{/* 선생님이 가입된 학원이 있는 경우 보여줄 List */}
+				{isJoinedAcademy === true ? (
+					<List>
+						{[
+							"학원 관리", // 원장만 가능하도록
+							"학원 가입 승인",
+							"다른 학원 선택"
 						].map((text) => (
 							<ListItem
 								button
@@ -139,7 +178,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 	);
 });
 
-const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
+const MenuBar_T = memo(({ isJoinedAcademy, history }) => {
 	const classes = useStyles();
 
 	return (
@@ -153,7 +192,7 @@ const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
 
 					<Button
 						color="inherit"
-						onClick={() => history.push("/student/main")}
+						onClick={() => history.push("/teacher/main")}
 					>
 						<Typography variant="h6" className={classes.title}>
 							Pull-Go
@@ -173,4 +212,4 @@ const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
 	);
 });
 
-export default MenuBar_S;
+export default MenuBar_T;

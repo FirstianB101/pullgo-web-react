@@ -1,16 +1,16 @@
-div.student_classroom_info {
+div.classroom_info {
 	display: flex;
 	flex-direction: column;
 }
 
-/* JoinedClassroomList_S 컴포넌트 */
-div.student_joined_classroom_list {
+/* JoinedClassroomList 컴포넌트 */
+div.joined_classroom_list {
 	display: flex;
 	flex-direction: column;
 	padding: 30px;
 }
 
-div.student_joined_classroom_list > ul {
+div.joined_classroom_list > ul {
 	position: relative;
 	top: -15px;
 }
@@ -32,8 +32,8 @@ div.classroom_list_item span {
 	font-size: 17px;
 }
 
-/* ApplyingClassroomList_S 컴포넌트 */
-div.student_applying_classroom_list {
+/* ApplyingClassroomList 컴포넌트 */
+div.applying_classroom_list {
 	display: flex;
 	flex-direction: column;
 	padding: 30px;
@@ -42,7 +42,7 @@ div.student_applying_classroom_list {
 }
 
 /* 반 가입신청 하기 button */
-div.student_classroom_info button.btn_apply_classroom {
+div.classroom_info button.btn_apply_classroom {
 	border-radius: 12px;
 	background-color: #858ffb;
 	border-color: #eff3f7;
@@ -58,6 +58,6 @@ div.student_classroom_info button.btn_apply_classroom {
 	margin-bottom: 50px;
 }
 
-div.student_classroom_info button.btn_apply_classroom:focus {
+div.classroom_info button.btn_apply_classroom:focus {
 	border: 2px solid black;
 }

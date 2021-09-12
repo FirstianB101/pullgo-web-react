@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+
+import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
+import { apiFetchJoinedClassroomList } from "../redux/fetchJoinedClassroomList";
+import { apiFetchLessonList } from "../redux/fetchLessonList";
+import SelectedLessonList from "./SelectedLessonList";
+
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/ko";
-import events from "../module/events";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -15,22 +21,18 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 
-// 서버에서 수업 목록 Fetch
-let lessons = events;
-
-// Date 객체를 인자로 받아서 "2021-08-09" 형식의 string으로 반환
-function dateToStr(date) {
+/* Date 객체를 인자로 받아서 "2021-08-09" 형식의 string으로 반환 */
+const dateToStr = (date) => {
 	let year = date.getFullYear();
 	let month = ("0" + (date.getMonth() + 1)).slice(-2);
 	let day = ("0" + date.getDate()).slice(-2);
-
 	return year + "-" + month + "-" + day;
-}
+};
 
-// state인 date("2021-08-09" 형태)와
-// state인 시간을 나타내는 start 또는 end("14:05" 형태)를 인자로 받아서
-// 날짜 + 시간 형태의 Date 객체로 반환
-function dateWithTime(date, time) {
+/* state인 date("2021-08-09" 형태)와
+ *  state인 시간을 나타내는 beginTime 또는 endTime ("14:05" 형태)을 인자로 받아서
+ *  날짜 + 시간 형태의 Date 객체로 반환 */
+const dateWithTime = (date, time) => {
 	let year = date.slice(0, 4);
 	let month = date.slice(5, 7);
 	let day = date.slice(8, 10);
@@ -40,9 +42,58 @@ function dateWithTime(date, time) {
 	let min = time.slice(3, 5);
 
 	return new Date(year, month - 1, day, hour, min);
-}
+};
 
-function PaperComponent(props) {
+/* Date 객체를 인자로 받아서 sinceDate (문자열) 반환
+ * e.g. getSinceDate(2021-09-09 Date 객체)
+ * => sinceDate: "2021-09-01"
+ */
+const getSinceDate = (date) => {
+	let yearStr = String(date.getFullYear());
+	let monthStr = String(date.getMonth() + 1);
+	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
+
+	let sinceDate = yearStr + "-" + monthStr + "-01";
+	return sinceDate;
+};
+
+/* Date 객체를 인자로 받아서 untilDate (문자열) 반환
+ * e.g. getUntilDate(2021-09-09 Date 객체)
+ * => untilDate: "2021-10-01"
+ */
+const getUntilDate = (date) => {
+	let year = date.getFullYear();
+	let month = date.getMonth() + 2;
+	month = month > 12 ? 1 : month;
+
+	let yearStr = String(year);
+	let monthStr = String(month);
+	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
+
+	let untilDate = yearStr + "-" + monthStr + "-01";
+	return untilDate;
+};
+
+/* classroomName으로 classroomId 검색 */
+const getClassroomId = (classroomList, classroomName) => {
+	return classroomList.find((classroom) => classroom.name === classroomName)
+		?.id;
+};
+
+/* classroomId로 classroomName 검색 */
+const getClassroomName = (classroomList, classroomId) => {
+	return classroomList.find((classroom) => classroom.id === classroomId)
+		?.name;
+};
+
+/* joinedClassroomList를 <option> 태그에 담아서 return */
+const getOptionTag = (classroomList) => {
+	return classroomList.map((classroom) => (
+		<option value={classroom.name}>{classroom.name}</option>
+	));
+};
+
+const PaperComponent = (props) => {
 	return (
 		<Draggable
 			handle="#draggable-dialog-title"
@@ -51,56 +102,126 @@ function PaperComponent(props) {
 			<Paper {...props} />
 		</Draggable>
 	);
-}
+};
 
 const LessonCalendar_T = () => {
-	// const [lessons, setLessons] = useState(); // 등록된 수업들(배열)
-	const [classroom, setClassroom] = useState(); // 반 이름
-	const [title, setTitle] = useState(); // 수업 이름
-	const [date, setDate] = useState(); // 날짜
-	const [start, setStart] = useState(); // 시작 시간
-	const [end, setEnd] = useState(); // 종료 시간
-	const [open, setOpen] = useState(false);
-
 	const localizer = momentLocalizer(moment);
 
-	const fetchLessons = async () => {
-		try {
-			const response = await axios({
-				method: "GET",
-				url: "/v1/academy/classroom/lessons"
-			});
-
-			// setLessons(response.data);
-			console.log(response.data);
-		} catch (e) {
-			console.log("fetchLessons() Error");
-		}
+	const dispatch = useDispatch();
+	const onFetchLessonList = (userType, userId, sinceDate, untilDate) => {
+		console.log("onFetchLessonList()");
+		dispatch(apiFetchLessonList(userType, userId, sinceDate, untilDate));
+	};
+	const onFetchJoinedAcademyList = (userType, userId) => {
+		console.log("onFetchJoinedAcademyList()");
+		dispatch(apiFetchJoinedAcademyList(userType, userId));
+	};
+	const onFetchJoinedClassroomList = (userType, userId) => {
+		console.log("onFetchJoinedClassroomList()");
+		dispatch(apiFetchJoinedClassroomList(userType, userId));
 	};
 
-	// componentDidMount() 역할, 최초 렌더링 시에 실행
+	const userType = useSelector((state) => state.userTypeReducer.userType);
+	const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
+
+	// 캘린더 선택(클릭) 일자, 선택한 일자에 등록된 수업들
+	const [selectedDate, setSelectedDate] = useState(""); // 캘린더에서 클릭한 날짜
+	const [selectedLessons, setSelectedLessons] = useState(null);
+	// "수업 추가" form 입력 항목
+	const [classroom, setClassroom] = useState(""); // 반 이름
+	const [title, setTitle] = useState(""); // 수업 이름
+	const [date, setDate] = useState(""); // 날짜
+	const [beginTime, setBeginTime] = useState(""); // 시작 시간
+	const [endTime, setEndTime] = useState(""); // 종료 시간
+	const [open, setOpen] = useState(false);
+	// 현재 보고있는 일자 => onNavigate()와 sinceDate, untilDate에 사용
+	const [watchingDate, setWatchingDate] = useState(new Date());
+
 	useEffect(() => {
-		fetchLessons();
+		console.log("LessonCalendar_T 렌더링");
+		console.log(`teacherId ${teacherId}번 선생님의 등록된 수업 fetch`);
+
+		onFetchLessonList(
+			userType,
+			teacherId,
+			getSinceDate(watchingDate),
+			getUntilDate(watchingDate)
+		);
+		onFetchJoinedAcademyList(userType, teacherId);
+		onFetchJoinedClassroomList(userType, teacherId);
 	}, []);
 
-	// componentDidUpdate() 역할, props나 state 변화 시에 실행
-	// useEffect(() => {
+	useEffect(() => {
+		onFetchLessonList(
+			userType,
+			teacherId,
+			getSinceDate(watchingDate),
+			getUntilDate(watchingDate)
+		);
+		onFetchJoinedClassroomList(userType, teacherId);
+	}, [teacherId]);
 
-	// }, [state]);
+	useEffect(() => {
+		onFetchLessonList(
+			userType,
+			teacherId,
+			getSinceDate(watchingDate),
+			getUntilDate(watchingDate)
+		);
+	}, [watchingDate]);
 
-	// 수업 추가(날짜 선택)
+	const joinedAcademyList = useSelector(
+		(state) => state.joinedAcademyListReducer.joinedAcademyList
+	);
+	const joinedClassroomList = useSelector(
+		(state) => state.joinedClassroomListReducer.joinedClassroomList
+	);
+	const lessonList = useSelector(
+		(state) => state.lessonListReducer.lessonList
+	);
+
+	/* lessonList를 react-big-calendar 형식에 맞게 요소 변형 */
+	const formattingLessonList = () => {
+		for (let i = 0; i < lessonList.length; i++) {
+			// 반 이름
+			lessonList[i].classRoom = getClassroomName(
+				joinedClassroomList,
+				lessonList[i].classroomId
+			);
+			// 수업 이름
+			lessonList[i].title = lessonList[i].name;
+
+			// 시작 날짜 및 시각, 종료 날짜 및 시각
+			lessonList[i].start = dateWithTime(
+				lessonList[i].schedule.date,
+				lessonList[i].schedule.beginTime
+			);
+			lessonList[i].end = dateWithTime(
+				lessonList[i].schedule.date,
+				lessonList[i].schedule.endTime
+			);
+		}
+	};
+	formattingLessonList();
+
+	/* 날짜 클릭: 해당 날짜에 등록된 수업 일정들을 하단에 List로 표시 */
 	const onSelectSlot = (e) => {
-		console.log(dateToStr(e.slots[0])); // click한 날짜
-		setDate(dateToStr(e.slots[0]));
-		setOpen(true);
+		setSelectedDate(dateToStr(e.slots[0]));
 	};
 
-	// 등록된 수업 일정 수정
+	/* onSelectSlot로 바뀐 selectedDate를 이용하여 selectedLessons을 지정하기 위한 useEffect */
+	useEffect(() => {
+		setSelectedLessons(
+			lessonList.filter((lesson) => lesson.schedule.date === selectedDate)
+		);
+	}, [selectedDate]);
+
 	const onSelectEvent = (e) => {
 		console.log(e); // 등록된 수업 일정 등 클릭 시
 	};
 
-	const onClickBtn = (e) => {
+	/* 수업 추가 form의 확인 button 클릭 */
+	const onClickBtnOk = (e) => {
 		console.log("수업 추가");
 	};
 
@@ -109,30 +230,63 @@ const LessonCalendar_T = () => {
 	};
 
 	const handleClose = () => {
+		// 수업 추가 form state들 초기화
+		setClassroom("");
+		setTitle("");
+		setDate("");
+		setBeginTime("");
+		setEndTime("");
+
 		setOpen(false);
+	};
+
+	/* Calendar 상단의 Today, Back, Next 버튼 클릭하여 월 이동 */
+	const onNavigateCalendar = (e) => {
+		// e: Date 객체
+		setWatchingDate(e);
 	};
 
 	// 수업 생성 Form 입력 값들 유효 확인 및 서버로 전송, 캘린더에 수업 추가
 	const onSubmitForm = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 
-		// 캘린더에 수업 추가
-		let newLesson = {
-			id: lessons[lessons.length - 1].id + 1,
-			classroom,
-			title,
-			allDay: true,
-			start: dateWithTime(date, start),
-			end: dateWithTime(date, end)
+		const postCreateLesson = async () => {
+			try {
+				const response = await axios.post(
+					"/v1/academy/classroom/lessons",
+					{
+						classroomId: getClassroomId(
+							joinedClassroomList,
+							classroom
+						),
+						name: title,
+						schedule: {
+							date,
+							beginTime,
+							endTime
+						}
+					}
+				);
+
+				if (response.data != undefined)
+					alert("수업 추가가 완료되었습니다.");
+			} catch (e) {
+				alert("수업 추가 오류");
+				console.log(e);
+			}
 		};
 
-		// state인 start, end는 시간 형식의 string,
-		// Calendar에 들어가는 start, end는 날짜 + 시간 형식의 Date 객체
+		let confirmCreateLesson = window.confirm(
+			`${classroom} 반 ${date} 날짜 ${beginTime} ~ ${endTime} ${title} 수업을 추가 하시겠습니까?`
+		);
+		if (confirmCreateLesson) postCreateLesson();
 
-		lessons = [...lessons, newLesson];
-
-		// 서버에 수업 추가 전송
-		console.log("Send to Server");
+		// 수업 추가 form state들 초기화
+		setClassroom("");
+		setTitle("");
+		setDate("");
+		setBeginTime("");
+		setEndTime("");
 
 		setOpen(false);
 	};
@@ -149,166 +303,173 @@ const LessonCalendar_T = () => {
 		setDate(e.target.value);
 	};
 
-	const onChangeInputStart = (e) => {
-		setStart(e.target.value);
+	const onChangeInputBeginTime = (e) => {
+		setBeginTime(e.target.value);
 	};
 
-	const onChangeInputEnd = (e) => {
-		setEnd(e.target.value);
+	const onChangeInputEndTime = (e) => {
+		setEndTime(e.target.value);
 	};
 
 	return (
-		<div className="div__calendar" style={{ height: "500pt" }}>
-			<h2 className="calendar_title">수업 일정</h2>
-			{/* <button onClick={onClickBtn}>일정 추가</button> */}
-			<div className="div__lesson_add__btn">
-				<Button
-					variant="outlined"
-					color="primary"
-					onClick={handleClickOpen}
+		<>
+			<div className="div__calendar" style={{ height: "500pt" }}>
+				<h2 className="calendar_title">선생님 수업 일정</h2>
+				<div className="div__lesson_add__btn">
+					<Button
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+					>
+						수업 추가
+					</Button>
+				</div>
+
+				<Dialog
+					open={open}
+					onClose={handleClose}
+					PaperComponent={PaperComponent}
+					aria-labelledby="draggable-dialog-title"
 				>
-					수업 추가
-				</Button>
-			</div>
+					<DialogTitle
+						style={{ cursor: "move" }}
+						id="draggable-dialog-title"
+					>
+						수업 추가
+					</DialogTitle>
+					<DialogContent>
+						<DialogContentText>
+							<form
+								className="lesson_create__form"
+								onSubmit={onSubmitForm}
+							>
+								<div>
+									<span className="lesson_create__form__label">
+										반
+									</span>
+									<select
+										name="classroom"
+										value={classroom}
+										onChange={onChangeSelectClassroom}
+										required
+									>
+										<option value="">반 선택</option>
+										{getOptionTag(joinedClassroomList)}
+									</select>
+								</div>
 
-			<Dialog
-				open={open}
-				onClose={handleClose}
-				PaperComponent={PaperComponent}
-				aria-labelledby="draggable-dialog-title"
-			>
-				<DialogTitle
-					style={{ cursor: "move" }}
-					id="draggable-dialog-title"
-				>
-					수업 추가
-				</DialogTitle>
-				<DialogContent>
-					<DialogContentText>
-						<form
-							className="lesson_create__form"
-							onSubmit={onSubmitForm}
-						>
-							<div>
-								<span className="lesson_create__form__label">
-									반
-								</span>
-								<select
-									name="classroom"
-									value={classroom}
-									onChange={onChangeSelectClassroom}
-									required
-								>
-									<option value="">반 선택</option>
-									<option value="high_2_math">
-										고2 이과
-									</option>
-									<option value="high_3_math">
-										고3 이과
-									</option>
-								</select>
-							</div>
+								<div>
+									<span className="lesson_create__form__label">
+										수업 이름
+									</span>
+									<input
+										type="text"
+										name="title"
+										value={title}
+										onChange={onChangeInputTitle}
+										required
+									/>
+								</div>
 
-							<div>
-								<span className="lesson_create__form__label">
-									수업 이름
-								</span>
-								<input
-									type="text"
-									name="title"
-									value={title}
-									onChange={onChangeInputTitle}
-									required
-								/>
-							</div>
+								<div>
+									<span className="lesson_create__form__label">
+										날짜
+									</span>
+									<input
+										type="date"
+										name="date"
+										min={dateToStr(new Date())}
+										value={date}
+										onChange={onChangeInputDate}
+										required
+									/>
+								</div>
 
-							<div>
-								<span className="lesson_create__form__label">
-									날짜
-								</span>
-								<input
-									type="date"
-									name="date"
-									// min={getTodayDateStr()}
-									min={dateToStr(new Date())}
-									value={date}
-									onChange={onChangeInputDate}
-									required
-								/>
-							</div>
+								<div>
+									<span className="lesson_create__form__label">
+										시작 시간
+									</span>
+									<input
+										type="time"
+										name="beginTime"
+										value={beginTime}
+										onChange={onChangeInputBeginTime}
+										required
+									/>
+								</div>
 
-							<div>
-								<span className="lesson_create__form__label">
-									시작 시간
-								</span>
-								<input
-									type="time"
-									name="start"
-									value={start}
-									onChange={onChangeInputStart}
-									required
-								/>
-							</div>
+								<div>
+									<span className="lesson_create__form__label">
+										종료 시간
+									</span>
+									<input
+										type="time"
+										name="endTime"
+										value={endTime}
+										min={beginTime}
+										onChange={onChangeInputEndTime}
+										required
+									/>
+								</div>
 
-							<div>
-								<span className="lesson_create__form__label">
-									종료 시간
-								</span>
-								<input
-									type="time"
-									name="start"
-									value={end}
-									min={start}
-									onChange={onChangeInputEnd}
-									required
-								/>
-							</div>
-
-							<div>
-								<Button onClick={handleClose} color="primary">
-									취소
-								</Button>
-								<Button
-									type="submit"
-									onClick={onClickBtn}
-									color="primary"
-								>
-									확인
-								</Button>
-							</div>
-						</form>
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					{/* <Button autoFocus onClick={handleClose} color="primary">
+								<div>
+									<Button
+										onClick={handleClose}
+										color="primary"
+									>
+										취소
+									</Button>
+									<Button
+										type="submit"
+										onClick={onClickBtnOk}
+										color="primary"
+									>
+										확인
+									</Button>
+								</div>
+							</form>
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						{/* <Button autoFocus onClick={handleClose} color="primary">
 						취소
 					</Button>
 					<Button onClick={handleSubmit} color="primary">
 						생성
 					</Button> */}
-				</DialogActions>
-			</Dialog>
+					</DialogActions>
+				</Dialog>
 
-			<Calendar
-				selectable={true}
-				localizer={localizer}
-				events={lessons}
-				step={60}
-				view="month"
-				views={["month"]}
-				// min={new Date(2008, 0, 1, 8, 0)} // 8:00 AM
-				// max={new Date(2008, 0, 1, 17, 0)} // 6:00 PM
-				// date={new Date(2018, 0, 1)}
-				startAccessor="start"
-				endAccessor="end"
-				defaultDate={moment().toDate()}
-				localizer={localizer}
-				culture="ko"
-				onSelectEvent={onSelectEvent}
-				onSelectSlot={onSelectSlot}
-				// eventPropGetter={eventStyleGetter}
-			/>
-		</div>
+				<Calendar
+					selectable={true}
+					localizer={localizer}
+					events={lessonList}
+					step={60}
+					view="month"
+					views={["month"]}
+					startAccessor="start"
+					endAccessor="end"
+					defaultDate={moment().toDate()}
+					localizer={localizer}
+					culture="ko"
+					onSelectEvent={onSelectEvent}
+					onSelectSlot={onSelectSlot}
+					onNavigate={onNavigateCalendar}
+				/>
+			</div>
+
+			{selectedDate === "" ? (
+				""
+			) : (
+				<SelectedLessonList
+					userType={userType}
+					selectedDate={selectedDate}
+					selectedLessons={selectedLessons}
+					joinedAcademyList={joinedAcademyList}
+					joinedClassroomList={joinedClassroomList}
+				/>
+			)}
+		</>
 	);
 };
 

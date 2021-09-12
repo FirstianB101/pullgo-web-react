@@ -7,17 +7,20 @@
 let events = [
 	{
 		id: 0,
-		classRoom: "고2 이과",
-		title: "[고2 이과] 미적분2",
-		allDay: true,
+		classRoomId: 10,
+		name: "5월 13일 4시 반 수업",
+
+		classRoom: "고2 이과", // classroomId로 조회
+		title: "[고2 이과] 미적분2", // name
 		start: new Date(2021, 7, 4, 12, 0), // 1월: 0
 		end: new Date(2021, 7, 4, 14, 0) // 년, 월, 일, 시, 분
 	},
 	{
 		id: 1,
+		classRoomId: 20,
+
 		classRoom: "고2 이과",
 		title: "[고2 이과] 확통",
-		allDay: true,
 		start: new Date(2021, 7, 6, 10, 0),
 		end: new Date(2021, 7, 6, 14, 0)
 	}

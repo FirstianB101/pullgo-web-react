@@ -4,27 +4,42 @@ import { persistReducer } from "redux-persist";
 // Session Storage에 저장
 import storage from "redux-persist/lib/storage";
 // Local Storage에 저장
+
 import { reducer as formReducer } from "redux-form";
-import { fetchStudentIdReducer } from "./fetchStudentId";
-import { fetchStudentInfoReducer } from "./fetchStudentInfo";
-import { fetchAcademyListByAcademyNameReducer } from "./fetchAcademyListByAcademyName";
-import { fetchStudentJoinedAcademyListReducer } from "./fetchStudentJoinedAcademyList";
-import { fetchStudentApplyingAcademyListReducer } from "./fetchStudentApplyingAcademyList";
-import { fetchStudentJoinedClassroomListReducer } from "./fetchStudentJoinedClassroomList";
-import { fetchStudentApplyingClassroomListReducer } from "./fetchStudentApplyingClassroomList";
-import { fetchClassroomListByAcademyIdAndNameReducer } from "./fetchClassroomListByAcademyIdAndName";
+import { userTypeReducer } from "./fetchUserType";
+import { joinedAcademyListReducer } from "./fetchJoinedAcademyList";
+import { applyingAcademyListReducer } from "./fetchApplyingAcademyList";
+import { academyListByAcademyNameReducer } from "./fetchAcademyListByAcademyName";
+import { classroomListByAcademyIdAndNameReducer } from "./fetchClassroomListByAcademyIdAndName";
+import { joinedClassroomListReducer } from "./fetchJoinedClassroomList";
+import { applyingClassroomListReducer } from "./fetchApplyingClassroomList";
+import { lessonListReducer } from "./fetchLessonList";
+
+import { studentIdReducer } from "./student/fetchStudentId";
+import { studentInfoReducer } from "./student/fetchStudentInfo";
+
+import { teacherIdReducer } from "./teacher/fetchTeacherId";
+import { teacherInfoReducer } from "./teacher/fetchTeacherInfo";
 
 // reducer들을 rootReducer로 combine
 export const rootReducer = combineReducers({
 	form: formReducer,
-	fetchStudentIdReducer,
-	fetchStudentInfoReducer,
-	fetchAcademyListByAcademyNameReducer,
-	fetchStudentJoinedAcademyListReducer,
-	fetchStudentApplyingAcademyListReducer,
-	fetchStudentJoinedClassroomListReducer,
-	fetchStudentApplyingClassroomListReducer,
-	fetchClassroomListByAcademyIdAndNameReducer
+	userTypeReducer,
+	joinedAcademyListReducer,
+	applyingAcademyListReducer,
+	joinedClassroomListReducer,
+	applyingClassroomListReducer,
+	academyListByAcademyNameReducer,
+	classroomListByAcademyIdAndNameReducer,
+	lessonListReducer,
+
+	/* 학생 */
+	studentIdReducer,
+	studentInfoReducer,
+
+	/* 선생님 */
+	teacherIdReducer,
+	teacherInfoReducer
 });
 
 export const persistConfig = {
@@ -32,12 +47,18 @@ export const persistConfig = {
 	// storageSession,
 	storage,
 	whitelist: [
-		"fetchStudentIdReducer",
-		"fetchStudentInfoReducer",
-		"fetchStudentJoinedAcademyListReducer",
-		"fetchStudentApplyingAcademyListReducer",
-		"fetchStudentJoinedClassroomListReducer",
-		"fetchStudentApplyingClassroomListReducer"
+		"userTypeReducer",
+		"joinedAcademyListReducer",
+		"applyingAcademyListReducer",
+		"joinedClassroomListReducer",
+		"applyingClassroomListReducer",
+		"lessonListReducer",
+
+		"studentIdReducer",
+		"studentInfoReducer",
+
+		"teacherIdReducer",
+		"teacherInfoReducer"
 	]
 	// blacklist: persist 저장 제외할 것들
 };

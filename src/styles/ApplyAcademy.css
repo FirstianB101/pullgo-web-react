@@ -65,7 +65,7 @@ ul.academy_list div.academy_list_item button.MuiButtonBase-root {
 	left: -15px;
 }
 
-/* 학원 가입 요청 확인 및 취소 Dialog */
+/* 학원 가입, 반 가입 요청 확인 및 취소 Dialog */
 div.MuiDialogActions-root button.MuiButtonBase-root {
 	position: realtive;
 	top: -10px;

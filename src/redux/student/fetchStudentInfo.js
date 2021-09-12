@@ -30,7 +30,7 @@ export const apiFetchStudentInfo = (studentId) => {
 };
 
 /* reducer 정의 */
-export const fetchStudentInfoReducer = (state = initState, action) => {
+export const studentInfoReducer = (state = initState, action) => {
 	switch (action.type) {
 		case FETCH_STUDENT_INFO:
 			return {
