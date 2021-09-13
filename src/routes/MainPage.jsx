@@ -8,7 +8,7 @@ import YesAcademy from "../components/YesAcademy";
 import NoAcademy from "../components/NoAcademy";
 
 /* 학생의 학원 가입 여부에 따라 Routing */
-const MainPage = memo(({ history }) => {
+const MainPage = memo(({ history, match }) => {
 	const dispatch = useDispatch();
 	const onFetchStudentInfo = (studentId) => {
 		console.log("onFetchStudentInfo()");
@@ -54,7 +54,7 @@ const MainPage = memo(({ history }) => {
 	return joinedAcademyList.length === 0 ? (
 		<NoAcademy history={history} />
 	) : (
-		<YesAcademy history={history} />
+		<YesAcademy history={history} match={match} />
 	);
 });
 

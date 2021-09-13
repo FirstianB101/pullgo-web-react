@@ -16,6 +16,13 @@ import Box from "@material-ui/core/Box";
 
 import "../styles/LogIn.css";
 
+/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
+const dateToYearMonthStr = (date) => {
+	let year = date.getFullYear();
+	let month = ("0" + (date.getMonth() + 1)).slice(-2);
+	return year + "-" + month;
+};
+
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
 
@@ -110,10 +117,12 @@ const LogIn = memo(({ history, onFetchStudentId, onFetchTeacherId }) => {
 
 		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(2);
 
+		const yearMonthStr = dateToYearMonthStr(new Date());
+
 		// 링크 이동 => 사용자 타입(student, teacher)에 따라서
 		userType === "student"
 			? history.push("/student/main")
-			: history.push("/teacher/main");
+			: history.push(`/teacher/main/calendar_year_month/${yearMonthStr}`);
 	};
 
 	return (

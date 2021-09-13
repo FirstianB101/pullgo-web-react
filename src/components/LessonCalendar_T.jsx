@@ -29,6 +29,13 @@ const dateToStr = (date) => {
 	return year + "-" + month + "-" + day;
 };
 
+/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
+const dateToYearMonthStr = (date) => {
+	let year = date.getFullYear();
+	let month = ("0" + (date.getMonth() + 1)).slice(-2);
+	return year + "-" + month;
+};
+
 /* state인 date("2021-08-09" 형태)와
  *  state인 시간을 나타내는 beginTime 또는 endTime ("14:05" 형태)을 인자로 받아서
  *  날짜 + 시간 형태의 Date 객체로 반환 */
@@ -48,30 +55,56 @@ const dateWithTime = (date, time) => {
  * e.g. getSinceDate(2021-09-09 Date 객체)
  * => sinceDate: "2021-09-01"
  */
-const getSinceDate = (date) => {
-	let yearStr = String(date.getFullYear());
-	let monthStr = String(date.getMonth() + 1);
-	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
+// const getSinceDate = (date) => {
+// 	let yearStr = String(date.getFullYear());
+// 	let monthStr = String(date.getMonth() + 1);
+// 	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
 
-	let sinceDate = yearStr + "-" + monthStr + "-01";
-	return sinceDate;
+// 	let sinceDate = yearStr + "-" + monthStr + "-01";
+// 	return sinceDate;
+// };
+
+/* 문자열 yearMonth(년, 월)를 인자로 받아서 sinceDate (문자열) 반환
+ * e.g. getSinceDate("2021-09")
+ * => sinceDate: "2021-09-01"
+ */
+const getSinceDate = (yearMonth) => {
+	return yearMonth + "-01";
 };
 
 /* Date 객체를 인자로 받아서 untilDate (문자열) 반환
  * e.g. getUntilDate(2021-09-09 Date 객체)
  * => untilDate: "2021-10-01"
  */
-const getUntilDate = (date) => {
-	let year = date.getFullYear();
-	let month = date.getMonth() + 2;
-	month = month > 12 ? 1 : month;
+// const getUntilDate = (date) => {
+// 	let year = date.getFullYear();
+// 	let month = date.getMonth() + 2;
+// 	month = month > 12 ? 1 : month;
 
-	let yearStr = String(year);
-	let monthStr = String(month);
-	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
+// 	let yearStr = String(year);
+// 	let monthStr = String(month);
+// 	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
 
-	let untilDate = yearStr + "-" + monthStr + "-01";
-	return untilDate;
+// 	let untilDate = yearStr + "-" + monthStr + "-01";
+// 	return untilDate;
+// };
+
+/* 문자열 yearMonth(년, 월)를 인자로 받아서 untilDate (문자열) 반환
+ * e.g. getUntilDate("2021-09")
+ * => untilDate: "2021-10-01"
+ */
+const getUntilDate = (yearMonth) => {
+	let year = yearMonth.slice(0, 4);
+	let month = Number(yearMonth.slice(5, 7)) + 1;
+	if (month === 13)
+		month = "02";
+	else if (month === 12)
+		month = "01";
+	else if (month < 10)
+		month = "0" + month;
+	else
+		month = String(month);
+	return year + "-" + month + "-01";
 };
 
 /* classroomName으로 classroomId 검색 */
@@ -104,7 +137,7 @@ const PaperComponent = (props) => {
 	);
 };
 
-const LessonCalendar_T = () => {
+const LessonCalendar_T = ({ history, match }) => {
 	const localizer = momentLocalizer(moment);
 
 	const dispatch = useDispatch();
@@ -124,6 +157,8 @@ const LessonCalendar_T = () => {
 	const userType = useSelector((state) => state.userTypeReducer.userType);
 	const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
 
+	// 현재 보고있는 캘린더의 년, 월 문자열("2021-10" 형태)
+	const [yearMonth, setYearMonth] = useState(match.params.year_month);
 	// 캘린더 선택(클릭) 일자, 선택한 일자에 등록된 수업들
 	const [selectedDate, setSelectedDate] = useState(""); // 캘린더에서 클릭한 날짜
 	const [selectedLessons, setSelectedLessons] = useState(null);
@@ -134,18 +169,18 @@ const LessonCalendar_T = () => {
 	const [beginTime, setBeginTime] = useState(""); // 시작 시간
 	const [endTime, setEndTime] = useState(""); // 종료 시간
 	const [open, setOpen] = useState(false);
-	// 현재 보고있는 일자 => onNavigate()와 sinceDate, untilDate에 사용
-	const [watchingDate, setWatchingDate] = useState(new Date());
 
 	useEffect(() => {
 		console.log("LessonCalendar_T 렌더링");
 		console.log(`teacherId ${teacherId}번 선생님의 등록된 수업 fetch`);
 
+		setYearMonth(match.params.year_month);
+
 		onFetchLessonList(
 			userType,
 			teacherId,
-			getSinceDate(watchingDate),
-			getUntilDate(watchingDate)
+			getSinceDate(yearMonth),
+			getUntilDate(yearMonth)
 		);
 		onFetchJoinedAcademyList(userType, teacherId);
 		onFetchJoinedClassroomList(userType, teacherId);
@@ -155,8 +190,8 @@ const LessonCalendar_T = () => {
 		onFetchLessonList(
 			userType,
 			teacherId,
-			getSinceDate(watchingDate),
-			getUntilDate(watchingDate)
+			getSinceDate(yearMonth),
+			getUntilDate(yearMonth)
 		);
 		onFetchJoinedClassroomList(userType, teacherId);
 	}, [teacherId]);
@@ -165,10 +200,10 @@ const LessonCalendar_T = () => {
 		onFetchLessonList(
 			userType,
 			teacherId,
-			getSinceDate(watchingDate),
-			getUntilDate(watchingDate)
+			getSinceDate(yearMonth),
+			getUntilDate(yearMonth)
 		);
-	}, [watchingDate]);
+	}, [yearMonth]);
 
 	const joinedAcademyList = useSelector(
 		(state) => state.joinedAcademyListReducer.joinedAcademyList
@@ -243,7 +278,11 @@ const LessonCalendar_T = () => {
 	/* Calendar 상단의 Today, Back, Next 버튼 클릭하여 월 이동 */
 	const onNavigateCalendar = (e) => {
 		// e: Date 객체
-		setWatchingDate(e);
+
+		const yearMonthStr = dateToYearMonthStr(e);
+		history.push(`/teacher/main/calendar_year_month/${yearMonthStr}`);
+		setYearMonth(yearMonthStr);
+		// setYearMonth(match.params.year_month);
 	};
 
 	// 수업 생성 Form 입력 값들 유효 확인 및 서버로 전송, 캘린더에 수업 추가
@@ -449,7 +488,8 @@ const LessonCalendar_T = () => {
 					views={["month"]}
 					startAccessor="start"
 					endAccessor="end"
-					defaultDate={moment().toDate()}
+					// defaultDate={moment().toDate()}
+					defaultDate={new Date(yearMonth)}
 					localizer={localizer}
 					culture="ko"
 					onSelectEvent={onSelectEvent}
@@ -467,6 +507,7 @@ const LessonCalendar_T = () => {
 					selectedLessons={selectedLessons}
 					joinedAcademyList={joinedAcademyList}
 					joinedClassroomList={joinedClassroomList}
+					yearMonth={yearMonth}
 				/>
 			)}
 		</>

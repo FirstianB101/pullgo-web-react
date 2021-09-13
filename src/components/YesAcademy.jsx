@@ -8,7 +8,7 @@ import LessonCalendar_T from "./LessonCalendar_T";
 
 import "../styles/YesAcademy.css";
 
-const YesAcademy = memo(({ history }) => {
+const YesAcademy = memo(({ history, match }) => {
 	const userType = useSelector((state) => state.userTypeReducer.userType);
 
 	return (
@@ -21,7 +21,7 @@ const YesAcademy = memo(({ history }) => {
 			) : (
 				<>
 					<MenuBar_T isJoinedAcademy={true} history={history} />
-					<LessonCalendar_T />
+					<LessonCalendar_T history={history} match={match} />
 				</>
 			)}
 		</div>
