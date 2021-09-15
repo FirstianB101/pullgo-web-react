@@ -34,12 +34,21 @@ h2.calendar_title {
 }
 
 .div__selected_lesson_list_menu_buttons {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
+/* 수업 수정(📝), 수업 삭제(❌) button */
 .div__selected_lesson_list_menu_buttons button {
 	font-size: 18px;
+	margin-right: 3px;
+	background-color: inherit;
 }
+
+/* .div__selected_lesson_list_menu_buttons button:focus {
+}
+
+.div__selected_lesson_list_menu_buttons button:hover {
+} */
 
 .ul__selected_lesson_list li {
 	font-size: 18px;

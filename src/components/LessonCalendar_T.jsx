@@ -96,14 +96,10 @@ const getSinceDate = (yearMonth) => {
 const getUntilDate = (yearMonth) => {
 	let year = yearMonth.slice(0, 4);
 	let month = Number(yearMonth.slice(5, 7)) + 1;
-	if (month === 13)
-		month = "02";
-	else if (month === 12)
-		month = "01";
-	else if (month < 10)
-		month = "0" + month;
-	else
-		month = String(month);
+	if (month === 13) month = "02";
+	else if (month === 12) month = "01";
+	else if (month < 10) month = "0" + month;
+	else month = String(month);
 	return year + "-" + month + "-01";
 };
 
@@ -126,7 +122,7 @@ const getOptionTag = (classroomList) => {
 	));
 };
 
-const PaperComponent = (props) => {
+const PaperComponent = memo((props) => {
 	return (
 		<Draggable
 			handle="#draggable-dialog-title"
@@ -135,9 +131,9 @@ const PaperComponent = (props) => {
 			<Paper {...props} />
 		</Draggable>
 	);
-};
+});
 
-const LessonCalendar_T = ({ history, match }) => {
+const LessonCalendar_T = memo(({ history, match }) => {
 	const localizer = momentLocalizer(moment);
 
 	const dispatch = useDispatch();
@@ -417,9 +413,9 @@ const LessonCalendar_T = ({ history, match }) => {
 									<input
 										type="date"
 										name="date"
-										min={dateToStr(new Date())}
 										value={date}
 										onChange={onChangeInputDate}
+										min={dateToStr(new Date())}
 										required
 									/>
 								</div>
@@ -512,6 +508,6 @@ const LessonCalendar_T = ({ history, match }) => {
 			)}
 		</>
 	);
-};
+});
 
 export default LessonCalendar_T;
