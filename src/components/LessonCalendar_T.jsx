@@ -279,7 +279,7 @@ const LessonCalendar_T = memo(({ history, match }) => {
 		// e: Date 객체
 
 		const yearMonthStr = dateToYearMonthStr(e);
-		history.push(`/teacher/main/calendar_year_month/${yearMonthStr}`);
+		history.push(`/teacher/main/calendar/${yearMonthStr}`);
 		setYearMonth(yearMonthStr);
 		// setYearMonth(match.params.year_month);
 	};

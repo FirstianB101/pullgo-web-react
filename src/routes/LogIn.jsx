@@ -118,14 +118,14 @@ const LogIn = memo(({ history, onFetchStudentId, onFetchTeacherId }) => {
 
 		onFetchUserType(userType); // userTypeReducer에 userType 저장
 
-		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(18);
+		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(2);
 
 		const yearMonthStr = dateToYearMonthStr(new Date());
 
 		// 링크 이동 => 사용자 타입(student, teacher)에 따라서
 		userType === "student"
 			? history.push("/student/main")
-			: history.push(`/teacher/main/calendar_year_month/${yearMonthStr}`);
+			: history.push(`/teacher/main/calendar/${yearMonthStr}`);
 	};
 
 	return (

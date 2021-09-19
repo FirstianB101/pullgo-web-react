@@ -33,6 +33,13 @@ const logOut = () => {
 	alert("로그아웃");
 };
 
+/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
+const dateToYearMonthStr = (date) => {
+	let year = date.getFullYear();
+	let month = ("0" + (date.getMonth() + 1)).slice(-2);
+	return year + "-" + month;
+};
+
 const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -50,7 +57,8 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 		const onClickBtn = (btnText) => {
 			switch (btnText) {
 				case "수업 일정":
-					history.push("/teacher/main");
+					const yearMonthStr = dateToYearMonthStr(new Date());
+					history.push(`/teacher/main/calendar/${yearMonthStr}`);
 					break;
 
 				case "반 관리":
@@ -181,6 +189,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 
 const MenuBar_T = memo(({ isJoinedAcademy, history }) => {
 	const classes = useStyles();
+	const yearMonthStr = dateToYearMonthStr(new Date());
 
 	return (
 		<div className={classes.root}>
@@ -193,7 +202,7 @@ const MenuBar_T = memo(({ isJoinedAcademy, history }) => {
 
 					<Button
 						color="inherit"
-						onClick={() => history.push("/teacher/main")}
+						onClick={() => history.push(`/teacher/main/calendar/${yearMonthStr}`)}
 					>
 						<Typography variant="h6" className={classes.title}>
 							Pull-Go

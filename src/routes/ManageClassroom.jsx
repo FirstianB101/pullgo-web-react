@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
 import { apiFetchJoinedClassroomList } from "../redux/fetchJoinedClassroomList";
+import MenuBar_T from "../components/MenuBar_T";
 import ClassroomInfo from "./ClassroomInfo";
+import ManageClassroomList from "../components/ManageClassroomList";
 
 // import "../styles/ManageClassroom.css";
 
@@ -33,11 +35,23 @@ const ManageClassroom = ({ history }) => {
 	const joinedClassroomList = useSelector(
 		(state) => state.joinedClassroomListReducer.joinedClassroomList
 	);
+	const isJoinedAcademy = joinedAcademyList.length !== 0;
+	const isJoinedClassroom = joinedClassroomList.length !== 0;
 
-	return joinedClassroomList.length === 0 ? (
-		<ClassroomInfo history={history} />
-	) : (
-		<h4>ManageClassroom</h4>
+	return (
+		<div className="manage_classroom">
+			<MenuBar_T
+				isJoinedAcademy={isJoinedAcademy}
+				history={history}
+			/>
+
+			{
+				isJoinedClassroom === true ? (
+					<ManageClassroomList joinedClassroomList={joinedClassroomList} history={history} />) : (
+					<ClassroomInfo history={history} />
+				)
+			}
+		</div>
 	);
 };
 
