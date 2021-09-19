@@ -152,6 +152,9 @@ const LessonCalendar_T = memo(({ history, match }) => {
 
 	const userType = useSelector((state) => state.userTypeReducer.userType);
 	const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
+	const teacherInfo = useSelector(
+		(state) => state.teacherInfoReducer.teacherInfo
+	);
 
 	// 현재 보고있는 캘린더의 년, 월 문자열("2021-10" 형태)
 	const [yearMonth, setYearMonth] = useState(match.params.year_month);
@@ -350,6 +353,12 @@ const LessonCalendar_T = memo(({ history, match }) => {
 		<>
 			<div className="div__calendar" style={{ height: "500pt" }}>
 				<h2 className="calendar_title">선생님 수업 일정</h2>
+				<h4 className="teacher_full_name">
+					{teacherInfo.account.fullName} 님,
+					<br />
+					안녕하세요 !!
+				</h4>
+
 				<div className="div__lesson_add__btn">
 					<Button
 						variant="outlined"

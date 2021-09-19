@@ -89,6 +89,9 @@ const LessonCalendar_S = memo(() => {
 
 	const userType = useSelector((state) => state.userTypeReducer.userType);
 	const studentId = useSelector((state) => state.studentIdReducer.studentId);
+	const studentInfo = useSelector(
+		(state) => state.studentInfoReducer.studentInfo
+	);
 
 	// 캘린더 선택(클릭) 일자, 선택한 일자에 등록된 수업들
 	const [selectedDate, setSelectedDate] = useState("");
@@ -186,6 +189,11 @@ const LessonCalendar_S = memo(() => {
 		<>
 			<div className="div__calendar" style={{ height: "500pt" }}>
 				<h2 className="calendar_title">학생 수업 일정</h2>
+				<h4 className="student_full_name">
+					{studentInfo.account.fullName} 님,
+					<br />
+					안녕하세요 !!
+				</h4>
 
 				<Calendar
 					selectable={true}

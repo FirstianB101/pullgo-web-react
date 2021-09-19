@@ -103,9 +103,13 @@ const JoinedClassroomList = memo((props) => {
 		<div className="joined_classroom_list">
 			<h3>가입된 반 목록</h3>
 			<ul>
-				{joinedClassroomList.length !== 0
-					? showClassroomListItems()
-					: ""}
+				{joinedClassroomList.length !== 0 ? (
+					showClassroomListItems()
+				) : (
+					<span className="no_joined_classroom">
+						가입된 반이 없습니다!
+					</span>
+				)}
 			</ul>
 		</div>
 	);

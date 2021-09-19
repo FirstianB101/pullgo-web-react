@@ -15,6 +15,12 @@ div.joined_classroom_list > ul {
 	top: -15px;
 }
 
+div.joined_classroom_list > ul span.no_joined_classroom {
+	font-size: 17px;
+	position: relative;
+	left: -40px;
+}
+
 div.classroom_list_item {
 	margin-bottom: 30px;
 }
@@ -39,6 +45,13 @@ div.applying_classroom_list {
 	padding: 30px;
 	position: relative;
 	top: -50px;
+}
+
+div.applying_classroom_list > ul span.no_applying_classroom {
+	font-size: 17px;
+	position: relative;
+	top: -15px;
+	left: -40px;
 }
 
 /* 반 가입신청 하기 button */

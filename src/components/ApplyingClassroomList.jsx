@@ -105,9 +105,13 @@ const ApplyingClassroomList = memo((props) => {
 		<div className="applying_classroom_list">
 			<h3>가입 신청한 반 목록</h3>
 			<ul>
-				{applyingClassroomList.length !== 0
-					? showClassroomListItems()
-					: ""}
+				{applyingClassroomList.length !== 0 ? (
+					showClassroomListItems()
+				) : (
+					<span className="no_applying_classroom">
+						가입 신청한 반이 없습니다!
+					</span>
+				)}
 			</ul>
 		</div>
 	);

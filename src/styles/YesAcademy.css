@@ -1,7 +1,22 @@
+/* "학생 수업 일정", "선생님 수업 일정" */
 h2.calendar_title {
 	text-align: center;
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+
+/* "ㅇㅇㅇ 님, 안녕하세요 !!" */
+h4.teacher_full_name {
+	text-align: end;
+	margin-right: 20px;
+}
+
+/* "ㅇㅇㅇ 님, 안녕하세요 !!" */
+h4.student_full_name {
+	text-align: end;
+	margin-right: 20px;
+	position: relative;
+	top: 50px;
 }
 
 .rbc-toolbar-label {
@@ -17,7 +32,7 @@ h2.calendar_title {
 }
 
 .div__selected_lesson_list {
-	margin-top: 100px;
+	margin-top: 150px;
 }
 
 .div__selected_lesson_list > h3 {

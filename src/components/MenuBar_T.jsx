@@ -54,6 +54,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 					break;
 
 				case "반 관리":
+					history.push("/teacher/manage_classroom");
 					break;
 
 				case "반 가입 요청":

@@ -12,9 +12,9 @@ import AcademyInfo from "./routes/AcademyInfo";
 import ApplyAcademy from "./routes/ApplyAcademy";
 import ClassroomInfo from "./routes/ClassroomInfo";
 import ApplyClassroom from "./routes/ApplyClassroom";
-import MainPage from "./routes/MainPage";
 
-// import LessonSchedule_T from "./routes/LessonSchedule_T";
+import MainPage from "./routes/MainPage";
+import ManageClassroom from "./routes/ManageClassroom";
 
 function App() {
 	return (
@@ -26,12 +26,12 @@ function App() {
 				<Route path="/signup_teacher" component={SignUp_T} />
 				<Route path="/find_account" component={FindAccount} />
 
-				{/* ---------- Student, Teacher 공통 메뉴 ---------- */}
 				{/* MenuBar의 학원 가입 요청 */}
 				<Route path="/student/academy_info" component={AcademyInfo} />
 				<Route path="/teacher/academy_info" component={AcademyInfo} />
 				<Route path="/student/apply_academy" component={ApplyAcademy} />
 				<Route path="/teacher/apply_academy" component={ApplyAcademy} />
+
 				{/* MenuBar의 반 가입 요청 */}
 				<Route
 					path="/student/classroom_info"
@@ -49,10 +49,19 @@ function App() {
 					path="/teacher/apply_classroom"
 					component={ApplyClassroom}
 				/>
+
 				{/* Main 메뉴 => YesAcademy 또는 NoAcademy */}
 				<Route path="/student/main" component={MainPage} />
-				<Route path="/teacher/main/calendar_year_month/:year_month" component={MainPage} />
+				<Route
+					path="/teacher/main/calendar_year_month/:year_month"
+					component={MainPage}
+				/>
 
+				{/* 반 관리 */}
+				<Route
+					path="/teacher/manage_classroom"
+					component={ManageClassroom}
+				/>
 				<LogInContainer />
 			</Switch>
 		</BrowserRouter>
