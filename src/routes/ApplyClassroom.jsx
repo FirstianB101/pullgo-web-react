@@ -35,11 +35,13 @@ const ApplyClassroom = ({ history }) => {
 		<div className="apply_classroom">
 			{userType === "student" ? (
 				<MenuBar_S
+					centerMenu="반 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
 				/>
 			) : (
 				<MenuBar_T
+					centerMenu="반 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
 				/>

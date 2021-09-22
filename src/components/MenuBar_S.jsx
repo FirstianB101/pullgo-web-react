@@ -139,7 +139,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 	);
 });
 
-const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
+const MenuBar_S = memo(({ centerMenu, isJoinedAcademy, history }) => {
 	const classes = useStyles();
 
 	return (
@@ -156,7 +156,8 @@ const MenuBar_S = memo(({ isJoinedAcademy, history }) => {
 						onClick={() => history.push("/student/main")}
 					>
 						<Typography variant="h6" className={classes.title}>
-							Pull-Go
+							{/* Pull-Go */}
+							{centerMenu}
 						</Typography>
 					</Button>
 

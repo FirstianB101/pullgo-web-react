@@ -7,7 +7,7 @@ import MenuBar_T from "../components/MenuBar_T";
 import ClassroomInfo from "./ClassroomInfo";
 import ManageClassroomList from "../components/ManageClassroomList";
 
-// import "../styles/ManageClassroom.css";
+import "../styles/ManageClassroom.css";
 
 const ManageClassroom = ({ history }) => {
 	const dispatch = useDispatch();
@@ -38,19 +38,27 @@ const ManageClassroom = ({ history }) => {
 	const isJoinedAcademy = joinedAcademyList.length !== 0;
 	const isJoinedClassroom = joinedClassroomList.length !== 0;
 
+	const rightMenu = <i class="fas fa-plus fa-lg"></i>;
+
 	return (
 		<div className="manage_classroom">
 			<MenuBar_T
+				centerMenu="반 관리"
+				rightMenu={rightMenu}
+				// rightMenu="+"
 				isJoinedAcademy={isJoinedAcademy}
 				history={history}
 			/>
 
-			{
-				isJoinedClassroom === true ? (
-					<ManageClassroomList joinedClassroomList={joinedClassroomList} history={history} />) : (
-					<ClassroomInfo history={history} />
-				)
-			}
+			{isJoinedClassroom === true ? (
+				<ManageClassroomList
+					joinedAcademyList={joinedAcademyList}
+					joinedClassroomList={joinedClassroomList}
+					history={history}
+				/>
+			) : (
+				<ClassroomInfo history={history} />
+			)}
 		</div>
 	);
 };

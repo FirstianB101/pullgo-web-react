@@ -35,11 +35,13 @@ const ApplyAcademy = memo(({ history }) => {
 		<div className="apply_academy">
 			{userType === "student" ? (
 				<MenuBar_S
+					centerMenu="학원 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
 				/>
 			) : (
 				<MenuBar_T
+					centerMenu="학원 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
 				/>

@@ -187,39 +187,53 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 	);
 });
 
-const MenuBar_T = memo(({ isJoinedAcademy, history }) => {
-	const classes = useStyles();
-	const yearMonthStr = dateToYearMonthStr(new Date());
+const MenuBar_T = memo(
+	({ centerMenu, rightMenu, isJoinedAcademy, history }) => {
+		const classes = useStyles();
+		const yearMonthStr = dateToYearMonthStr(new Date());
 
-	return (
-		<div className={classes.root}>
-			<AppBar position="static">
-				<Toolbar>
-					<MenuDrawer
-						isJoinedAcademy={isJoinedAcademy}
-						history={history}
-					/>
+		return (
+			<div className={classes.root}>
+				<AppBar position="static">
+					<Toolbar>
+						<MenuDrawer
+							isJoinedAcademy={isJoinedAcademy}
+							history={history}
+						/>
 
-					<Button
-						color="inherit"
-						onClick={() => history.push(`/teacher/main/calendar/${yearMonthStr}`)}
-					>
-						<Typography variant="h6" className={classes.title}>
-							Pull-Go
-						</Typography>
-					</Button>
+						<Button
+							color="inherit"
+							onClick={() =>
+								history.push(
+									`/teacher/main/calendar/${yearMonthStr}`
+								)
+							}
+						>
+							<Typography variant="h6" className={classes.title}>
+								{/* Pull-Go */}
+								{centerMenu}
+							</Typography>
+						</Button>
 
-					{/* <Typography variant="h6" className={classes.title}>
+						{/* <Typography variant="h6" className={classes.title}>
 						Pull-Go
 					</Typography> */}
 
-					<Button color="inherit" onClick={logOut}>
-						로그아웃
-					</Button>
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
-});
+						<Button
+							color="inherit"
+							onClick={() => alert("반 생성")}
+						>
+							{rightMenu}
+						</Button>
+
+						{/* <Button color="inherit" onClick={logOut}>
+							로그아웃
+						</Button> */}
+					</Toolbar>
+				</AppBar>
+			</div>
+		);
+	}
+);
 
 export default MenuBar_T;

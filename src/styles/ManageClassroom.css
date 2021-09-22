@@ -1,0 +1,47 @@
+div.manage_classroom_list {
+	display: flex;
+	flex-direction: column;
+}
+
+div.manage_classroom_list .ul__classroom_list {
+	margin-top: 50px;
+}
+
+.div__classroom_list_menu {
+	margin-bottom: 30px;
+	margin-right: 100px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+	/* li marker 지우기 */
+	list-style: none;
+}
+
+/* 반 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+.div__classroom_list_menu:hover {
+	cursor: pointer;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.div__classroom_list_menu li span {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.div__classroom_list_menu li span.classroom_name {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.div__classroom_list_menu li span.academy_name {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.div__classroom_list_menu li span.teacher_name {
+	color: #9398ff;
+	font-size: 17px;
+	font-weight: 500;
+}
