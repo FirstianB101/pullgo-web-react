@@ -203,11 +203,11 @@ const MenuBar_T = memo(
 
 						<Button
 							color="inherit"
-							onClick={() =>
-								history.push(
-									`/teacher/main/calendar/${yearMonthStr}`
-								)
-							}
+						// onClick={() =>
+						// 	history.push(
+						// 		`/teacher/main/calendar/${yearMonthStr}`
+						// 	)
+						// }
 						>
 							<Typography variant="h6" className={classes.title}>
 								{/* Pull-Go */}

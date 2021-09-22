@@ -15,6 +15,7 @@ import ApplyClassroom from "./routes/ApplyClassroom";
 
 import MainPage from "./routes/MainPage";
 import ManageClassroom from "./routes/ManageClassroom";
+import ManageExam from "./routes/ManageExam";
 
 function App() {
 	return (
@@ -57,16 +58,18 @@ function App() {
 					component={MainPage}
 				/>
 
-				{/* 반 관리 */}
+				{/* 반 관리 - 시험 관리 */}
 				<Route
 					path="/teacher/manage_classroom"
 					component={ManageClassroom}
 				/>
+				<Route
+					path="/teacher/manage_exam/:classroomId"
+					component={ManageExam}
+				/>
 				<LogInContainer />
 			</Switch>
 		</BrowserRouter>
-
-		// {/* <LessonSchedule_T /> */}
 	);
 }
 
