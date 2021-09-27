@@ -61,42 +61,52 @@ li div.exam_list_info span.time_limit {
 	font-weight: 500;
 }
 
-/* 시험 수정(📝) Dialog form */
-form.exam_edit__form span {
+/* 시험 수정(📝), 시험 추가 Dialog form */
+form.exam_edit__form span,
+form.exam_create__form span {
 	display: inline-block;
 	margin-bottom: 5px;
 	margin-right: 10px;
 }
 
-form.exam_edit__form input {
+form.exam_edit__form input,
+form.exam_create__form input {
 	font-size: 16px;
 }
 
 form.exam_edit__form input[name="begin_time"],
-form.exam_edit__form input[name="end_time"] {
+form.exam_edit__form input[name="end_time"],
+form.exam_create__form input[name="begin_time"],
+form.exam_create__form input[name="end_time"] {
 	margin-left: 10px;
 }
 
 form.exam_edit__form input[name="time_limit_hour"],
-form.exam_edit__form input[name="time_limit_minute"] {
+form.exam_edit__form input[name="time_limit_minute"],
+form.create_edit__form input[name="time_limit_hour"],
+form.create_edit__form input[name="time_limit_minute"] {
 	width: 50px;
 }
 
-form.exam_edit__form input[name="time_limit_minute"] {
+form.exam_edit__form input[name="time_limit_minute"],
+form.exam_create__form input[name="time_limit_minute"] {
 	margin-left: 15px;
 }
 
-form.exam_edit__form input[name="pass_score"] {
+form.exam_edit__form input[name="pass_score"],
+form.exam_create__form input[name="pass_score"] {
 	width: 100px;
 }
 
 /* 하단 취소, 확인 button */
-form.exam_edit__form div.buttons__confirm_cancel {
+form.exam_edit__form div.buttons__confirm_cancel,
+form.exam_create__form div.buttons__confirm_cancel {
 	display: flex;
 	justify-content: right;
 }
 
-form.exam_edit__form div.buttons__confirm_cancel button {
+form.exam_edit__form div.buttons__confirm_cancel button,
+form.exam_create__form div.buttons__confirm_cancel button {
 	font-size: 16px;
 	font-weight: 500;
 }

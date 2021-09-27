@@ -1,5 +1,4 @@
 import React, { useState, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -13,8 +12,8 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
+import CreateExamDialog from "./CreateExamDialog";
 import "../styles/MenuBar.css";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -195,81 +194,61 @@ const MenuBar_T = memo(
 		const classes = useStyles();
 		const yearMonthStr = dateToYearMonthStr(new Date());
 
-		const createExam = () => {
-			alert("시험 추가");
-
-			const classroomId = match.params.classroomId;
-			const creatorId = useSelector(
-				(state) => state.teacherIdReducer.teacherId
-			);
-
-			const postCreateExam = async () => {
-				try {
-					const response = await axios.post(`/v1/exams`, {
-						classroomId,
-						creatorId,
-						name: "10월 모의고사",
-						beginDateTime: "2021-10-02T09:00:00",
-						endDateTime: "2021-10-02T16:00:00",
-						timeLimit: "PT3H30M",
-						passScore: 99
-					});
-
-					if (response.data != undefined)
-						alert("시험 추가가 완료되었습니다.");
-				} catch (e) {
-					alert("시험 추가 오류");
-					console.log(e);
-				}
-			};
-
-			let confirmCreateExam =
-				window.confirm(`~ 시험을 추가 하시겠습니까?`);
-			if (confirmCreateExam) postCreateExam();
-		};
+		const [createExamDialogOpen, setCreateExamDialogOpen] = useState(false);
 
 		const onClickBtnRightMenu = (e) => {
 			if (centerMenu === "반 관리") alert("반 생성");
-			else if (centerMenu === "시험 관리") createExam();
+			else if (centerMenu === "시험 관리") setCreateExamDialogOpen(true);
 		};
 
 		return (
-			<div className={classes.root}>
-				<AppBar position="static">
-					<Toolbar>
-						<MenuDrawer
-							isJoinedAcademy={isJoinedAcademy}
-							history={history}
-						/>
+			<>
+				<div className={classes.root}>
+					<AppBar position="static">
+						<Toolbar>
+							<MenuDrawer
+								isJoinedAcademy={isJoinedAcademy}
+								history={history}
+							/>
 
-						<Button
-							color="inherit"
-							// onClick={() =>
-							// 	history.push(
-							// 		`/teacher/main/calendar/${yearMonthStr}`
-							// 	)
-							// }
-						>
-							<Typography variant="h6" className={classes.title}>
-								{/* Pull-Go */}
-								{centerMenu}
-							</Typography>
-						</Button>
+							<Button
+								color="inherit"
+								// onClick={() =>
+								// 	history.push(
+								// 		`/teacher/main/calendar/${yearMonthStr}`
+								// 	)
+								// }
+							>
+								<Typography
+									variant="h6"
+									className={classes.title}
+								>
+									{/* Pull-Go */}
+									{centerMenu}
+								</Typography>
+							</Button>
 
-						{/* <Typography variant="h6" className={classes.title}>
-						Pull-Go
-					</Typography> */}
+							<Button
+								color="inherit"
+								onClick={onClickBtnRightMenu}
+							>
+								{rightMenu}
+							</Button>
 
-						<Button color="inherit" onClick={onClickBtnRightMenu}>
-							{rightMenu}
-						</Button>
-
-						{/* <Button color="inherit" onClick={logOut}>
+							{/* <Button color="inherit" onClick={logOut}>
 							로그아웃
 						</Button> */}
-					</Toolbar>
-				</AppBar>
-			</div>
+						</Toolbar>
+					</AppBar>
+				</div>
+
+				{/* 자식 컴포넌트에게 props로 함수 전달하여 자식이 부모의 state 변경 */}
+				<CreateExamDialog
+					createExamDialogOpen={createExamDialogOpen}
+					setCreateExamDialogOpen={setCreateExamDialogOpen}
+					match={match}
+				/>
+			</>
 		);
 	}
 );

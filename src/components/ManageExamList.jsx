@@ -369,7 +369,7 @@ const ManageExamList = ({ examList, classroomId }) => {
 		setOpen(false);
 	};
 
-	/* 수업 수정 Dialog Form Submit */
+	/* 시험 수정 Dialog Form Submit */
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		console.log(`selectedExamId: ${selectedExamId}`);
@@ -521,7 +521,7 @@ const ManageExamList = ({ examList, classroomId }) => {
 							</div>
 
 							<div>
-								<span className="lesson_edit__form__label">
+								<span className="exam_edit__form__label">
 									시험 종료 일시
 								</span>
 								<input
@@ -542,7 +542,7 @@ const ManageExamList = ({ examList, classroomId }) => {
 							</div>
 
 							<div>
-								<span className="lesson_edit__form__label">
+								<span className="exam_edit__form__label">
 									제한 시간
 								</span>
 								<input
@@ -570,7 +570,7 @@ const ManageExamList = ({ examList, classroomId }) => {
 							</div>
 
 							<div>
-								<span className="lesson_edit__form__label">
+								<span className="exam_edit__form__label">
 									기준 점수
 								</span>
 								<input

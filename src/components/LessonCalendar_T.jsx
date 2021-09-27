@@ -285,7 +285,7 @@ const LessonCalendar_T = memo(({ history, match }) => {
 	};
 
 	// 수업 생성 Form 입력 값들 유효 확인 및 서버로 전송, 캘린더에 수업 추가
-	const onSubmitForm = (e) => {
+	const onSubmitForm = async (e) => {
 		// e.preventDefault();
 
 		const postCreateLesson = async () => {
@@ -317,7 +317,12 @@ const LessonCalendar_T = memo(({ history, match }) => {
 		let confirmCreateLesson = window.confirm(
 			`${classroom} 반 ${date} 날짜 ${beginTime} ~ ${endTime} ${title} 수업을 추가 하시겠습니까?`
 		);
-		if (confirmCreateLesson) postCreateLesson();
+		if (confirmCreateLesson) {
+			await postCreateLesson();
+
+			// 페이지 새로고침
+			window.location.replace(`/teacher/main/calendar/${yearMonth}`);
+		}
 
 		// 수업 추가 form state들 초기화
 		setClassroom("");

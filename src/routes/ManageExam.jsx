@@ -48,6 +48,7 @@ const ManageExam = ({ history, match }) => {
 				rightMenu={rightMenu}
 				isJoinedAcademy={isJoinedAcademy}
 				history={history}
+				match={match}
 			/>
 
 			{examList.length !== 0 ? (
