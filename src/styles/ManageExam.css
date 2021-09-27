@@ -1,0 +1,102 @@
+.div_manage_exam_list {
+	display: flex;
+	flex-direction: column;
+}
+
+.div__manage_exam_list .ul__exam_list {
+	margin-top: 50px;
+}
+
+.div__exam_list_menu {
+	display: flex;
+	position: relative;
+	margin-bottom: 30px;
+	margin-right: 100px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+	/* li marker 지우기 */
+	list-style: none;
+}
+
+/* 시험 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+.div__exam_list_menu:hover {
+	cursor: pointer;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.div__exam_list_menu_buttons {
+	position: absolute;
+	left: 330px;
+}
+
+/* 시험 수정(📝), 시험 삭제(❌) button */
+.div__exam_list_menu_buttons button {
+	font-size: 18px;
+	margin-right: 3px;
+	background-color: inherit;
+}
+
+li div.exam_list_info span {
+	display: block;
+	margin-bottom: 10px;
+}
+
+li div.exam_list_info span.exam_name {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+li div.exam_list_info span.begin_end_date_time,
+li div.exam_list_info span.pass_score {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+li div.exam_list_info span.time_limit {
+	color: #9398ff;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+/* 시험 수정(📝) Dialog form */
+form.exam_edit__form span {
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-right: 10px;
+}
+
+form.exam_edit__form input {
+	font-size: 16px;
+}
+
+form.exam_edit__form input[name="begin_time"],
+form.exam_edit__form input[name="end_time"] {
+	margin-left: 10px;
+}
+
+form.exam_edit__form input[name="time_limit_hour"],
+form.exam_edit__form input[name="time_limit_minute"] {
+	width: 50px;
+}
+
+form.exam_edit__form input[name="time_limit_minute"] {
+	margin-left: 15px;
+}
+
+form.exam_edit__form input[name="pass_score"] {
+	width: 100px;
+}
+
+/* 하단 취소, 확인 button */
+form.exam_edit__form div.buttons__confirm_cancel {
+	display: flex;
+	justify-content: right;
+}
+
+form.exam_edit__form div.buttons__confirm_cancel button {
+	font-size: 16px;
+	font-weight: 500;
+}
