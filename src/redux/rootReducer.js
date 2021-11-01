@@ -19,54 +19,58 @@ import { examListReducer } from "./fetchExamList";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
-
 import { teacherIdReducer } from "./teacher/fetchTeacherId";
 import { teacherInfoReducer } from "./teacher/fetchTeacherInfo";
+import { authTokenReducer } from "./fetchAuthToken";
 
 // reducer들을 rootReducer로 combine
 export const rootReducer = combineReducers({
-	form: formReducer,
-	userTypeReducer,
-	joinedAcademyListReducer,
-	applyingAcademyListReducer,
-	joinedClassroomListReducer,
-	applyingClassroomListReducer,
-	academyListByAcademyNameReducer,
-	classroomListByAcademyIdAndNameReducer,
+    form: formReducer,
+    userTypeReducer,
+    joinedAcademyListReducer,
+    applyingAcademyListReducer,
+    joinedClassroomListReducer,
+    applyingClassroomListReducer,
+    academyListByAcademyNameReducer,
+    classroomListByAcademyIdAndNameReducer,
 
-	lessonListReducer,
-	examListReducer,
+    lessonListReducer,
+    examListReducer,
 
-	/* 학생 */
-	studentIdReducer,
-	studentInfoReducer,
+    /* 학생 */
+    studentIdReducer,
+    studentInfoReducer,
 
-	/* 선생님 */
-	teacherIdReducer,
-	teacherInfoReducer
+    /* 선생님 */
+    teacherIdReducer,
+    teacherInfoReducer,
+
+    authTokenReducer
 });
 
 export const persistConfig = {
-	key: "root",
-	// storageSession,
-	storage,
-	whitelist: [
-		"userTypeReducer",
-		"joinedAcademyListReducer",
-		"applyingAcademyListReducer",
-		"joinedClassroomListReducer",
-		"applyingClassroomListReducer",
+    key: "root",
+    // storageSession,
+    storage,
+    whitelist: [
+        "userTypeReducer",
+        "joinedAcademyListReducer",
+        "applyingAcademyListReducer",
+        "joinedClassroomListReducer",
+        "applyingClassroomListReducer",
 
-		"lessonListReducer",
-		"examListReducer",
+        "lessonListReducer",
+        "examListReducer",
 
-		"studentIdReducer",
-		"studentInfoReducer",
+        "studentIdReducer",
+        "studentInfoReducer",
 
-		"teacherIdReducer",
-		"teacherInfoReducer"
-	]
-	// blacklist: persist 저장 제외할 것들
+        "teacherIdReducer",
+        "teacherInfoReducer",
+
+        "authTokenReducer"
+    ]
+    // blacklist: persist 저장 제외할 것들
 };
 
 export default persistReducer(persistConfig, rootReducer);

@@ -20,7 +20,11 @@ const YesAcademy = memo(({ history, match }) => {
 				</>
 			) : (
 				<>
-					<MenuBar_T isJoinedAcademy={true} history={history} />
+					<MenuBar_T
+						isJoinedAcademy={true}
+						history={history}
+						match={match}
+					/>
 					<LessonCalendar_T history={history} match={match} />
 				</>
 			)}

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, memo } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 import Button from "@material-ui/core/Button";
@@ -48,7 +48,7 @@ const CreateExamDialog = ({
 	const [passScore, setPassScore] = useState("");
 
 	const handleClose = () => {
-		// 변경할 ExamInfo Input state들 초기화
+		// 시험 추가 Dialog form Input state들 초기화
 		setExamName("");
 		setBeginDate("");
 		setBeginTime("");

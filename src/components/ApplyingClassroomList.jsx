@@ -20,8 +20,8 @@ const ApplyingClassroomList = memo((props) => {
 				...prevAcademyList,
 				response.data
 			]);
-		} catch (error) {
-			throw error;
+		} catch (e) {
+			throw e;
 		}
 	};
 

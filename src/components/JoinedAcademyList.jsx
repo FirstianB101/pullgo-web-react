@@ -7,12 +7,15 @@ const JoinedAcademyList = memo(({ joinedAcademyList }) => {
 			<ul>
 				{joinedAcademyList.length !== 0 ? (
 					joinedAcademyList.map((academy) => (
-						<div key={academy.id} className="academy_list_item">
-							<li>{academy.name}</li>
-							<span>주소: {academy.address}</span>
-							<span>전화번호: {academy.phone}</span>
-							<br />
-						</div>
+						<li key={academy.id}>
+							<span className="academy_name">{academy.name}</span>
+							<span className="academy_address">
+								주소: {academy.address}
+							</span>
+							<span className="academy_phone">
+								전화번호: {academy.phone}
+							</span>
+						</li>
 					))
 				) : (
 					<span className="no_joined_academy">

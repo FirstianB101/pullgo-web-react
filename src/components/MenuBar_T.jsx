@@ -13,6 +13,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import CreateExamDialog from "./CreateExamDialog";
+import CreateClassroomDialog from "./CreateClassroomDialog";
 import "../styles/MenuBar.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -195,9 +196,11 @@ const MenuBar_T = memo(
 		const yearMonthStr = dateToYearMonthStr(new Date());
 
 		const [createExamDialogOpen, setCreateExamDialogOpen] = useState(false);
+		const [createClassroomDialogOpen, setCreateClassroomDialogOpen] =
+			useState(false);
 
 		const onClickBtnRightMenu = (e) => {
-			if (centerMenu === "반 관리") alert("반 생성");
+			if (centerMenu === "반 관리") setCreateClassroomDialogOpen(true);
 			else if (centerMenu === "시험 관리") setCreateExamDialogOpen(true);
 		};
 
@@ -246,6 +249,12 @@ const MenuBar_T = memo(
 				<CreateExamDialog
 					createExamDialogOpen={createExamDialogOpen}
 					setCreateExamDialogOpen={setCreateExamDialogOpen}
+					match={match}
+				/>
+
+				<CreateClassroomDialog
+					createClassroomDialogOpen={createClassroomDialogOpen}
+					setCreateClassroomDialogOpen={setCreateClassroomDialogOpen}
 					match={match}
 				/>
 			</>

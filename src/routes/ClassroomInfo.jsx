@@ -11,7 +11,7 @@ import JoinedClassroomList from "../components/JoinedClassroomList";
 import ApplyingClassroomList from "../components/ApplyingClassroomList";
 import "../styles/ClassroomInfo.css";
 
-const ClassroomInfo = memo(({ history }) => {
+const ClassroomInfo = memo(({ history, match }) => {
 	const dispatch = useDispatch();
 	const onFetchJoinedAcademyList = (userType, userId) => {
 		console.log("onFetchJoinedAcademyList()");
@@ -71,6 +71,7 @@ const ClassroomInfo = memo(({ history }) => {
 					centerMenu="반 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
+					match={match}
 				/>
 			)}
 
@@ -82,6 +83,9 @@ const ClassroomInfo = memo(({ history }) => {
 					/>
 					<ApplyingClassroomList
 						applyingClassroomList={applyingClassroomList}
+						userType={userType}
+						studentId={studentId}
+						teacherId={teacherId}
 					/>
 				</>
 			) : (

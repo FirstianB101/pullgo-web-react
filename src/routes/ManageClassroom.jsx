@@ -9,7 +9,7 @@ import ManageClassroomList from "../components/ManageClassroomList";
 
 import "../styles/ManageClassroom.css";
 
-const ManageClassroom = ({ history }) => {
+const ManageClassroom = ({ history, match }) => {
 	const dispatch = useDispatch();
 	const onFetchJoinedAcademyList = (userType, userId) => {
 		console.log("onFetchJoinedAcademyList()");
@@ -48,6 +48,7 @@ const ManageClassroom = ({ history }) => {
 				// rightMenu="+"
 				isJoinedAcademy={isJoinedAcademy}
 				history={history}
+				match={match}
 			/>
 
 			{isJoinedClassroom === true ? (

@@ -10,7 +10,7 @@ import JoinedAcademyList from "../components/JoinedAcademyList";
 import ApplyingAcademyList from "../components/ApplyingAcademyList";
 import "../styles/AcademyInfo.css";
 
-const AcademyInfo = memo(({ history }) => {
+const AcademyInfo = memo(({ history, match }) => {
 	const dispatch = useDispatch();
 	const onFetchJoinedAcademyList = (userType, userId) => {
 		console.log("onFetchJoinedAcademyList()");
@@ -62,11 +62,17 @@ const AcademyInfo = memo(({ history }) => {
 					centerMenu="학원 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
+					match={match}
 				/>
 			)}
 
 			<JoinedAcademyList joinedAcademyList={joinedAcademyList} />
-			<ApplyingAcademyList applyingAcademyList={applyingAcademyList} />
+			<ApplyingAcademyList
+				applyingAcademyList={applyingAcademyList}
+				userType={userType}
+				studentId={studentId}
+				teacherId={teacherId}
+			/>
 
 			<button
 				className="btn_apply_academy"
