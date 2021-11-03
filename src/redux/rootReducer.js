@@ -16,6 +16,7 @@ import { applyingClassroomListReducer } from "./fetchApplyingClassroomList";
 
 import { lessonListReducer } from "./fetchLessonList";
 import { examListReducer } from "./fetchExamList";
+import { studentListByClassroomIdReducer } from "./fetchStudentListByClassroomId";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -36,6 +37,7 @@ export const rootReducer = combineReducers({
 
     lessonListReducer,
     examListReducer,
+    studentListByClassroomIdReducer,
 
     /* 학생 */
     studentIdReducer,
@@ -61,6 +63,7 @@ export const persistConfig = {
 
         "lessonListReducer",
         "examListReducer",
+        "studentListByClassroomIdReducer",
 
         "studentIdReducer",
         "studentInfoReducer",

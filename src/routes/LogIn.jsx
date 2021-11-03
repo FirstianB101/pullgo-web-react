@@ -126,7 +126,10 @@ const LogIn = memo(({ history }) => {
                 else if (response.data.student !== null)
                     studentId = response.data.student.id;
             } catch (e) {
+                alert("아이디 또는 패스워드를 잘못 입력하였습니다.");
                 console.log(e);
+                // status: 의미적으로는 401, 403 코드
+                // 실제 status 변수값은 null (post 에러 발생하면, status에 값 대입 안됨)
             }
         };
 
@@ -148,10 +151,6 @@ const LogIn = memo(({ history }) => {
             userType === "student"
                 ? history.push("/student/main")
                 : history.push(`/teacher/main/calendar/${yearMonthStr}`);
-        } else {
-            // status: 의미적으로는 401, 403 코드
-            // 실제 status 변수값은 null (post 에러 발생하면, status에 값 대입 안됨)
-            alert("아이디 또는 패스워드를 잘못 입력하였습니다.");
         }
     };
 

@@ -1,0 +1,105 @@
+h2.no_student {
+    text-align: center;
+    margin-top: 250px;
+}
+
+.div__manage_student_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.div__manage_student_list .ul__student_list {
+    margin-top: 50px;
+}
+
+.div__student_list_menu {
+    display: flex;
+    position: relative;
+    margin-bottom: 30px;
+    margin-right: 100px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+    /* li marker 지우기 */
+    list-style: none;
+}
+
+/* 학생 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+.div__student_list_menu:hover {
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.div__student_list_menu li {
+    margin-bottom: 10px;
+}
+
+li div.student_list_info > div {
+    display: flex;
+    position: relative;
+}
+
+li div.student_list_info > div > button {
+    position: absolute;
+    left: 300px;
+    font-size: 18px;
+}
+
+li div.student_list_info span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+li div.student_list_info span.school_name_year {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+li div.student_list_info span.student_name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+div.student_list_phone_info span.label_phone {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+div.student_list_phone_info span.student_phone,
+div.student_list_phone_info span.parent_phone {
+    position: relative;
+    display: inline-block;
+    left: 50px;
+}
+
+div.student_list_phone_info span.parent_phone {
+    left: 35px;
+}
+
+/* 학생 추방 Dialog Form */
+form.classroom_student_kick__form span {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+form.classroom_student_kick__form input {
+    font-size: 16px;
+}
+
+form.classroom_student_kick__form input[name="school_year"] {
+    width: 25px;
+}
+
+/* 하단 취소, 추방 button */
+form.classroom_student_kick__form div.buttons__kick_cancel {
+    display: flex;
+    justify-content: right;
+}
+
+form.classroom_student_kick__form div.buttons__kick_cancel button {
+    font-size: 16px;
+    font-weight: 500;
+}

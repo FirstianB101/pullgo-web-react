@@ -45,13 +45,10 @@ const AlertDialog = memo(({ userType, academyId, academyName }) => {
                     alert("학원 가입 요청이 완료되었습니다.");
                 setOpen(false);
 
-                console.log(response);
-
                 // 사용자가 가입 요청한 학원 목록 Store 갱신 (Action Dispatch)
             } catch (e) {
                 // alert("이미 가입된 학원입니다.");
                 alert("토큰이 만료되었습니다. 다시 로그인 해주세요.");
-
                 console.log(e);
                 setOpen(false);
             }

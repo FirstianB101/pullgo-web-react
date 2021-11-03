@@ -12,94 +12,97 @@ import ApplyingClassroomList from "../components/ApplyingClassroomList";
 import "../styles/ClassroomInfo.css";
 
 const ClassroomInfo = memo(({ history, match }) => {
-	const dispatch = useDispatch();
-	const onFetchJoinedAcademyList = (userType, userId) => {
-		console.log("onFetchJoinedAcademyList()");
-		dispatch(apiFetchJoinedAcademyList(userType, userId));
-	};
-	const onFetchJoinedClassroomList = (userType, userId) => {
-		console.log("onFetchJoinedClassroomList()");
-		dispatch(apiFetchJoinedClassroomList(userType, userId));
-	};
-	const onFetchApplyingClassroomList = (userType, userId) => {
-		console.log("onFetchApplyingClassroomList()");
-		dispatch(apiFetchApplyingClassroomList(userType, userId));
-	};
+    const dispatch = useDispatch();
+    const onFetchJoinedAcademyList = (userType, userId) => {
+        console.log("onFetchJoinedAcademyList()");
+        dispatch(apiFetchJoinedAcademyList(userType, userId));
+    };
+    const onFetchJoinedClassroomList = (userType, userId) => {
+        console.log("onFetchJoinedClassroomList()");
+        dispatch(apiFetchJoinedClassroomList(userType, userId));
+    };
+    const onFetchApplyingClassroomList = (userType, userId) => {
+        console.log("onFetchApplyingClassroomList()");
+        dispatch(apiFetchApplyingClassroomList(userType, userId));
+    };
 
-	const userType = useSelector((state) => state.userTypeReducer.userType);
-	const studentId = useSelector((state) => state.studentIdReducer.studentId);
-	const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
+    const userType = useSelector((state) => state.userTypeReducer.userType);
+    const studentId = useSelector((state) => state.studentIdReducer.studentId);
+    const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
 
-	useEffect(() => {
-		console.log("ClassroomInfo 렌더링");
+    useEffect(() => {
+        console.log("ClassroomInfo 렌더링");
 
-		if (userType === "student") {
-			onFetchJoinedAcademyList(userType, studentId);
-			onFetchJoinedClassroomList(userType, studentId);
-			onFetchApplyingClassroomList(userType, studentId);
-		} else {
-			onFetchJoinedAcademyList(userType, teacherId);
-			onFetchJoinedClassroomList(userType, teacherId);
-			onFetchApplyingClassroomList(userType, teacherId);
-		}
-	}, []);
+        if (userType === "student") {
+            onFetchJoinedAcademyList(userType, studentId);
+            onFetchJoinedClassroomList(userType, studentId);
+            onFetchApplyingClassroomList(userType, studentId);
+        } else {
+            onFetchJoinedAcademyList(userType, teacherId);
+            onFetchJoinedClassroomList(userType, teacherId);
+            onFetchApplyingClassroomList(userType, teacherId);
+        }
+    }, []);
 
-	const joinedAcademyList = useSelector(
-		(state) => state.joinedAcademyListReducer.joinedAcademyList
-	);
-	const joinedClassroomList = useSelector(
-		(state) => state.joinedClassroomListReducer.joinedClassroomList
-	);
-	const applyingClassroomList = useSelector(
-		(state) => state.applyingClassroomListReducer.applyingClassroomList
-	);
-	const isJoinedAcademy = joinedAcademyList.length !== 0;
+    const joinedAcademyList = useSelector(
+        (state) => state.joinedAcademyListReducer.joinedAcademyList
+    );
+    const joinedClassroomList = useSelector(
+        (state) => state.joinedClassroomListReducer.joinedClassroomList
+    );
+    const applyingClassroomList = useSelector(
+        (state) => state.applyingClassroomListReducer.applyingClassroomList
+    );
+    const isJoinedAcademy = joinedAcademyList.length !== 0;
 
-	/* ClassroomInfo: Container 컴포넌트 */
-	/* JoinedClassroomList, ApplyingClassroomList: Presenter 컴포넌트 */
+    const rightMenu = <i class="fas fa-plus fa-lg"></i>;
 
-	return (
-		<div className="classroom_info">
-			{userType === "student" ? (
-				<MenuBar_S
-					centerMenu="반 가입요청"
-					isJoinedAcademy={isJoinedAcademy}
-					history={history}
-				/>
-			) : (
-				<MenuBar_T
-					centerMenu="반 가입요청"
-					isJoinedAcademy={isJoinedAcademy}
-					history={history}
-					match={match}
-				/>
-			)}
+    /* ClassroomInfo: Container 컴포넌트 */
+    /* JoinedClassroomList, ApplyingClassroomList: Presenter 컴포넌트 */
 
-			{/* 예외처리: 가입된 학원이 없을 경우, 학원 가입하기 유도 */}
-			{isJoinedAcademy === true ? (
-				<>
-					<JoinedClassroomList
-						joinedClassroomList={joinedClassroomList}
-					/>
-					<ApplyingClassroomList
-						applyingClassroomList={applyingClassroomList}
-						userType={userType}
-						studentId={studentId}
-						teacherId={teacherId}
-					/>
-				</>
-			) : (
-				""
-			)}
+    return (
+        <div className="classroom_info">
+            {userType === "student" ? (
+                <MenuBar_S
+                    centerMenu="반 가입요청"
+                    isJoinedAcademy={isJoinedAcademy}
+                    history={history}
+                />
+            ) : (
+                <MenuBar_T
+                    centerMenu="반 가입요청"
+                    rightMenu={rightMenu}
+                    isJoinedAcademy={isJoinedAcademy}
+                    history={history}
+                    match={match}
+                />
+            )}
 
-			<button
-				className="btn_apply_classroom"
-				onClick={() => history.push(`/${userType}/apply_classroom`)}
-			>
-				반 가입신청 하기
-			</button>
-		</div>
-	);
+            {/* 예외처리: 가입된 학원이 없을 경우, 학원 가입하기 유도 */}
+            {isJoinedAcademy === true ? (
+                <>
+                    <JoinedClassroomList
+                        joinedClassroomList={joinedClassroomList}
+                    />
+                    <ApplyingClassroomList
+                        applyingClassroomList={applyingClassroomList}
+                        userType={userType}
+                        studentId={studentId}
+                        teacherId={teacherId}
+                    />
+                </>
+            ) : (
+                ""
+            )}
+
+            <button
+                className="btn_apply_classroom"
+                onClick={() => history.push(`/${userType}/apply_classroom`)}
+            >
+                반 가입신청 하기
+            </button>
+        </div>
+    );
 });
 
 export default ClassroomInfo;

@@ -93,6 +93,7 @@ const CreateClassroomDialog = ({
     const teacherInfo = useSelector(
         (state) => state.teacherInfoReducer.teacherInfo
     );
+    const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     const handleClose = () => {
         // 반 추가 Dialog form 요소 state들 초기화
@@ -132,11 +133,19 @@ const CreateClassroomDialog = ({
             const creatorId = teacherInfo.id;
 
             try {
-                const response = await axios.post("/v1/academy/classrooms", {
-                    name,
-                    academyId,
-                    creatorId
-                });
+                const response = await axios.post(
+                    "/v1/academy/classrooms",
+                    {
+                        name,
+                        academyId,
+                        creatorId
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}`
+                        }
+                    }
+                );
 
                 if (response.data != undefined)
                     alert("반 추가가 완료되었습니다.");
