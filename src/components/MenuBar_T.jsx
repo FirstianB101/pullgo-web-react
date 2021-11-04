@@ -72,12 +72,6 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     history.push("/teacher/classroom_info");
                     break;
 
-                case "반 가입 승인":
-                    break;
-
-                case "시험 관리":
-                    break;
-
                 case "학원 관리":
                     break;
 
@@ -86,9 +80,6 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     break;
 
                 case "학원 가입 승인":
-                    break;
-
-                case "다른 학원 선택":
                     break;
 
                 case "회원정보 수정":
@@ -111,21 +102,17 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                 {/* 선생님이 가입된 학원이 있는 경우 보여줄 List */}
                 {isJoinedAcademy === true ? (
                     <List>
-                        {[
-                            "수업 일정",
-                            "반 관리",
-                            "반 가입 요청",
-                            "반 가입 승인",
-                            "시험 관리"
-                        ].map((text) => (
-                            <ListItem
-                                button
-                                key={text}
-                                onClick={() => onClickBtn(text)}
-                            >
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                        {["수업 일정", "반 관리", "반 가입 요청"].map(
+                            (text) => (
+                                <ListItem
+                                    button
+                                    key={text}
+                                    onClick={() => onClickBtn(text)}
+                                >
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            )
+                        )}
                     </List>
                 ) : (
                     ""
@@ -138,8 +125,8 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     <List>
                         {[
                             "학원 관리", // 원장만 가능하도록
-                            "학원 가입 승인",
-                            "다른 학원 선택"
+                            "학원 가입 요청",
+                            "학원 가입 승인"
                         ].map((text) => (
                             <ListItem
                                 button
@@ -157,17 +144,15 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                 <Divider />
 
                 <List>
-                    {["학원 가입 요청", "회원정보 수정", "로그아웃"].map(
-                        (text) => (
-                            <ListItem
-                                button
-                                key={text}
-                                onClick={() => onClickBtn(text)}
-                            >
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        )
-                    )}
+                    {["회원정보 수정", "로그아웃"].map((text) => (
+                        <ListItem
+                            button
+                            key={text}
+                            onClick={() => onClickBtn(text)}
+                        >
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
                 </List>
             </div>
         );

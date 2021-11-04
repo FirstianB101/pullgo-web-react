@@ -61,8 +61,6 @@ const ClassroomAppliedStudentList = ({ classroomId, appliedStudentList }) => {
                 ...checkedStudentId.slice(index + 1, checkedStudentId.length)
             ]);
         }
-
-        // dispatch(apiFetchClassroomAppliedCheckedStudentList(checkedStudentId));
     };
 
     const onClickBtnReject = async (studentId, e) => {

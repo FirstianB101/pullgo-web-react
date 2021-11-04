@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import qs from "qs";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
@@ -36,6 +37,7 @@ const ManageClassroomApply = ({ history, match, location }) => {
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
+    const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     useEffect(() => {
         console.log("ManageClassroomApply 렌더링");
@@ -57,6 +59,82 @@ const ManageClassroomApply = ({ history, match, location }) => {
         (state) => state.classroomAppliedTeacherListReducer.appliedTeacherList
     );
     const isJoinedAcademy = joinedAcademyList.length !== 0;
+
+    const checkedStudentId = useSelector(
+        (state) =>
+            state.classroomAppliedCheckedStudentListReducer.checkedStudentList
+    );
+    const checkedTeacherId = useSelector(
+        (state) =>
+            state.classroomAppliedCheckedTeacherListReducer.checkedTeacherList
+    );
+
+    const onClickBatchAccept = async (e) => {
+        const postAcceptUser = async (userType, userId) => {
+            const body =
+                userType === "student"
+                    ? { studentId: userId }
+                    : { teacherId: userId };
+
+            try {
+                const response = await axios.post(
+                    `/v1/academy/classrooms/${classroomId}/accept-${userType}`,
+                    body,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}`
+                        }
+                    }
+                );
+            } catch (e) {
+                alert("토큰 만료. 로그인 페이지로 이동");
+                console.log(e);
+            }
+        };
+
+        for (let i = 0; i < checkedStudentId.length; i++)
+            await postAcceptUser("student", checkedStudentId[i]);
+
+        for (let i = 0; i < checkedTeacherId.length; i++)
+            await postAcceptUser("teacher", checkedTeacherId[i]);
+
+        // 페이지 새로고침
+        window.location.replace(
+            `/teacher/manage_classroom_apply/classroom?id=${classroomId}`
+        );
+    };
+
+    const onClickBatchReject = async (e) => {
+        const postRejectUser = async (userType, userId) => {
+            try {
+                const response = await axios.post(
+                    `/v1/${userType}s/${userId}/remove-applied-classroom`,
+                    {
+                        classroomId
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}`
+                        }
+                    }
+                );
+            } catch (e) {
+                alert("토큰 만료. 로그인 페이지로 이동");
+                console.log(e);
+            }
+        };
+
+        for (let i = 0; i < checkedStudentId.length; i++)
+            await postRejectUser("student", checkedStudentId[i]);
+
+        for (let i = 0; i < checkedTeacherId.length; i++)
+            await postRejectUser("teacher", checkedTeacherId[i]);
+
+        // 페이지 새로고침
+        window.location.replace(
+            `/teacher/manage_classroom_apply/classroom?id=${classroomId}`
+        );
+    };
 
     return (
         <div className="manage_classroom_apply">
@@ -92,17 +170,33 @@ const ManageClassroomApply = ({ history, match, location }) => {
                 <br />
                 <br />
 
-                <ClassroomAppliedTeacherList
-                    classroomId={classroomId}
-                    appliedTeacherList={appliedTeacherList}
-                />
+                {appliedTeacherList.length !== 0 ? (
+                    <ClassroomAppliedTeacherList
+                        classroomId={classroomId}
+                        appliedTeacherList={appliedTeacherList}
+                    />
+                ) : (
+                    <>
+                        <h2>선생님</h2>
+                        <h2 className="no_teacher">
+                            반에 가입 요청한 선생님이 없습니다!
+                        </h2>
+                    </>
+                )}
 
                 <br />
                 <br />
                 <br />
 
-                <button>일괄 승인</button>
-                <button>일괄 거절</button>
+                {appliedStudentList.length !== 0 ||
+                appliedTeacherList.length !== 0 ? (
+                    <>
+                        <button onClick={onClickBatchAccept}>일괄 승인</button>
+                        <button onClick={onClickBatchReject}>일괄 거절</button>
+                    </>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );
