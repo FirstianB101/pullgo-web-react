@@ -7,7 +7,7 @@ import MenuBar_T from "../components/MenuBar_T";
 import SearchAcademyListContainer from "../container/SearchAcademyListContainer";
 import "../styles/ApplyAcademy.css";
 
-const ApplyAcademy = memo(({ history }) => {
+const ApplyAcademy = memo(({ history, match }) => {
 	const dispatch = useDispatch();
 	const onFetchJoinedAcademyList = (userType, userId) => {
 		console.log("onFetchJoinedAcademyList()");
@@ -44,6 +44,7 @@ const ApplyAcademy = memo(({ history }) => {
 					centerMenu="학원 가입요청"
 					isJoinedAcademy={isJoinedAcademy}
 					history={history}
+					match={match}
 				/>
 			)}
 			<SearchAcademyListContainer />

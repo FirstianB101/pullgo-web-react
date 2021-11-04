@@ -9,13 +9,24 @@ div.joined_academy_list {
 }
 
 div.joined_academy_list li {
-	font-size: 18px;
-	font-weight: 600;
+	position: relative;
+	left: -20px;
+	margin-bottom: 25px;
+	margin-right: 50px;
+	padding: 20px;
+	border-bottom: 1px solid lightgray;
+	list-style: none;
 }
 
 div.joined_academy_list span {
 	display: block;
 	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+div.joined_academy_list span.academy_name {
+	font-size: 18px;
+	font-weight: 600;
 }
 
 div.academy_list_item {
@@ -35,20 +46,42 @@ div.applying_academy_list {
 	top: -30px;
 }
 
-div.applying_academy_list li {
+div.applying_academy_list_menu {
+	position: relative;
+	left: -20px;
+	display: flex;
+	margin-bottom: 25px;
+	margin-right: 50px;
+	padding: 20px;
+	border-bottom: 1px solid lightgray;
+	list-style: none;
+}
+
+/* 가입 신청한 학원 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+div.applying_academy_list_menu:hover {
+	cursor: pointer;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+div.applying_academy_list_menu li span {
+	display: block;
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+div.applying_academy_list_menu li span.academy_name {
 	font-size: 18px;
 	font-weight: 600;
 }
 
-div.applying_academy_list span {
-	display: block;
-	font-size: 17px;
-}
-
-div.applying_academy_list ul span.no_applying_academy {
-	font-size: 17px;
-	position: relative;
-	left: -40px;
+/* 학원 가입신청 삭제(❌) button */
+div.applying_academy_list_menu button {
+	position: absolute;
+	left: 500px;
+	bottom: 80px;
+	background-color: inherit;
+	font-size: 18px;
 }
 
 /* 학원 가입신청 하기 button */

@@ -45,3 +45,90 @@ div.manage_classroom_list .ul__classroom_list {
 	font-size: 17px;
 	font-weight: 500;
 }
+
+/* 반 추가 Dialog form */
+form.classroom_create__form {
+	margin-bottom: 5px;
+	margin-right: 10px;
+}
+
+form.classroom_create__form input {
+	font-size: 16px;
+}
+
+form.classroom_create__form span {
+	display: inline-block;
+	/* margin-top: 10px; */
+}
+
+/* 반 이름 입력 input */
+form.classroom_create__form input[type="text"] {
+	display: inline-block;
+	border-bottom: 2px solid black;
+	margin-bottom: 20px;
+}
+
+form.classroom_create__form input[name="classroom_name"] {
+	margin-left: 10px;
+}
+
+form.classroom_create__form span.classroom_create__form__label {
+	margin-bottom: 8px;
+}
+
+form.classroom_create__form .div__check_week {
+	margin-bottom: 8px;
+}
+
+form.classroom_create__form
+	.div__check_week
+	> span.classroom_create__form__label {
+	margin-bottom: 3px;
+}
+
+form.classroom_create__form .div__check_week input[type="checkbox"] {
+	display: none;
+}
+
+form.classroom_create__form .div__check_week label {
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	padding: 7px;
+	border-radius: 50%;
+	color: black;
+	font-weight: 500;
+}
+
+form.classroom_create__form .div__check_week label:hover {
+	cursor: pointer;
+}
+
+form.classroom_create__form .div__check_week label.saturday {
+	color: #1d85ff;
+}
+
+form.classroom_create__form .div__check_week label.sunday {
+	color: #ff0b0b;
+}
+
+form.classroom_create__form .div__select_academy {
+	display: flex;
+}
+
+form.classroom_create__form .div__select_academy div.academy_name {
+	position: relative;
+	left: 30px;
+	top: -30px;
+}
+
+/* 하단 취소, 확인 button */
+form.classroom_create__form div.buttons__confirm_cancel {
+	display: flex;
+	justify-content: right;
+}
+
+form.classroom_create__form div.buttons__confirm_cancel button {
+	font-size: 16px;
+	font-weight: 500;
+}
