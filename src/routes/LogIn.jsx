@@ -118,7 +118,7 @@ const LogIn = memo(({ history, onFetchStudentId, onFetchTeacherId }) => {
 
 		onFetchUserType(userType); // userTypeReducer에 userType 저장
 
-		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(2);
+		userType === "student" ? onFetchStudentId(21) : onFetchTeacherId(1);
 
 		const yearMonthStr = dateToYearMonthStr(new Date());
 
