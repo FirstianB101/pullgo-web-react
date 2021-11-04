@@ -40,7 +40,9 @@ const ManageClassroomMenuChips = ({ currentChipLabel, history, location }) => {
                 break;
             case chipLabels[2]:
                 console.log("요청 관리 페이지로 이동");
-                history.push(`/teacher/manage_apply/classroom?id=${query.id}`);
+                history.push(
+                    `/teacher/manage_classroom_apply/classroom?id=${query.id}`
+                );
                 break;
             case chipLabels[3]:
                 console.log("반 수정 및 삭제 페이지로 이동");

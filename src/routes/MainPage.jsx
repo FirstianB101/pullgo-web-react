@@ -64,11 +64,6 @@ const MainPage = memo(({ history, match }) => {
     );
     // const [joinedAcademyList] = useState(joinedAcademyList);
 
-    console.log("!!!!!!!!!!!!!!!!!!");
-    console.log(joinedAcademyList);
-    console.log(userType);
-    console.log(studentId);
-
     return !isFetched ? (
         <></>
     ) : joinedAcademyList.length === 0 ? (

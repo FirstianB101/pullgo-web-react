@@ -17,6 +17,9 @@ import { applyingClassroomListReducer } from "./fetchApplyingClassroomList";
 import { lessonListReducer } from "./fetchLessonList";
 import { examListReducer } from "./fetchExamList";
 import { studentListByClassroomIdReducer } from "./fetchStudentListByClassroomId";
+import { classroomAppliedStudentListReducer } from "./fetchClassroomAppliedStudentList";
+import { classroomAppliedTeacherListReducer } from "./fetchClassroomAppliedTeacherList";
+// import { classroomAppliedCheckedStudentListReducer } from "./fetchClassroomAppliedCheckedStudentList";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -38,6 +41,9 @@ export const rootReducer = combineReducers({
     lessonListReducer,
     examListReducer,
     studentListByClassroomIdReducer,
+    classroomAppliedStudentListReducer,
+    classroomAppliedTeacherListReducer,
+    // classroomAppliedCheckedStudentListReducer,
 
     /* 학생 */
     studentIdReducer,
@@ -64,6 +70,9 @@ export const persistConfig = {
         "lessonListReducer",
         "examListReducer",
         "studentListByClassroomIdReducer",
+        "classroomAppliedStudentListReducer",
+        "classroomAppliedTeacherListReducer",
+        // "classroomAppliedCheckedStudentListReducer",
 
         "studentIdReducer",
         "studentInfoReducer",

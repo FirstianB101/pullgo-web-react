@@ -17,6 +17,7 @@ import MainPage from "./routes/MainPage";
 import ManageClassroom from "./routes/ManageClassroom";
 import ManageExam from "./routes/ManageExam";
 import ManageStudent from "./routes/ManageStudent";
+import ManageClassroomApply from "./routes/ManageClassroomApply";
 
 function App() {
     return (
@@ -68,6 +69,10 @@ function App() {
                 <Route
                     path="/teacher/manage_student"
                     component={ManageStudent}
+                />
+                <Route
+                    path="/teacher/manage_classroom_apply"
+                    component={ManageClassroomApply}
                 />
 
                 <LogInContainer />

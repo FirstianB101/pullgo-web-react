@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from "react";
+import React, { useState, useRef, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -144,7 +144,6 @@ const ManageStudentList = ({ classroomId, studentList }) => {
                     }
                 );
 
-                alert(response.status);
                 if (response.status === 204)
                     alert("학생을 반에서 추방 하였습니다.");
             } catch (e) {
