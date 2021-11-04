@@ -11,7 +11,7 @@ import ManageClassroomMenuChips from "../components/ManageClassroomMenuChips";
 import ClassroomAppliedStudentList from "../components/ClassroomAppliedStudentList";
 import ClassroomAppliedTeacherList from "../components/ClassroomAppliedTeacherList";
 
-// import "../styles/ManageclassroomApply.css";
+import "../styles/ManageClassroomApply.css";
 import "../styles/ManageClassroomMenuChips.css";
 
 const ManageClassroomApply = ({ history, match, location }) => {
@@ -92,6 +92,9 @@ const ManageClassroomApply = ({ history, match, location }) => {
             }
         };
 
+        if (checkedStudentId.length === 0 && checkedTeacherId.length === 0)
+            return;
+
         for (let i = 0; i < checkedStudentId.length; i++)
             await postAcceptUser("student", checkedStudentId[i]);
 
@@ -123,6 +126,9 @@ const ManageClassroomApply = ({ history, match, location }) => {
                 console.log(e);
             }
         };
+
+        if (checkedStudentId.length === 0 && checkedTeacherId.length === 0)
+            return;
 
         for (let i = 0; i < checkedStudentId.length; i++)
             await postRejectUser("student", checkedStudentId[i]);
@@ -166,10 +172,6 @@ const ManageClassroomApply = ({ history, match, location }) => {
                     </>
                 )}
 
-                <br />
-                <br />
-                <br />
-
                 {appliedTeacherList.length !== 0 ? (
                     <ClassroomAppliedTeacherList
                         classroomId={classroomId}
@@ -184,16 +186,12 @@ const ManageClassroomApply = ({ history, match, location }) => {
                     </>
                 )}
 
-                <br />
-                <br />
-                <br />
-
                 {appliedStudentList.length !== 0 ||
-                appliedTeacherList.length !== 0 ? (
-                    <>
-                        <button onClick={onClickBatchAccept}>일괄 승인</button>
-                        <button onClick={onClickBatchReject}>일괄 거절</button>
-                    </>
+                    appliedTeacherList.length !== 0 ? (
+                    <div className="classroom_apply_batch_buttons">
+                        <button onClick={onClickBatchAccept} className="btn__batch_accept">일괄 승인</button>
+                        <button onClick={onClickBatchReject} className="btn__batch_reject">일괄 거절</button>
+                    </div>
                 ) : (
                     ""
                 )}

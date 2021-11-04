@@ -181,9 +181,8 @@ const ClassroomAppliedTeacherList = ({ classroomId, appliedTeacherList }) => {
     };
 
     return (
-        <div>
+        <div className="classroom_applied_teacher_list">
             <h2>선생님</h2>
-
             {showAppliedTeacherListItems()}
         </div>
     );

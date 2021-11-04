@@ -153,11 +153,11 @@ const ClassroomAppliedStudentList = ({ classroomId, appliedStudentList }) => {
                         </div>
 
                         <div className="div__student_list_info">
-                            <h4>{studentInfo.fullName}</h4>
-                            <h4>
+                            <span>
                                 {studentInfo.schoolName}{" "}
                                 {studentInfo.schoolYear}학년
-                            </h4>
+                            </span>
+                            <span>{studentInfo.fullName}</span>
                         </div>
 
                         <div className="div__student_list_buttons">
@@ -195,9 +195,8 @@ const ClassroomAppliedStudentList = ({ classroomId, appliedStudentList }) => {
     };
 
     return (
-        <div>
+        <div className="classroom_applied_student_list">
             <h2>학생</h2>
-
             {showAppliedStudentListItems()}
         </div>
     );

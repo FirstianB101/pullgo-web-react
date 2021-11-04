@@ -1,0 +1,137 @@
+div.manage_classroom_apply {
+    display: flex;
+    flex-direction: column;
+}
+
+div.classroom_applied_user_list {
+    padding: 50px;
+}
+
+div.classroom_applied_user_list h2.no_student,
+div.classroom_applied_user_list h2.no_teacher {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+/* ClassroomAppliedStudentList */
+div.classroom_applied_student_list .div__student_list_menu,
+div.classroom_applied_teacher_list .div__teacher_list_menu {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    /* li marker 지우기 */
+    list-style: none;
+}
+
+div.classroom_applied_student_list .div__student_list_menu > li,
+div.classroom_applied_teacher_list .div__teacher_list_menu > li {
+    display: flex;
+}
+
+.div__student_list_checkbox,
+.div__teacher_list_checkbox {
+    display: flex;
+}
+
+.div__student_list_info {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.div__student_list_info span:first-child {
+    margin-bottom: 15px;
+    color: #777777;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.div__student_list_info span:nth-child(2) {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.div__student_list_buttons,
+.div__teacher_list_buttons {
+    display: flex;
+    position: relative;
+    left: 50px;
+    top: 40px;
+}
+
+.div__student_list_buttons button,
+.div__teacher_list_buttons button {
+    margin-left: 30px;
+    border-radius: 10px;
+    width: 70px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.div__student_list_buttons button.btn__reject,
+.div__teacher_list_buttons button.btn__reject {
+    color: red;
+    background-color: #fcdede;
+}
+
+.div__student_list_buttons button.btn__accept,
+.div__teacher_list_buttons button.btn__accept {
+    color: blue;
+    background-color: #e2e4ff;
+}
+
+/* ClassroomAppliedTeacherList */
+div.classroom_applied_teacher_list {
+    margin-top: 80px;
+}
+
+/* 학생 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+div.classroom_applied_teacher_list .div__teacher_list_menu:hover {
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.div__teacher_list_checkbox {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+div.classroom_applied_teacher_list .div__teacher_list_menu > li h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.div__teacher_list_buttons {
+    left: 250px;
+    top: 35px;
+}
+
+/* 일괄 승인, 일괄 거절 button */
+div.classroom_apply_batch_buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.classroom_apply_batch_buttons button.btn__batch_accept {
+    margin-bottom: 30px;
+    color: blue;
+    background-color: #e2e4ff;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+div.classroom_apply_batch_buttons button.btn__batch_reject {
+    color: red;
+    background-color: #fcdede;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 15px;
+}

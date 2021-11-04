@@ -100,8 +100,8 @@ const EditDeleteClassroom = ({ history, match, location }) => {
             <Box sx={{ width: "100%" }}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                     <Tabs value={value} onChange={handleChange}>
-                        <Tab label="Item One" {...a11yProps(0)} />
-                        <Tab label="Item Two" {...a11yProps(1)} />
+                        <Tab label="수정" {...a11yProps(0)} />
+                        <Tab label="삭제" {...a11yProps(1)} />
                     </Tabs>
                 </Box>
 
