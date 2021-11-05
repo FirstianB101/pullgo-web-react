@@ -21,6 +21,7 @@ import { classroomAppliedStudentListReducer } from "./fetchClassroomAppliedStude
 import { classroomAppliedTeacherListReducer } from "./fetchClassroomAppliedTeacherList";
 import { classroomAppliedCheckedStudentListReducer } from "./fetchClassroomAppliedCheckedStudentList";
 import { classroomAppliedCheckedTeacherListReducer } from "./fetchClassroomAppliedCheckedTeacherList";
+import { classroomReducer } from "./fetchClassroom";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -46,6 +47,7 @@ export const rootReducer = combineReducers({
     classroomAppliedTeacherListReducer,
     classroomAppliedCheckedStudentListReducer,
     classroomAppliedCheckedTeacherListReducer,
+    classroomReducer,
 
     /* 학생 */
     studentIdReducer,

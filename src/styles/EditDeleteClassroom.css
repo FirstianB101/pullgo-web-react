@@ -1,0 +1,138 @@
+/* 상단 "수정", "삭제" Tab 버튼 */
+div.edit_delete_classroom div:last-child div:first-child div {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/* EditClassroomTabPanel Component */
+div.edit_classroom_tab_panel,
+div.delete_classroom_tab_panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.edit_classroom_tab_panel h2,
+div.delete_classroom_tab_panel h2 {
+    margin-top: 50px;
+}
+
+form.edit_classroom__form {
+    margin-top: 70px;
+}
+
+form.edit_classroom__form input,
+div.delete_classroom_tab_panel input[name="classroom_name"] {
+    font-size: 18px;
+}
+
+form.edit_classroom__form input[name="edited_classroom_name"],
+div.delete_classroom_tab_panel input[name="classroom_name"] {
+    display: inline-block;
+    border-bottom: 2px solid black;
+    background-color: inherit;
+    margin-left: 80px;
+    margin-bottom: 70px;
+    padding-bottom: 10px;
+    width: 300px;
+}
+
+form.edit_classroom__form input[name="edited_classroom_name"]:focus,
+div.delete_classroom_tab_panel input[name="classroom_name"] {
+    outline: none;
+}
+
+form.edit_classroom__form .div__check_week {
+    padding-left: 70px;
+}
+
+form.edit_classroom__form .div__check_week span.edited_classroom_week__label {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+form.edit_classroom__form .div__check_week input[type="checkbox"] {
+    display: none;
+}
+
+form.edit_classroom__form .div__check_week label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 50%;
+    color: black;
+    font-weight: 500;
+}
+
+form.edit_classroom__form .div__check_week label:hover {
+    cursor: pointer;
+}
+
+form.edit_classroom__form .div__check_week label.saturday {
+    color: #1d85ff;
+}
+
+form.edit_classroom__form .div__check_week label.sunday {
+    color: #ff0b0b;
+}
+
+form.edit_classroom__form div.div__btn_wrapper,
+div.delete_classroom_tab_panel div.div__btn_wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-left: 40px;
+}
+
+form.edit_classroom__form button.btn__edit_classroom {
+    width: 300px;
+    height: 50px;
+    background-color: #9398ff;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 30px;
+}
+
+/* DeleteClassroomTabPanel Component */
+div.delete_classroom_tab_panel h2 {
+    position: relative;
+    right: 50px;
+}
+
+p.delete_classroom_text {
+    margin-top: 50px;
+    margin-bottom: 80px;
+    margin-left: 30px;
+    color: #ff6625;
+}
+
+p.delete_classroom_text span {
+    font-size: 18px;
+}
+
+h3.delete_classroom_input__label {
+    margin-left: 110px;
+}
+
+div.delete_classroom_tab_panel input[name="classroom_name"] {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+div.delete_classroom_tab_panel div.div__btn_wrapper {
+    padding-top: 30px;
+}
+
+div.delete_classroom_tab_panel button.btn__delete_classroom {
+    width: 300px;
+    height: 50px;
+    background-color: #ff6056;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 30px;
+}

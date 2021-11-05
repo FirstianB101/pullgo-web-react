@@ -14,7 +14,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-// import "../styles/EditDeleteClassroom.css";
+import "../styles/EditDeleteClassroom.css";
 import "../styles/ManageClassroomMenuChips.css";
 
 function TabPanel(props) {
@@ -106,11 +106,11 @@ const EditDeleteClassroom = ({ history, match, location }) => {
                 </Box>
 
                 <TabPanel value={value} index={0}>
-                    <EditClassroomTabPanel />
+                    <EditClassroomTabPanel classroomId={classroomId} />
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                    <DeleteClassroomTabPanel />
+                    <DeleteClassroomTabPanel classroomId={classroomId} />
                 </TabPanel>
             </Box>
         </div>

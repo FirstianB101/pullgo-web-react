@@ -64,8 +64,7 @@ const getCheckedWeekStr = (checkedWeek) => {
 
 const CreateClassroomDialog = ({
     createClassroomDialogOpen,
-    setCreateClassroomDialogOpen,
-    match
+    setCreateClassroomDialogOpen
 }) => {
     const classes = useStyles();
     const weekArr = [
@@ -150,7 +149,7 @@ const CreateClassroomDialog = ({
                 if (response.data != undefined)
                     alert("반 추가가 완료되었습니다.");
             } catch (e) {
-                alert("반 추가 오류");
+                alert("토큰 만료. 로그인 페이지로 이동");
                 console.log(e);
             }
         };
@@ -176,11 +175,9 @@ const CreateClassroomDialog = ({
         if (weekLabelRefs.current.length === 0) return;
 
         for (let i = 0; i < checkedWeek.length; i++) {
-            if (checkedWeek[i]) {
+            if (checkedWeek[i])
                 weekLabelRefs.current[i].style.backgroundColor = "#E2E4FF";
-            } else {
-                weekLabelRefs.current[i].style.backgroundColor = "";
-            }
+            else weekLabelRefs.current[i].style.backgroundColor = "";
         }
     }, [checkedWeek]);
 
