@@ -80,6 +80,8 @@ function App() {
                     component={EditDeleteClassroom}
                 />
 
+                {/* 학원 가입 승인 */}
+
                 <LogInContainer />
             </Switch>
         </BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";

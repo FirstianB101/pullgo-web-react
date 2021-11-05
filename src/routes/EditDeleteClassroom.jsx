@@ -66,7 +66,6 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
-    const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     useEffect(() => {
         console.log("EditDeleteClassroom 렌더링");

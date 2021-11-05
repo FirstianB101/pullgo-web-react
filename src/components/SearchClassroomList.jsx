@@ -58,8 +58,8 @@ const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
 
                 // 사용자가 가입 요청한 반 목록 Store 갱신 (Action Dispatch)
             } catch (e) {
-                // alert("이미 가입된 반입니다.");
-                alert("토큰이 만료되었습니다. 다시 로그인 해주세요.");
+                alert("이미 가입된 반입니다.");
+                // alert("토큰이 만료되었습니다. 다시 로그인 해주세요.");
                 console.log(e);
                 setOpen(false);
             }

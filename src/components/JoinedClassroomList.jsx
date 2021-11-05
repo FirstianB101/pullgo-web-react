@@ -2,6 +2,7 @@ import React, { useState, useEffect, memo } from "react";
 import axios from "axios";
 
 const JoinedClassroomList = memo((props) => {
+    const [isFetched, setIsFetched] = useState(false);
     const [joinedClassroomList, setJoinedClassroomList] = useState(
         props.joinedClassroomList
     );
@@ -52,6 +53,8 @@ const JoinedClassroomList = memo((props) => {
                 fetchTeachersByClassroomId(classroom.id);
             });
         }
+
+        setIsFetched(true);
     }, [joinedClassroomList]);
 
     /* classroomName, academyName, teacherName 표시 */
@@ -103,7 +106,9 @@ const JoinedClassroomList = memo((props) => {
         <div className="joined_classroom_list">
             <h3>가입된 반 목록</h3>
             <ul>
-                {joinedClassroomList.length !== 0 ? (
+                {!isFetched ? (
+                    <></>
+                ) : joinedClassroomList.length !== 0 ? (
                     showClassroomListItems()
                 ) : (
                     <span className="no_joined_classroom">
