@@ -50,7 +50,7 @@ function a11yProps(index) {
     };
 }
 
-const EditDeleteClassroom = ({ history, match, location }) => {
+const EditDeleteClassroom = memo(({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     });
@@ -115,6 +115,6 @@ const EditDeleteClassroom = ({ history, match, location }) => {
             </Box>
         </div>
     );
-};
+});
 
 export default EditDeleteClassroom;

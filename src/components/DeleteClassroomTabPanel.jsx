@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import { apiFetchClassroom } from "../redux/fetchClassroom";
 
-const DeleteClassroomTabPanel = ({ classroomId }) => {
+const DeleteClassroomTabPanel = memo(({ classroomId }) => {
     const [classroomName, setClassroomName] = useState("");
 
     const dispatch = useDispatch();
@@ -91,6 +91,6 @@ const DeleteClassroomTabPanel = ({ classroomId }) => {
             </div>
         </div>
     );
-};
+});
 
 export default DeleteClassroomTabPanel;

@@ -26,7 +26,7 @@ const getCheckedWeekStr = (checkedWeek) => {
     return checkedWeekStr;
 };
 
-const EditClassroomTabPanel = ({ classroomId }) => {
+const EditClassroomTabPanel = memo(({ classroomId }) => {
     const [editedClassroomName, setEditedClassroomName] = useState();
     const [checkedWeek, setCheckedWeek] = useState(
         Array.from({ length: 7 }, () => false)
@@ -273,6 +273,6 @@ const EditClassroomTabPanel = ({ classroomId }) => {
             </form>
         </div>
     );
-};
+});
 
 export default EditClassroomTabPanel;

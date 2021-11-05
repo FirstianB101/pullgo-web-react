@@ -11,7 +11,7 @@ import ManageStudentList from "../components/ManageStudentList";
 import "../styles/ManageStudent.css";
 import "../styles/ManageClassroomMenuChips.css";
 
-const ManageStudent = ({ history, match, location }) => {
+const ManageStudent = memo(({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     });
@@ -73,6 +73,6 @@ const ManageStudent = ({ history, match, location }) => {
             )}
         </div>
     );
-};
+});
 
 export default ManageStudent;

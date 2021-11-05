@@ -14,7 +14,7 @@ import ClassroomAppliedTeacherList from "../components/ClassroomAppliedTeacherLi
 import "../styles/ManageClassroomApply.css";
 import "../styles/ManageClassroomMenuChips.css";
 
-const ManageClassroomApply = ({ history, match, location }) => {
+const ManageClassroomApply = memo(({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     });
@@ -187,10 +187,20 @@ const ManageClassroomApply = ({ history, match, location }) => {
                 )}
 
                 {appliedStudentList.length !== 0 ||
-                    appliedTeacherList.length !== 0 ? (
+                appliedTeacherList.length !== 0 ? (
                     <div className="classroom_apply_batch_buttons">
-                        <button onClick={onClickBatchAccept} className="btn__batch_accept">일괄 승인</button>
-                        <button onClick={onClickBatchReject} className="btn__batch_reject">일괄 거절</button>
+                        <button
+                            onClick={onClickBatchAccept}
+                            className="btn__batch_accept"
+                        >
+                            일괄 승인
+                        </button>
+                        <button
+                            onClick={onClickBatchReject}
+                            className="btn__batch_reject"
+                        >
+                            일괄 거절
+                        </button>
                     </div>
                 ) : (
                     ""
@@ -198,6 +208,6 @@ const ManageClassroomApply = ({ history, match, location }) => {
             </div>
         </div>
     );
-};
+});
 
 export default ManageClassroomApply;

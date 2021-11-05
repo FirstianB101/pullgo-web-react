@@ -11,7 +11,7 @@ import ManageExamList from "../components/ManageExamList";
 import "../styles/ManageExam.css";
 import "../styles/ManageClassroomMenuChips.css";
 
-const ManageExam = ({ history, match, location }) => {
+const ManageExam = memo(({ history, match, location }) => {
     // Query String Parsing 하여 객체화
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
@@ -73,6 +73,6 @@ const ManageExam = ({ history, match, location }) => {
             )}
         </div>
     );
-};
+});
 
 export default ManageExam;
