@@ -28,7 +28,7 @@ const ManageAcademy = ({ history, match }) => {
     );
     const isJoinedAcademy = joinedAcademyList.length !== 0;
 
-    const rightMenu = <i class="fas fa-plus fa-lg"></i>;
+    const rightMenu = <i className="fas fa-plus fa-lg"></i>;
 
     return (
         <div className="manage_academy">

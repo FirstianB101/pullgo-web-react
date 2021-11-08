@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 // Dialog
+import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
-import Draggable from "react-draggable";
 // Select
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -25,17 +24,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2)
     }
 }));
-
-const PaperComponent = memo((props) => {
-    return (
-        <Draggable
-            handle="#draggable-dialog-title"
-            cancel={'[class*="MuiDialogContent-root"]'}
-        >
-            <Paper {...props} />
-        </Draggable>
-    );
-});
 
 /* joinedAcademyList를 <option> 태그에 담아서 return */
 const getOptionTag = (academyList) => {
@@ -64,7 +52,8 @@ const getCheckedWeekStr = (checkedWeek) => {
 
 const CreateClassroomDialog = ({
     createClassroomDialogOpen,
-    setCreateClassroomDialogOpen
+    setCreateClassroomDialogOpen,
+    match
 }) => {
     const classes = useStyles();
     const weekArr = [
@@ -146,8 +135,7 @@ const CreateClassroomDialog = ({
                     }
                 );
 
-                if (response.data != undefined)
-                    alert("반 추가가 완료되었습니다.");
+                if (response.status === 201) alert("반 추가가 완료되었습니다.");
             } catch (e) {
                 alert("토큰 만료. 로그인 페이지로 이동");
                 console.log(e);
@@ -159,7 +147,7 @@ const CreateClassroomDialog = ({
             await postCreateClassroom();
 
             // 페이지 새로고침
-            window.location.replace(`/teacher/manage_classroom`);
+            window.location.replace(match.path);
         }
 
         // 반 추가 form state들 초기화

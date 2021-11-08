@@ -249,11 +249,11 @@ const MenuBar_T = memo(
                     match={match}
                 />
 
-                {/* <CreateAcademyDialog
+                <CreateAcademyDialog
                     createAcademyDialogOpen={createAcademyDialogOpen}
                     setCreateAcademyDialogOpen={setCreateAcademyDialogOpen}
                     match={match}
-                /> */}
+                />
             </>
         );
     }

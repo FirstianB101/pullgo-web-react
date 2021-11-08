@@ -12,14 +12,13 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "moment/locale/ko";
 
+import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
-import Draggable from "react-draggable";
 
 /* Date 객체를 인자로 받아서 "2021-08-09" 형식의 string으로 반환 */
 const dateToStr = (date) => {
@@ -120,17 +119,6 @@ const getOptionTag = (classroomList) => {
         <option value={classroom.name}>{classroom.name}</option>
     ));
 };
-
-const PaperComponent = memo((props) => {
-    return (
-        <Draggable
-            handle="#draggable-dialog-title"
-            cancel={'[class*="MuiDialogContent-root"]'}
-        >
-            <Paper {...props} />
-        </Draggable>
-    );
-});
 
 const LessonCalendar_T = memo(({ history, match }) => {
     const localizer = momentLocalizer(moment);

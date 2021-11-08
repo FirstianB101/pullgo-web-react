@@ -5,6 +5,8 @@ export const regPW = /[^a-zA-Z0-9!@#$%^&*()-_+={}\\|"]/;
 
 // 전화번호 "-" 제거
 export const deleteHyphenFromPhoneNum = (phoneNum) => {
+    if (phoneNum === "") return "";
+
     let phoneNumberWithoutHyphen = "";
     let pos = 0;
 
