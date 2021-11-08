@@ -14,11 +14,17 @@ import ClassroomInfo from "./routes/ClassroomInfo";
 import ApplyClassroom from "./routes/ApplyClassroom";
 
 import MainPage from "./routes/MainPage";
+
+/* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
 import ManageClassroom from "./routes/ManageClassroom";
 import ManageExam from "./routes/ManageExam";
 import ManageStudent from "./routes/ManageStudent";
 import ManageClassroomApply from "./routes/ManageClassroomApply";
 import EditDeleteClassroom from "./routes/EditDeleteClassroom";
+
+/* 학원 관리 - 요청 관리, // [원장 전용] 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
+import ManageAcademy from "./routes/ManageAcademy";
+import ManageAcademyApply from "./routes/ManageAcademyApply";
 
 function App() {
     return (
@@ -80,7 +86,15 @@ function App() {
                     component={EditDeleteClassroom}
                 />
 
-                {/* 학원 가입 승인 */}
+                {/* 학원 관리 - 요청 관리, // [원장 전용] 구성원 관리, 권한 위임, 학원 수정 및 삭제 */}
+                <Route
+                    path="/teacher/manage_academy"
+                    component={ManageAcademy}
+                />
+                <Route
+                    path="/teacher/manage_academy_apply"
+                    component={ManageAcademyApply}
+                />
 
                 <LogInContainer />
             </Switch>

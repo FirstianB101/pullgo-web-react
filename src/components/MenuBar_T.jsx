@@ -14,6 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 import CreateExamDialog from "./CreateExamDialog";
 import CreateClassroomDialog from "./CreateClassroomDialog";
+import CreateAcademyDialog from "./CreateAcademyDialog";
 import "../styles/MenuBar.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,13 +74,11 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     break;
 
                 case "학원 관리":
+                    history.push("/teacher/manage_academy");
                     break;
 
                 case "학원 가입 요청":
                     history.push("/teacher/academy_info");
-                    break;
-
-                case "학원 가입 승인":
                     break;
 
                 case "회원정보 수정":
@@ -125,8 +124,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     <List>
                         {[
                             "학원 관리", // 원장만 가능하도록
-                            "학원 가입 요청",
-                            "학원 가입 승인"
+                            "학원 가입 요청"
                         ].map((text) => (
                             <ListItem
                                 button
@@ -180,13 +178,20 @@ const MenuBar_T = memo(
         const classes = useStyles();
         const yearMonthStr = dateToYearMonthStr(new Date());
 
-        const [createExamDialogOpen, setCreateExamDialogOpen] = useState(false);
         const [createClassroomDialogOpen, setCreateClassroomDialogOpen] =
             useState(false);
+        const [createAcademyDialogOpen, setCreateAcademyDialogOpen] =
+            useState(false);
+        const [createExamDialogOpen, setCreateExamDialogOpen] = useState(false);
 
         const onClickBtnRightMenu = (e) => {
             if (centerMenu === "반 관리" || centerMenu === "반 가입요청")
                 setCreateClassroomDialogOpen(true);
+            else if (
+                centerMenu === "학원 관리" ||
+                centerMenu === "학원 가입요청"
+            )
+                setCreateAcademyDialogOpen(true);
             else if (centerMenu === "시험 관리") setCreateExamDialogOpen(true);
         };
 
@@ -243,6 +248,12 @@ const MenuBar_T = memo(
                     setCreateClassroomDialogOpen={setCreateClassroomDialogOpen}
                     match={match}
                 />
+
+                {/* <CreateAcademyDialog
+                    createAcademyDialogOpen={createAcademyDialogOpen}
+                    setCreateAcademyDialogOpen={setCreateAcademyDialogOpen}
+                    match={match}
+                /> */}
             </>
         );
     }
