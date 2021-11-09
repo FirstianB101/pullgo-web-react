@@ -15,6 +15,8 @@ import { joinedClassroomListReducer } from "./fetchJoinedClassroomList";
 import { applyingClassroomListReducer } from "./fetchApplyingClassroomList";
 
 import { lessonListReducer } from "./fetchLessonList";
+
+/* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
 import { examListReducer } from "./fetchExamList";
 import { studentListByClassroomIdReducer } from "./fetchStudentListByClassroomId";
 import { classroomAppliedStudentListReducer } from "./fetchClassroomAppliedStudentList";
@@ -22,6 +24,12 @@ import { classroomAppliedTeacherListReducer } from "./fetchClassroomAppliedTeach
 import { classroomAppliedCheckedStudentListReducer } from "./fetchClassroomAppliedCheckedStudentList";
 import { classroomAppliedCheckedTeacherListReducer } from "./fetchClassroomAppliedCheckedTeacherList";
 import { classroomReducer } from "./fetchClassroom";
+
+/* 학원 관리 - 요청 관리, 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
+import { academyAppliedStudentListReducer } from "./fetchAcademyAppliedStudentList";
+import { academyAppliedTeacherListReducer } from "./fetchAcademyAppliedTeacherList";
+import { academyAppliedCheckedStudentListReducer } from "./fetchAcademyAppliedCheckedStudentList";
+import { academyAppliedCheckedTeacherListReducer } from "./fetchAcademyAppliedCheckedTeacherList";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -41,6 +49,8 @@ export const rootReducer = combineReducers({
     classroomListByAcademyIdAndNameReducer,
 
     lessonListReducer,
+
+    /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
     examListReducer,
     studentListByClassroomIdReducer,
     classroomAppliedStudentListReducer,
@@ -48,6 +58,12 @@ export const rootReducer = combineReducers({
     classroomAppliedCheckedStudentListReducer,
     classroomAppliedCheckedTeacherListReducer,
     classroomReducer,
+
+    /* 학원 관리 - 요청 관리, 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
+    academyAppliedStudentListReducer,
+    academyAppliedTeacherListReducer,
+    academyAppliedCheckedStudentListReducer,
+    academyAppliedCheckedTeacherListReducer,
 
     /* 학생 */
     studentIdReducer,
@@ -72,11 +88,17 @@ export const persistConfig = {
         "applyingClassroomListReducer",
 
         "lessonListReducer",
+
+        /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
         "examListReducer",
         "studentListByClassroomIdReducer",
         "classroomAppliedStudentListReducer",
         "classroomAppliedTeacherListReducer",
         // "classroomAppliedCheckedStudentListReducer",
+
+        /* 학원 관리 - 요청 관리, 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
+        "academyAppliedStudentListReducer",
+        "academyAppliedTeacherListReducer",
 
         "studentIdReducer",
         "studentInfoReducer",

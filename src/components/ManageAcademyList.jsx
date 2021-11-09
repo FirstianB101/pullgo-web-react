@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { insertHyphen } from "../module/PhoneStr";
 
 const ManageAcademyList = ({ joinedAcademyList, history }) => {
     const showAcademyListItems = () => {
@@ -20,6 +21,9 @@ const ManageAcademyList = ({ joinedAcademyList, history }) => {
                         </span>
                         <span className="academy_address">
                             {joinedAcademyList[i].address}
+                        </span>
+                        <span className="academy_phone">
+                            {insertHyphen(joinedAcademyList[i].phone)}
                         </span>
                     </li>
                 </div>

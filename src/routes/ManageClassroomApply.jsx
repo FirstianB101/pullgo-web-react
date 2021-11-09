@@ -145,7 +145,7 @@ const ManageClassroomApply = memo(({ history, match, location }) => {
     return (
         <div className="manage_classroom_apply">
             <MenuBar_T
-                centerMenu="요청 관리"
+                centerMenu="반 요청 관리"
                 isJoinedAcademy={isJoinedAcademy}
                 history={history}
                 match={match}

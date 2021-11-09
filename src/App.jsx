@@ -95,6 +95,18 @@ function App() {
                     path="/teacher/manage_academy_apply"
                     component={ManageAcademyApply}
                 />
+                <Route
+                    path="/teacher/manage_users"
+                    // component={}
+                />
+                {/* <Route
+                    path="/teacher/권한 위임"
+                    // component={}
+                /> */}
+                <Route
+                    path="/teacher/edit_delete_academy"
+                    // component={}
+                />
 
                 <LogInContainer />
             </Switch>

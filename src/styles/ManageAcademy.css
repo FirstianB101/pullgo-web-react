@@ -35,9 +35,10 @@ div.manage_academy_list .ul__academy_list {
     font-weight: 600;
 }
 
-.div__academy_list_menu li span.academy_address {
+.div__academy_list_menu li span.academy_address,
+.div__academy_list_menu li span.academy_phone {
     font-size: 17px;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
 /* 학원 추가 Dialog Form */

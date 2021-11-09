@@ -8,45 +8,45 @@ import PersonIcon from "@mui/icons-material/Person";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import WindowIcon from "@mui/icons-material/Window";
 
-const ManageClassroomMenuChips = memo(
+const ManageAcademyMenuChips = memo(
     ({ currentChipLabel, history, location }) => {
         const query = qs.parse(location.search, {
             ignoreQueryPrefix: true
         });
 
         const chipLabels = [
-            "시험 관리",
-            "학생 관리",
             "요청 관리",
-            "반 수정 및 삭제"
+            "구성원 관리",
+            "권한 위임",
+            "학원 수정 및 삭제"
         ];
 
         const onClickChip = (i, e) => {
             if (currentChipLabel === chipLabels[i]) return;
 
-            // console.log(e.target.parentNode);
-            // console.log(e.target.parentNode.parentNode);
-            // console.log(e.target.innerText);
-
             switch (chipLabels[i]) {
                 case chipLabels[0]:
+                    console.log("요청 관리 페이지로 이동");
                     history.push(
-                        `/teacher/manage_exam/classroom?id=${query.id}`
+                        `/teacher/manage_academy_apply/academy?id=${query.id}`
                     );
                     break;
                 case chipLabels[1]:
+                    console.log("구성원 관리 페이지로 이동");
+                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
                     history.push(
-                        `/teacher/manage_student/classroom?id=${query.id}`
+                        `/teacher/manage_users/academy?id=${query.id}`
                     );
                     break;
                 case chipLabels[2]:
-                    history.push(
-                        `/teacher/manage_classroom_apply/classroom?id=${query.id}`
-                    );
+                    console.log("권한 위임 페이지로 이동");
+                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
                     break;
                 case chipLabels[3]:
+                    console.log("학원 수정 및 삭제 페이지로 이동");
+                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
                     history.push(
-                        `/teacher/edit_delete_classroom/classroom?id=${query.id}`
+                        `/teacher/edit_delete_academy/academy?id=${query.id}`
                     );
                     break;
             }
@@ -58,7 +58,7 @@ const ManageClassroomMenuChips = memo(
         };
 
         return (
-            <div className="manage_classroom_menu_chips">
+            <div className="manage_Academy_menu_chips">
                 <Stack direction="row" spacing={2}>
                     <Chip
                         label={chipLabels[0]}
@@ -109,4 +109,4 @@ const ManageClassroomMenuChips = memo(
     }
 );
 
-export default ManageClassroomMenuChips;
+export default ManageAcademyMenuChips;
