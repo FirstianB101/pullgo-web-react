@@ -2,13 +2,12 @@ import React, { useState, useRef, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
-import Draggable from "react-draggable";
 
 /* student 1개를 인자로 받아서 student 정보 속성들을 파싱해서 객체로 return */
 const parsingStudentInfo = (student) => {
@@ -39,18 +38,7 @@ const parsingPhone = (phone) => {
     return parsedPhone;
 };
 
-const PaperComponent = memo((props) => {
-    return (
-        <Draggable
-            handle="#draggable-dialog-title"
-            cancel={'[class*="MuiDialogContent-root"]'}
-        >
-            <Paper {...props} />
-        </Draggable>
-    );
-});
-
-const ManageStudentList = ({ classroomId, studentList }) => {
+const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
     const [selectedStudentId, setSelectedStudentId] = useState("");
     const [selectedStudentInfo, setSelectedStudentInfo] = useState("");
     const [open, setOpen] = useState(false);
@@ -62,12 +50,12 @@ const ManageStudentList = ({ classroomId, studentList }) => {
     const showStudentListItems = () => {
         const listItems = [];
 
-        for (let i = 0; i < studentList.length; i++) {
-            const studentInfo = parsingStudentInfo(studentList[i]);
+        for (let i = 0; i < joinedStudentList.length; i++) {
+            const studentInfo = parsingStudentInfo(joinedStudentList[i]);
 
             const element = (
                 <div className="div__student_list_menu">
-                    <li key={studentList[i].id}>
+                    <li key={joinedStudentList[i].id}>
                         {/* 학생 학교, 학년, 이름 */}
                         <div className="student_list_info">
                             <div>
@@ -77,7 +65,7 @@ const ManageStudentList = ({ classroomId, studentList }) => {
                                 <button
                                     onClick={(e) =>
                                         onClickBtnKickStudent(
-                                            studentList[i].id,
+                                            joinedStudentList[i].id,
                                             i,
                                             e
                                         )
@@ -120,7 +108,7 @@ const ManageStudentList = ({ classroomId, studentList }) => {
     };
 
     const onClickBtnKickStudent = (studentId, refIndex, e) => {
-        const studentInfo = parsingStudentInfo(studentList[refIndex]);
+        const studentInfo = parsingStudentInfo(joinedStudentList[refIndex]);
 
         setSelectedStudentInfo(studentInfo);
         setSelectedStudentId(studentId);
@@ -171,7 +159,7 @@ const ManageStudentList = ({ classroomId, studentList }) => {
     };
 
     return (
-        <div className="div__manage_student_list">
+        <div className="classroom_joined_student_list">
             <ul className="ul__student_list">{showStudentListItems()}</ul>
 
             <Dialog
@@ -270,4 +258,4 @@ const ManageStudentList = ({ classroomId, studentList }) => {
     );
 };
 
-export default ManageStudentList;
+export default ClassroomJoinedStudentList;

@@ -18,7 +18,8 @@ import { lessonListReducer } from "./fetchLessonList";
 
 /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
 import { examListReducer } from "./fetchExamList";
-import { studentListByClassroomIdReducer } from "./fetchStudentListByClassroomId";
+import { classroomJoinedStudentListReducer } from "./fetchClassroomJoinedStudentList";
+import { classroomJoinedTeacherListReducer } from "./fetchClassroomJoinedTeacherList";
 import { classroomAppliedStudentListReducer } from "./fetchClassroomAppliedStudentList";
 import { classroomAppliedTeacherListReducer } from "./fetchClassroomAppliedTeacherList";
 import { classroomAppliedCheckedStudentListReducer } from "./fetchClassroomAppliedCheckedStudentList";
@@ -52,7 +53,8 @@ export const rootReducer = combineReducers({
 
     /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
     examListReducer,
-    studentListByClassroomIdReducer,
+    classroomJoinedStudentListReducer,
+    classroomJoinedTeacherListReducer,
     classroomAppliedStudentListReducer,
     classroomAppliedTeacherListReducer,
     classroomAppliedCheckedStudentListReducer,
@@ -91,7 +93,8 @@ export const persistConfig = {
 
         /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
         "examListReducer",
-        "studentListByClassroomIdReducer",
+        "classroomJoinedStudentListReducer",
+        "classroomJoinedTeacherListReducer",
         "classroomAppliedStudentListReducer",
         "classroomAppliedTeacherListReducer",
         // "classroomAppliedCheckedStudentListReducer",

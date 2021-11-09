@@ -12,7 +12,6 @@ import ClassroomAppliedStudentList from "../components/ClassroomAppliedStudentLi
 import ClassroomAppliedTeacherList from "../components/ClassroomAppliedTeacherList";
 
 import "../styles/ManageClassroomApply.css";
-import "../styles/ManageClassroomMenuChips.css";
 
 const ManageClassroomApply = memo(({ history, match, location }) => {
     const query = qs.parse(location.search, {

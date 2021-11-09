@@ -1,23 +1,24 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_STUDENT_LIST_BY_CLASSROOM_ID = "FETCH_STUDENT_LIST_BY_CLASSROOM_ID";
+const FETCH_CLASSROOM_JOINED_STUDENT_LIST =
+    "FETCH_CLASSROOM_JOINED_STUDENT_LIST";
 
 /* action 생성 함수 정의 */
-export const fetchStudentListByClassroomId = (studentList) => {
+export const fetchClassroomJoinedStudentList = (joinedStudentList) => {
     return {
-        type: FETCH_STUDENT_LIST_BY_CLASSROOM_ID,
-        studentList
+        type: FETCH_CLASSROOM_JOINED_STUDENT_LIST,
+        joinedStudentList
     };
 };
 
 /* 초기 state 정의 */
 const initState = {
-    studentList: []
+    joinedStudentList: []
 };
 
 /* 서버 API로부터 classroomId로 반에 가입된 학생들 조회 */
-export const apiFetchStudentListByClassroomId = (classroomId) => {
+export const apiFetchClassroomJoinedStudentList = (classroomId) => {
     return async (dispatch) => {
         try {
             const response = await axios.get("/v1/students?", {
@@ -26,7 +27,7 @@ export const apiFetchStudentListByClassroomId = (classroomId) => {
                 }
             });
             // action 생성 함수 dispatch
-            dispatch(fetchStudentListByClassroomId(response.data));
+            dispatch(fetchClassroomJoinedStudentList(response.data));
         } catch (error) {
             throw error;
         }
@@ -34,12 +35,15 @@ export const apiFetchStudentListByClassroomId = (classroomId) => {
 };
 
 /* reducer 정의 */
-export const studentListByClassroomIdReducer = (state = initState, action) => {
+export const classroomJoinedStudentListReducer = (
+    state = initState,
+    action
+) => {
     switch (action.type) {
-        case FETCH_STUDENT_LIST_BY_CLASSROOM_ID:
+        case FETCH_CLASSROOM_JOINED_STUDENT_LIST:
             return {
                 ...state,
-                studentList: action.studentList
+                joinedStudentList: action.joinedStudentList
             };
 
         default:

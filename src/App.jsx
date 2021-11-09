@@ -18,13 +18,15 @@ import MainPage from "./routes/MainPage";
 /* 반 관리 - 시험 관리, 학생 관리, 요청 관리, 반 수정 및 삭제 */
 import ManageClassroom from "./routes/ManageClassroom";
 import ManageExam from "./routes/ManageExam";
-import ManageStudent from "./routes/ManageStudent";
+import ManageClassroomMembers from "./routes/ManageClassroomMembers";
+import ManageStudent from "./routes/ManageClassroomMembers";
 import ManageClassroomApply from "./routes/ManageClassroomApply";
 import EditDeleteClassroom from "./routes/EditDeleteClassroom";
 
 /* 학원 관리 - 요청 관리, // [원장 전용] 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
 import ManageAcademy from "./routes/ManageAcademy";
 import ManageAcademyApply from "./routes/ManageAcademyApply";
+import ManageAcademyMembers from "./routes/ManageAcademyMembers";
 
 function App() {
     return (
@@ -74,8 +76,8 @@ function App() {
                 />
                 <Route path="/teacher/manage_exam" component={ManageExam} />
                 <Route
-                    path="/teacher/manage_student"
-                    component={ManageStudent}
+                    path="/teacher/manage_classroom_members"
+                    component={ManageClassroomMembers}
                 />
                 <Route
                     path="/teacher/manage_classroom_apply"
@@ -96,8 +98,8 @@ function App() {
                     component={ManageAcademyApply}
                 />
                 <Route
-                    path="/teacher/manage_users"
-                    // component={}
+                    path="/teacher/manage_academy_members"
+                    component={ManageAcademyMembers}
                 />
                 {/* <Route
                     path="/teacher/권한 위임"

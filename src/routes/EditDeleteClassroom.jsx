@@ -15,7 +15,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import "../styles/EditDeleteClassroom.css";
-import "../styles/ManageClassroomMenuChips.css";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

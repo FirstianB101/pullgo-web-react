@@ -18,7 +18,7 @@ const ManageClassroomMenuChips = memo(
 
         const chipLabels = [
             "시험 관리",
-            "학생 관리",
+            "구성원 관리",
             "요청 관리",
             "반 수정 및 삭제"
         ];
@@ -38,7 +38,7 @@ const ManageClassroomMenuChips = memo(
                     break;
                 case chipLabels[1]:
                     history.push(
-                        `/teacher/manage_student/classroom?id=${query.id}`
+                        `/teacher/manage_classroom_members/classroom?id=${query.id}`
                     );
                     break;
                 case chipLabels[2]:

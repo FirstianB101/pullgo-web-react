@@ -9,7 +9,6 @@ import ManageClassroomMenuChips from "../components/ManageClassroomMenuChips";
 import ManageExamList from "../components/ManageExamList";
 
 import "../styles/ManageExam.css";
-import "../styles/ManageClassroomMenuChips.css";
 
 const ManageExam = memo(({ history, match, location }) => {
     // Query String Parsing 하여 객체화

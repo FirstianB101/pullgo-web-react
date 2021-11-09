@@ -1,18 +1,23 @@
+/* ManageClassroomMembers [Routes] */
 h2.no_student {
     text-align: center;
     margin-top: 250px;
 }
 
-.div__manage_student_list {
+/* ClassroomJoinedStudentList, ClassroomJoinedTeacherList [Component] */
+.classroom_joined_student_list,
+.classroom_joined_teacher_list {
     display: flex;
     flex-direction: column;
 }
 
-.div__manage_student_list .ul__student_list {
+.classroom_joined_student_list .ul__student_list,
+.classroom_joined_teacher_list .ul__teacher_list {
     margin-top: 50px;
 }
 
-.div__student_list_menu {
+.div__student_list_menu,
+.div__teacher_list_menu {
     display: flex;
     position: relative;
     margin-bottom: 30px;
@@ -26,28 +31,33 @@ h2.no_student {
 }
 
 /* 학생 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
-.div__student_list_menu:hover {
+.div__student_list_menu:hover,
+.div__teacher_list_menu:hover {
     cursor: pointer;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.div__student_list_menu li {
+.div__student_list_menu li,
+.div__teacher_list_menu li {
     margin-bottom: 10px;
 }
 
-li div.student_list_info > div {
+li div.student_list_info > div,
+li div.teacher_list_info > div {
     display: flex;
     position: relative;
 }
 
-li div.student_list_info > div > button {
+li div.student_list_info > div > button,
+li div.teacher_list_info > div > button {
     position: absolute;
     left: 300px;
     font-size: 18px;
 }
 
-li div.student_list_info span {
+li div.student_list_info span,
+li div.teacher_list_info span {
     display: block;
     margin-bottom: 10px;
 }
@@ -57,14 +67,23 @@ li div.student_list_info span.school_name_year {
     font-weight: 500;
 }
 
-li div.student_list_info span.student_name {
+li div.student_list_info span.student_name,
+li div.teacher_list_info span.teacher_name {
     font-size: 18px;
     font-weight: 600;
+}
+
+li div.teacher_list_info span.teacher_name {
+    margin-bottom: 20px;
 }
 
 div.student_list_phone_info span.label_phone {
     display: inline-block;
     margin-top: 10px;
+}
+
+div.teacher_list_phone_info span.label_phone {
+    margin-right: 35px;
 }
 
 div.student_list_phone_info span.student_phone,
@@ -79,13 +98,15 @@ div.student_list_phone_info span.parent_phone {
 }
 
 /* 학생 추방 Dialog Form */
-form.classroom_student_kick__form span {
+form.classroom_student_kick__form span,
+form.classroom_teacher_kick__form span {
     display: inline-block;
     margin-bottom: 5px;
     margin-right: 10px;
 }
 
-form.classroom_student_kick__form input {
+form.classroom_student_kick__form input,
+form.classroom_teacher_kick__form input {
     font-size: 16px;
 }
 
@@ -93,13 +114,21 @@ form.classroom_student_kick__form input[name="school_year"] {
     width: 25px;
 }
 
-/* 하단 취소, 추방 button */
-form.classroom_student_kick__form div.buttons__kick_cancel {
+form.classroom_student_kick__form input[name="parent_phone"],
+form.classroom_teacher_kick__form input[name="teacher_phone"] {
+    margin-bottom: 20px;
+}
+
+form.classroom_student_kick__form div.buttons__kick_cancel,
+form.classroom_teacher_kick__form div.buttons__kick_cancel {
     display: flex;
     justify-content: right;
 }
 
-form.classroom_student_kick__form div.buttons__kick_cancel button {
+form.classroom_student_kick__form div.buttons__kick_cancel button,
+form.classroom_teacher_kick__form div.buttons__kick_cancel button {
     font-size: 16px;
     font-weight: 500;
 }
+
+/* 선생님 추방 Dialog Form */
