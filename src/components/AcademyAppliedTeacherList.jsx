@@ -28,6 +28,7 @@ const AcademyAppliedTeacherList = ({ academyId, appliedTeacherList }) => {
         setCheckedAll(e.target.checked);
     };
 
+    /* CheckAll 체크박스 클릭 - 학생 전체 선택 및 전체 선택 해제 */
     useEffect(() => {
         if (checkedAll) {
             setChecked(
@@ -38,12 +39,22 @@ const AcademyAppliedTeacherList = ({ academyId, appliedTeacherList }) => {
             );
             setCheckedTeacherId([...checkedTeacherIdArr]);
         } else {
+            const isExistChecked = checked.some((check) => check);
+            const isAllChecked = checked.every((check) => check);
+            if (isExistChecked && !isAllChecked) return;
+
             setChecked(
                 Array.from({ length: appliedTeacherList.length }, () => false)
             );
             setCheckedTeacherId([]);
         }
     }, [checkedAll]);
+
+    useEffect(() => {
+        const isAllChecked = checked.every((check) => check);
+        if (isAllChecked) setCheckedAll(true);
+        else setCheckedAll(false);
+    }, [checked]);
 
     const onChangeCheckbox = (teacherId, refIndex, e) => {
         const checkedArr = [...checked];
@@ -196,9 +207,12 @@ const AcademyAppliedTeacherList = ({ academyId, appliedTeacherList }) => {
     };
 
     return (
-        <div className="classroom_applied_teacher_list">
-            <Checkbox onChange={onChangeCheckAll} checked={checkedAll} />
-            <h2>선생님</h2>
+        <div className="academy_applied_teacher_list">
+            <div className="check_all">
+                <Checkbox onChange={onChangeCheckAll} checked={checkedAll} />
+                <h2>선생님</h2>
+            </div>
+
             {showAppliedTeacherListItems()}
         </div>
     );

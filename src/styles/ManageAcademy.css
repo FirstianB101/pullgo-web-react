@@ -18,7 +18,7 @@ div.manage_academy_list .ul__academy_list {
     list-style: none;
 }
 
-/* 반 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
+/* 학원 리스트에 마우스 올렸을 때, 선택 및 시각 효과 */
 .div__academy_list_menu:hover {
     cursor: pointer;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);

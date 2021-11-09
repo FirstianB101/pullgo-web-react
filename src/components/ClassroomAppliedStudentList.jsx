@@ -23,11 +23,13 @@ const ClassroomAppliedStudentList = memo(
     ({ classroomId, appliedStudentList }) => {
         const dispatch = useDispatch();
 
-        const [checked, setChecked] = useState([]);
+        const [checkedAll, setCheckedAll] = useState(false);
+        const [checked, setChecked] = useState(
+            Array.from({ length: appliedStudentList.length }, () => false)
+        );
         const [checkedStudentId, setCheckedStudentId] = useState([]);
         // Checkbox에서 check한 학생의 studentId를 저장한 배열 state
 
-        const checkboxRefs = useRef([]);
         const btnRejectRefs = useRef([]);
         const btnAcceptRefs = useRef([]);
 
@@ -36,16 +38,48 @@ const ClassroomAppliedStudentList = memo(
         );
 
         useEffect(() => {
-            setChecked(
-                Array.from({ length: appliedStudentList.length }, () => false)
-            );
-        }, [appliedStudentList]);
-
-        useEffect(() => {
             dispatch(
                 apiFetchClassroomAppliedCheckedStudentList(checkedStudentId)
             );
         }, [checkedStudentId]);
+
+        const onChangeCheckAll = (e) => {
+            setCheckedAll(e.target.checked);
+        };
+
+        /* CheckAll 체크박스 클릭 - 학생 전체 선택 및 전체 선택 해제 */
+        useEffect(() => {
+            if (checkedAll) {
+                setChecked(
+                    Array.from(
+                        { length: appliedStudentList.length },
+                        () => true
+                    )
+                );
+                const checkedStudentIdArr = appliedStudentList.map(
+                    (student) => student.id
+                );
+                setCheckedStudentId([...checkedStudentIdArr]);
+            } else {
+                const isExistChecked = checked.some((check) => check);
+                const isAllChecked = checked.every((check) => check);
+                if (isExistChecked && !isAllChecked) return;
+
+                setChecked(
+                    Array.from(
+                        { length: appliedStudentList.length },
+                        () => false
+                    )
+                );
+                setCheckedStudentId([]);
+            }
+        }, [checkedAll]);
+
+        useEffect(() => {
+            const isAllChecked = checked.every((check) => check);
+            if (isAllChecked) setCheckedAll(true);
+            else setCheckedAll(false);
+        }, [checked]);
 
         const onChangeCheckbox = (studentId, refIndex, e) => {
             const checkedArr = [...checked];
@@ -149,15 +183,13 @@ const ClassroomAppliedStudentList = memo(
                         <li key={studentInfo.studentId}>
                             <div className="div__student_list_checkbox">
                                 <Checkbox
+                                    checked={checked[i]}
                                     onChange={(e) =>
                                         onChangeCheckbox(
                                             studentInfo.studentId,
                                             i,
                                             e
                                         )
-                                    }
-                                    ref={(elem) =>
-                                        (checkboxRefs.current[i] = elem)
                                     }
                                 />
                             </div>
@@ -212,7 +244,14 @@ const ClassroomAppliedStudentList = memo(
 
         return (
             <div className="classroom_applied_student_list">
-                <h2>학생</h2>
+                <div className="check_all">
+                    <Checkbox
+                        checked={checkedAll}
+                        onChange={onChangeCheckAll}
+                    />
+                    <h2>학생</h2>
+                </div>
+
                 {showAppliedStudentListItems()}
             </div>
         );

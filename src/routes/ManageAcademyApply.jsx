@@ -11,6 +11,8 @@ import ManageAcademyMenuChips from "../components/ManageAcademyMenuChips";
 import AcademyAppliedStudentList from "../components/AcademyAppliedStudentList";
 import AcademyAppliedTeacherList from "../components/AcademyAppliedTeacherList";
 
+import "../styles/ManageAcademyApply.css";
+
 const ManageAcademyApply = ({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true

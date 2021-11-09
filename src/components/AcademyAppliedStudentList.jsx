@@ -223,9 +223,12 @@ const AcademyAppliedStudentList = ({ academyId, appliedStudentList }) => {
     };
 
     return (
-        <div className="classroom_applied_student_list">
-            <Checkbox onChange={onChangeCheckAll} checked={checkedAll} />
-            <h2>학생</h2>
+        <div className="academy_applied_student_list">
+            <div className="check_all">
+                <Checkbox onChange={onChangeCheckAll} checked={checkedAll} />
+                <h2>학생</h2>
+            </div>
+
             {showAppliedStudentListItems()}
         </div>
     );

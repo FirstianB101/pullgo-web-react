@@ -8,6 +8,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import WindowIcon from "@mui/icons-material/Window";
 
+import "../styles/ManageClassroomMenuChips.css";
+
 const ManageClassroomMenuChips = memo(
     ({ currentChipLabel, history, location }) => {
         const query = qs.parse(location.search, {

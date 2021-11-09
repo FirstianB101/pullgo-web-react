@@ -8,6 +8,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import WindowIcon from "@mui/icons-material/Window";
 
+import "../styles/ManageAcademyMenuChips.css";
+
 const ManageAcademyMenuChips = memo(
     ({ currentChipLabel, history, location }) => {
         const query = qs.parse(location.search, {
@@ -58,7 +60,7 @@ const ManageAcademyMenuChips = memo(
         };
 
         return (
-            <div className="manage_Academy_menu_chips">
+            <div className="manage_academy_menu_chips">
                 <Stack direction="row" spacing={2}>
                     <Chip
                         label={chipLabels[0]}

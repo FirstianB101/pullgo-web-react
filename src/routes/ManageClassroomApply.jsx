@@ -95,6 +95,11 @@ const ManageClassroomApply = memo(({ history, match, location }) => {
         if (checkedStudentId.length === 0 && checkedTeacherId.length === 0)
             return;
 
+        let confirmBatchAccept = window.confirm(
+            "선택하신 사용자들의 반 가입을 승인 하시겠습니까?"
+        );
+        if (!confirmBatchAccept) return;
+
         for (let i = 0; i < checkedStudentId.length; i++)
             await postAcceptUser("student", checkedStudentId[i]);
 
@@ -129,6 +134,11 @@ const ManageClassroomApply = memo(({ history, match, location }) => {
 
         if (checkedStudentId.length === 0 && checkedTeacherId.length === 0)
             return;
+
+        let confirmBatchReject = window.confirm(
+            "선택하신 사용자들의 반 가입을 거절 하시겠습니까?"
+        );
+        if (!confirmBatchReject) return;
 
         for (let i = 0; i < checkedStudentId.length; i++)
             await postRejectUser("student", checkedStudentId[i]);
