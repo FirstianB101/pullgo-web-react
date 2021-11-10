@@ -38,7 +38,7 @@ const parsingPhone = (phone) => {
     return parsedPhone;
 };
 
-const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
+const AcademyJoinedStudentList = ({ academyId, joinedStudentList }) => {
     const [selectedStudentId, setSelectedStudentId] = useState("");
     const [selectedStudentInfo, setSelectedStudentInfo] = useState("");
     const [open, setOpen] = useState(false);
@@ -121,7 +121,7 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
         const postKickStudent = async (studentId) => {
             try {
                 const response = await axios.post(
-                    `/v1/academy/classrooms/${classroomId}/kick-student`,
+                    `/v1/academies/${academyId}/kick-student`,
                     {
                         studentId
                     },
@@ -133,21 +133,22 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                 );
 
                 if (response.status === 204)
-                    alert("학생을 반에서 추방 하였습니다.");
+                    alert("학생을 학원에서 추방 하였습니다.");
             } catch (e) {
                 alert("토큰 만료. 로그인 페이지로 이동");
                 console.log(e);
             }
         };
 
-        let confirmPostKickStudent =
-            window.confirm("학생을 반에서 추방 하시겠습니까?");
+        let confirmPostKickStudent = window.confirm(
+            "학생을 학원에서 추방 하시겠습니까?"
+        );
         if (confirmPostKickStudent) {
             await postKickStudent(selectedStudentId);
 
             // 페이지 새로고침
             window.location.replace(
-                `/teacher/manage_classroom_members/classroom?id=${classroomId}`
+                `/teacher/manage_academy_members/academy?id=${academyId}`
             );
         }
     };
@@ -159,7 +160,7 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
     };
 
     return (
-        <div className="classroom_joined_student_list">
+        <div className="academy_joined_student_list">
             <h2>학생</h2>
             <ul className="ul__student_list">{showStudentListItems()}</ul>
 
@@ -178,11 +179,11 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                 <DialogContent>
                     <DialogContentText>
                         <form
-                            className="classroom_student_kick__form"
+                            className="academy_student_kick__form"
                             onSubmit={onSubmitForm}
                         >
                             <div>
-                                <span className="classroom_student_kick__form__label">
+                                <span className="academy_student_kick__form__label">
                                     학생 이름
                                 </span>
                                 <input
@@ -194,7 +195,7 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                             </div>
 
                             <div>
-                                <span className="classroom_student_kick__form__label">
+                                <span className="academy_student_kick__form__label">
                                     학교
                                 </span>
                                 <input
@@ -204,7 +205,7 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                                     readOnly
                                 />
 
-                                <span className="classroom_student_kick__form__label">
+                                <span className="academy_student_kick__form__label">
                                     학년
                                 </span>
                                 <input
@@ -216,11 +217,11 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                             </div>
 
                             <div>
-                                <span className="classroom_student_kick__form__label">
+                                <span className="academy_student_kick__form__label">
                                     학생 전화번호
                                 </span>
                                 <input
-                                    type="tel"
+                                    type="text"
                                     name="student_phone"
                                     value={parsingPhone(
                                         selectedStudentInfo.phone
@@ -230,11 +231,11 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
                             </div>
 
                             <div>
-                                <span className="classroom_student_kick__form__label">
+                                <span className="academy_student_kick__form__label">
                                     부모님 전화번호
                                 </span>
                                 <input
-                                    type="tel"
+                                    type="text"
                                     name="parent_phone"
                                     value={parsingPhone(
                                         selectedStudentInfo.parentPhone
@@ -259,4 +260,4 @@ const ClassroomJoinedStudentList = ({ classroomId, joinedStudentList }) => {
     );
 };
 
-export default ClassroomJoinedStudentList;
+export default AcademyJoinedStudentList;

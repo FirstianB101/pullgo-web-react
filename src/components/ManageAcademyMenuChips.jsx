@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+import React, { useState, memo } from "react";
+import { useSelector } from "react-redux";
 import qs from "qs";
 
 import Chip from "@mui/material/Chip";
@@ -11,10 +12,11 @@ import WindowIcon from "@mui/icons-material/Window";
 import "../styles/ManageAcademyMenuChips.css";
 
 const ManageAcademyMenuChips = memo(
-    ({ currentChipLabel, history, location }) => {
+    ({ currentChipLabel, hasPermission, history, location }) => {
         const query = qs.parse(location.search, {
             ignoreQueryPrefix: true
         });
+        const [academyId, setAcademyId] = useState(query.id);
 
         const chipLabels = [
             "요청 관리",
@@ -29,23 +31,32 @@ const ManageAcademyMenuChips = memo(
             switch (chipLabels[i]) {
                 case chipLabels[0]:
                     history.push(
-                        `/teacher/manage_academy_apply/academy?id=${query.id}`
+                        `/teacher/manage_academy_apply/academy?id=${academyId}`
                     );
                     break;
                 case chipLabels[1]:
-                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                    if (!hasPermission) {
+                        alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                        return;
+                    }
                     history.push(
-                        `/teacher/manage_academy_members/academy?id=${query.id}`
+                        `/teacher/manage_academy_members/academy?id=${academyId}`
                     );
                     break;
                 case chipLabels[2]:
-                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                    if (!hasPermission) {
+                        alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                        return;
+                    }
                     // history.push();
                     break;
                 case chipLabels[3]:
-                    alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                    if (!hasPermission) {
+                        alert("학원의 원장 선생님만 사용 가능한 기능 입니다.");
+                        return;
+                    }
                     history.push(
-                        `/teacher/edit_delete_academy/academy?id=${query.id}`
+                        `/teacher/edit_delete_academy/academy?id=${academyId}`
                     );
                     break;
             }

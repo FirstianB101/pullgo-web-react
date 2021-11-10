@@ -11,9 +11,15 @@ h2.no_student {
     flex-direction: column;
 }
 
+.classroom_joined_student_list > h2,
+.classroom_joined_teacher_list > h2 {
+    margin-left: 60px;
+    margin-top: 50px;
+}
+
 .classroom_joined_student_list .ul__student_list,
 .classroom_joined_teacher_list .ul__teacher_list {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .div__student_list_menu,

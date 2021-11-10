@@ -19,6 +19,9 @@ const ManageAcademyApply = ({ history, match, location }) => {
     });
 
     const [academyId, setAcademyId] = useState(query.id);
+    const [academy, setAcademy] = useState(null);
+    const [hasPermission, setHasPermission] = useState(null);
+    // 원장 권한(구성원 관리, 권한 위임, 학원 수정 및 삭제) 여부
 
     const dispatch = useDispatch();
     const onFetchJoinedAcademyList = (userType, userId) => {
@@ -67,6 +70,20 @@ const ManageAcademyApply = ({ history, match, location }) => {
         (state) =>
             state.academyAppliedCheckedTeacherListReducer.checkedTeacherList
     );
+
+    useEffect(() => {
+        if (joinedAcademyList.length === 0) return;
+
+        const currentAcademy = joinedAcademyList.find(
+            (academy) => academy.id == academyId
+        );
+        if (currentAcademy != undefined) setAcademy(currentAcademy);
+    }, [academyId, joinedAcademyList]);
+
+    useEffect(() => {
+        if (academy === null) return;
+        setHasPermission(teacherId == academy.ownerId);
+    }, [teacherId, academy]);
 
     const onClickBatchAccept = async (e) => {
         const postAcceptUser = async (userType, userId) => {
@@ -162,6 +179,7 @@ const ManageAcademyApply = ({ history, match, location }) => {
 
             <ManageAcademyMenuChips
                 currentChipLabel="요청 관리"
+                hasPermission={hasPermission}
                 history={history}
                 location={location}
             />

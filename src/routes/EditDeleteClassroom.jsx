@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
+import { apiFetchClassroom } from "../redux/fetchClassroom";
 import MenuBar_T from "../components/MenuBar_T";
 import ManageClassroomMenuChips from "../components/ManageClassroomMenuChips";
 import EditClassroomTabPanel from "../components/EditClassroomTabPanel";
@@ -62,6 +63,10 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
         console.log("onFetchJoinedAcademyList()");
         dispatch(apiFetchJoinedAcademyList(userType, userId));
     };
+    const onFetchClassroom = (classroomId) => {
+        console.log("onFetchClassroom()");
+        dispatch(apiFetchClassroom(classroomId));
+    };
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
@@ -71,9 +76,14 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
         onFetchJoinedAcademyList(userType, teacherId);
     }, []);
 
+    useEffect(() => {
+        onFetchClassroom(classroomId);
+    }, [classroomId]);
+
     const joinedAcademyList = useSelector(
         (state) => state.joinedAcademyListReducer.joinedAcademyList
     );
+    const classroom = useSelector((state) => state.classroomReducer.classroom);
     const isJoinedAcademy = joinedAcademyList.length !== 0;
 
     const handleChange = (e, newValue) => {
@@ -104,11 +114,17 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
                 </Box>
 
                 <TabPanel value={value} index={0}>
-                    <EditClassroomTabPanel classroomId={classroomId} />
+                    <EditClassroomTabPanel
+                        classroomId={classroomId}
+                        beforeEditClassroom={classroom}
+                    />
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                    <DeleteClassroomTabPanel classroomId={classroomId} />
+                    <DeleteClassroomTabPanel
+                        classroomId={classroomId}
+                        correctClassroom={classroom}
+                    />
                 </TabPanel>
             </Box>
         </div>

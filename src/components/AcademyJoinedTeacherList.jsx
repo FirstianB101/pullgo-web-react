@@ -19,8 +19,8 @@ const parsingPhone = (phone) => {
     return parsedPhone;
 };
 
-const ClassroomJoinedTeacherList = ({
-    classroomId,
+const AcademyJoinedTeacherList = ({
+    academyId,
     joinedTeacherList,
     teacherId
 }) => {
@@ -99,7 +99,7 @@ const ClassroomJoinedTeacherList = ({
         const postKickTeacher = async (teacherId) => {
             try {
                 const response = await axios.post(
-                    `/v1/academy/classrooms/${classroomId}/kick-teacher`,
+                    `/v1/academies/${academyId}/kick-teacher`,
                     {
                         teacherId
                     },
@@ -111,7 +111,7 @@ const ClassroomJoinedTeacherList = ({
                 );
 
                 if (response.status === 204)
-                    alert("선생님을 반에서 추방 하였습니다.");
+                    alert("선생님을 학원에서 추방 하였습니다.");
             } catch (e) {
                 alert("토큰 만료. 로그인 페이지로 이동");
                 console.log(e);
@@ -119,14 +119,14 @@ const ClassroomJoinedTeacherList = ({
         };
 
         let confirmPostKickTeacher = window.confirm(
-            "선생님을 반에서 추방 하시겠습니까?"
+            "선생님을 학원에서 추방 하시겠습니까?"
         );
         if (confirmPostKickTeacher) {
             await postKickTeacher(selectedTeacherId);
 
             // 페이지 새로고침
             window.location.replace(
-                `/teacher/manage_classroom_members/classroom?id=${classroomId}`
+                `/teacher/manage_academy_members/academy?id=${academyId}`
             );
         }
     };
@@ -138,7 +138,7 @@ const ClassroomJoinedTeacherList = ({
     };
 
     return (
-        <div className="classroom_joined_teacher_list">
+        <div className="academy_joined_teacher_list">
             <h2>선생님</h2>
             <ul className="ul__teacher_list">{showTeacherListItems()}</ul>
 
@@ -157,11 +157,11 @@ const ClassroomJoinedTeacherList = ({
                 <DialogContent>
                     <DialogContentText>
                         <form
-                            className="classroom_teacher_kick__form"
+                            className="academy_teacher_kick__form"
                             onSubmit={onSubmitForm}
                         >
                             <div>
-                                <span className="classroom_teacher_kick__form__label">
+                                <span className="academy_teacher_kick__form__label">
                                     선생님 이름
                                 </span>
                                 <input
@@ -175,7 +175,7 @@ const ClassroomJoinedTeacherList = ({
                             </div>
 
                             <div>
-                                <span className="classroom_teacher_kick__form__label">
+                                <span className="academy_teacher_kick__form__label">
                                     선생님 전화번호
                                 </span>
                                 <input
@@ -204,4 +204,4 @@ const ClassroomJoinedTeacherList = ({
     );
 };
 
-export default ClassroomJoinedTeacherList;
+export default AcademyJoinedTeacherList;

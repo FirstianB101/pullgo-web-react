@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef, memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
-
-import { apiFetchClassroom } from "../redux/fetchClassroom";
 
 const weekArrKR = ["일", "월", "화", "수", "목", "금", "토"];
 const weekArr = [
@@ -26,7 +24,7 @@ const getCheckedWeekStr = (checkedWeek) => {
     return checkedWeekStr;
 };
 
-const EditClassroomTabPanel = memo(({ classroomId }) => {
+const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
     const [editedClassroomName, setEditedClassroomName] = useState();
     const [checkedWeek, setCheckedWeek] = useState(
         Array.from({ length: 7 }, () => false)
@@ -34,21 +32,6 @@ const EditClassroomTabPanel = memo(({ classroomId }) => {
 
     const weekLabelRefs = useRef([]);
 
-    const dispatch = useDispatch();
-    const onFetchClassroom = (classroomId) => {
-        console.log("onFetchClassroom()");
-        dispatch(apiFetchClassroom(classroomId));
-    };
-
-    useEffect(() => {
-        onFetchClassroom(classroomId);
-    }, [classroomId]);
-
-    // 수정 전 classroom 객체
-    // classroom.name: "반이름;담당 선생님 이름;요일" 형태
-    const beforeEditClassroom = useSelector(
-        (state) => state.classroomReducer.classroom
-    );
     const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     /* 수정 전 기존 반 이름 표시 */

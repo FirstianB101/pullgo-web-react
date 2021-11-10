@@ -31,6 +31,8 @@ import { academyAppliedStudentListReducer } from "./fetchAcademyAppliedStudentLi
 import { academyAppliedTeacherListReducer } from "./fetchAcademyAppliedTeacherList";
 import { academyAppliedCheckedStudentListReducer } from "./fetchAcademyAppliedCheckedStudentList";
 import { academyAppliedCheckedTeacherListReducer } from "./fetchAcademyAppliedCheckedTeacherList";
+import { academyJoinedStudentListReducer } from "./fetchAcademyJoinedStudentList";
+import { academyJoinedTeacherListReducer } from "./fetchAcademyJoinedTeacherList";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -66,6 +68,8 @@ export const rootReducer = combineReducers({
     academyAppliedTeacherListReducer,
     academyAppliedCheckedStudentListReducer,
     academyAppliedCheckedTeacherListReducer,
+    academyJoinedStudentListReducer,
+    academyJoinedTeacherListReducer,
 
     /* 학생 */
     studentIdReducer,
@@ -102,6 +106,8 @@ export const persistConfig = {
         /* 학원 관리 - 요청 관리, 구성원 관리, 권한 위임, 학원 수정 및 삭제 */
         "academyAppliedStudentListReducer",
         "academyAppliedTeacherListReducer",
+        "academyJoinedStudentListReducer",
+        "academyJoinedTeacherListReducer",
 
         "studentIdReducer",
         "studentInfoReducer",

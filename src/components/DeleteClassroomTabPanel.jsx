@@ -1,25 +1,11 @@
-import React, { useState, useEffect, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, memo } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
-import { apiFetchClassroom } from "../redux/fetchClassroom";
-
-const DeleteClassroomTabPanel = memo(({ classroomId }) => {
+const DeleteClassroomTabPanel = memo(({ classroomId, correctClassroom }) => {
     const [classroomName, setClassroomName] = useState("");
 
-    const dispatch = useDispatch();
-    const onFetchClassroom = (classroomId) => {
-        console.log("onFetchClassroom()");
-        dispatch(apiFetchClassroom(classroomId));
-    };
-
-    useEffect(() => {
-        onFetchClassroom(classroomId);
-    }, [classroomId]);
-
-    const correctClassroomName = useSelector(
-        (state) => state.classroomReducer.classroom?.name.split(";")[0]
-    );
+    const correctClassroomName = correctClassroom?.name.split(";")[0];
     const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     const onChangeInputClassroomName = (e) => {
