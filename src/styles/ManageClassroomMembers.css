@@ -103,7 +103,7 @@ div.student_list_phone_info span.parent_phone {
     left: 35px;
 }
 
-/* 학생 추방 Dialog Form */
+/* 학생, 선생님 추방 Dialog Form */
 form.classroom_student_kick__form span,
 form.classroom_teacher_kick__form span {
     display: inline-block;
@@ -116,13 +116,25 @@ form.classroom_teacher_kick__form input {
     font-size: 16px;
 }
 
+form.classroom_student_kick__form input[name="school_name"] {
+    width: 220px;
+}
+
 form.classroom_student_kick__form input[name="school_year"] {
     width: 25px;
+}
+
+form.classroom_student_kick__form input[name="student_phone"] {
+    margin-left: 15px;
 }
 
 form.classroom_student_kick__form input[name="parent_phone"],
 form.classroom_teacher_kick__form input[name="teacher_phone"] {
     margin-bottom: 20px;
+}
+
+form.classroom_teacher_kick__form input[name="teacher_phone"] {
+    width: 130px;
 }
 
 form.classroom_student_kick__form div.buttons__kick_cancel,
@@ -136,5 +148,3 @@ form.classroom_teacher_kick__form div.buttons__kick_cancel button {
     font-size: 16px;
     font-weight: 500;
 }
-
-/* 선생님 추방 Dialog Form */

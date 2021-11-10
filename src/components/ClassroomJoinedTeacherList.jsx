@@ -162,7 +162,7 @@ const ClassroomJoinedTeacherList = ({
                         >
                             <div>
                                 <span className="classroom_teacher_kick__form__label">
-                                    선생님 이름
+                                    선생님
                                 </span>
                                 <input
                                     type="text"

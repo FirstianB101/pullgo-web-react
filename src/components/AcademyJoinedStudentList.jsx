@@ -184,7 +184,7 @@ const AcademyJoinedStudentList = ({ academyId, joinedStudentList }) => {
                         >
                             <div>
                                 <span className="academy_student_kick__form__label">
-                                    학생 이름
+                                    학생
                                 </span>
                                 <input
                                     type="text"
