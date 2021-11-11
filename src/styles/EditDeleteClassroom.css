@@ -94,11 +94,11 @@ form.edit_classroom__form button.btn__edit_classroom {
     color: white;
     font-size: 20px;
     font-weight: 500;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 
 /* DeleteClassroomTabPanel Component */
-div.delete_classroom_tab_panel h2 {
+div.delete_classroom_tab_panel > h2 {
     position: relative;
     right: 50px;
 }
@@ -134,5 +134,5 @@ div.delete_classroom_tab_panel button.btn__delete_classroom {
     color: white;
     font-size: 20px;
     font-weight: 500;
-    border-radius: 30px;
+    border-radius: 15px;
 }

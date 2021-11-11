@@ -97,7 +97,7 @@ const EditDeleteAcademy = ({ history, match, location }) => {
                 <TabPanel value={value} index={1}>
                     <DeleteAcademyTabPanel
                         academyId={academyId}
-                        correctAcademy={academy}
+                        correctAcademyName={academy?.name}
                     />
                 </TabPanel>
             </Box>

@@ -1,4 +1,10 @@
-/* EditAcademyTabPanel */
+/* 상단 "수정", "삭제" Tab 버튼 */
+div.edit_delete_academy div:last-child div:first-child div {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/* EditAcademyTabPanel Component */
 div.edit_academy_tab_panel {
     display: flex;
     flex-direction: column;
@@ -7,6 +13,8 @@ div.edit_academy_tab_panel {
 
 div.edit_academy_tab_panel > h2 {
     margin-top: 100px;
+    position: relative;
+    left: -200px;
 }
 
 form.edit_academy__form {
@@ -148,4 +156,60 @@ div.edit_academy_tab_panel .btn__cancel_edit_academy {
     margin-top: 15px;
 }
 
-/* DeleteAcademyTabPanel */
+/* DeleteAcademyTabPanel Component */
+div.delete_academy_tab_panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.delete_academy_tab_panel > h2 {
+    margin-top: 100px;
+    position: relative;
+    left: -50px;
+}
+
+p.delete_academy_text {
+    margin-top: 50px;
+    margin-bottom: 80px;
+    color: #ff6625;
+}
+
+p.delete_academy_text span {
+    font-size: 18px;
+}
+
+h3.delete_academy_input__label {
+    margin-left: 50px;
+}
+
+div.delete_academy_tab_panel input[name="academy_name"] {
+    margin-top: 30px;
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+    border-bottom: 2px solid black;
+}
+
+div.delete_academy_tab_panel input[name="academy_name"]::placeholder {
+    font-size: 18px;
+}
+
+div.delete_academy_tab_panel input[name="academy_name"]:focus {
+    outline: none;
+}
+
+div.delete_academy_tab_panel div.div__btn_wrapper {
+    padding-top: 80px;
+}
+
+div.delete_academy_tab_panel button.btn__delete_academy {
+    width: 300px;
+    height: 50px;
+    background-color: #ff6056;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 15px;
+}
