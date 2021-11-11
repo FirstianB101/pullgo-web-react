@@ -37,7 +37,6 @@ const ManageAcademyMembers = ({ history, match, location }) => {
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
-    const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     useEffect(() => {
         console.log("ManageAcademyMembers 렌더링");

@@ -27,7 +27,7 @@ import EditDeleteClassroom from "./routes/EditDeleteClassroom";
 import ManageAcademy from "./routes/ManageAcademy";
 import ManageAcademyApply from "./routes/ManageAcademyApply";
 import ManageAcademyMembers from "./routes/ManageAcademyMembers";
-
+import EditDeleteAcademy from "./routes/EditDeleteAcademy";
 import CreateAcademy from "./routes/CreateAcademy";
 
 function App() {
@@ -109,7 +109,7 @@ function App() {
                 /> */}
                 <Route
                     path="/teacher/edit_delete_academy"
-                    // component={}
+                    component={EditDeleteAcademy}
                 />
 
                 {/* 학원 개설 페이지 */}

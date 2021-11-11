@@ -1,0 +1,151 @@
+/* EditAcademyTabPanel */
+div.edit_academy_tab_panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.edit_academy_tab_panel > h2 {
+    margin-top: 100px;
+}
+
+form.edit_academy__form {
+    margin: 100px;
+}
+
+form.edit_academy__form table {
+    border: 1px solid #bdbdbd;
+    border-collapse: collapse;
+}
+
+form.edit_academy__form table td {
+    border: 1px solid #bdbdbd;
+    padding: 10px;
+}
+
+/* 학원 이름, 학원 주소, 학원 전화번호 */
+form.edit_academy__form table td.academy_edit__form__label {
+    font-size: 16px;
+    font-weight: 600;
+    width: 200px;
+}
+
+form.edit_academy__form table td input {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    width: 450px;
+    height: 30px;
+    font-size: 16px;
+}
+
+form.edit_create__form table td input::placeholder {
+    font-weight: bold;
+}
+
+/* 학원 주소 입력 DaumPostCode */
+div.edit_academy_tab_panel .form__address > div:first-child {
+    display: flex;
+}
+
+div.edit_academy_tab_panel
+    .form__address
+    > div:first-child
+    input.postcode__input {
+    width: 330px;
+}
+
+/* 우편번호 찾기 button */
+div.edit_academy_tab_panel .form__address > div:first-child input.postcode_btn {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100px;
+    font-weight: 600;
+    border-radius: 7px;
+    /* background-color: lightgray; */
+    border-color: white;
+    background-color: #568df0;
+    color: white;
+    font-size: 13px;
+}
+
+div.edit_academy_tab_panel
+    .form__address
+    > div:first-child
+    input.postcode_btn:hover {
+    cursor: pointer;
+}
+
+div.edit_academy_tab_panel .form__address > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
+div.edit_academy_tab_panel .form__address input.address__input,
+div.edit_academy_tab_panel .form__address input.detail_address__input {
+    margin-top: 5px;
+}
+
+/* DaumPostCode 창 닫기 button */
+div.edit_academy_tab_panel .div__btn__close_post {
+    /* position: absolute;
+    bottom: 150px;
+    right: 600px; */
+    position: relative;
+    top: -370px;
+    left: 390px;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.edit_academy_tab_panel .div__btn__close_pos:hover {
+    cursor: pointer;
+}
+
+div.edit_academy_tab_panel .btn__close_post {
+    background-color: inherit;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 수정하기 button */
+div.edit_academy_tab_panel .div__btn__on_edit_academy,
+/* 확인, 취소 button */
+div.edit_academy_tab_panel .div__btn__edit_academy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+div.edit_academy_tab_panel .div__btn__on_edit_academy > button,
+div.edit_academy_tab_panel .div__btn__edit_academy button {
+    width: 500px;
+    height: 45px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+div.edit_academy_tab_panel .div__btn__on_edit_academy > button {
+    background-color: #1565c0;
+}
+
+div.edit_academy_tab_panel .btn__edit_academy {
+    background-color: #1565c0;
+}
+
+div.edit_academy_tab_panel .btn__cancel_edit_academy {
+    background-color: #858ffb;
+    margin-top: 15px;
+}
+
+/* DeleteAcademyTabPanel */

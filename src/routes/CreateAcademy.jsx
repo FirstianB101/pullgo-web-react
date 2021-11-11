@@ -133,12 +133,10 @@ const CreateAcademy = ({ history, match, location }) => {
                                 </td>
                                 <td>
                                     <AddressSearch
-                                        academAddress={academyAddress}
-                                        setAcademyAddress={setAcademyAddress}
-                                        academDetailAddress={
-                                            academyDetailAddress
-                                        }
-                                        setAcademyDetailAddress={
+                                        address={academyAddress}
+                                        setAddress={setAcademyAddress}
+                                        detailAddress={academyDetailAddress}
+                                        setDetailAddress={
                                             setAcademyDetailAddress
                                         }
                                     />

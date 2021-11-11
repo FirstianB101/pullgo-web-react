@@ -14,10 +14,10 @@ const modalStyle = {
 };
 
 const AddressSearch = ({
-    academAddress,
-    setAcademyAddress,
-    academyDetailAddress,
-    setAcademyDetailAddress
+    address, // 주소
+    setAddress,
+    detailAddress, // 상세 주소
+    setDetailAddress
 }) => {
     const [postCode, setPostCode] = useState(""); // 우편번호
     const [fullAddress, setFullAddress] = useState(""); // 전체 주소
@@ -61,7 +61,7 @@ const AddressSearch = ({
 
         /* props로 부모 컴포넌트 CreateAcademy로부터 받은 setState 함수로
         부모의 state 변경 */
-        setAcademyAddress(fullAddress);
+        setAddress(fullAddress);
 
         console.log(fullAddress);
         // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
@@ -70,7 +70,7 @@ const AddressSearch = ({
     const onChangeInputDetailAddress = (e) => {
         /* props로 부모 컴포넌트 CreateAcademy로부터 받은 setState 함수로
         부모의 state 변경 */
-        setAcademyDetailAddress(e.target.value);
+        setDetailAddress(e.target.value);
     };
 
     const onClickBtnClosePost = (e) => {
@@ -107,7 +107,7 @@ const AddressSearch = ({
                         type="text"
                         className="detail_address__input"
                         placeholder="상세 주소"
-                        value={academyDetailAddress}
+                        value={detailAddress}
                         onChange={onChangeInputDetailAddress}
                         ref={inputDetailAddressRef}
                     />

@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
-import { apiFetchClassroom } from "../redux/fetchClassroom";
 import MenuBar_T from "../components/MenuBar_T";
-import ManageClassroomMenuChips from "../components/ManageClassroomMenuChips";
-import EditClassroomTabPanel from "../components/EditClassroomTabPanel";
-import DeleteClassroomTabPanel from "../components/DeleteClassroomTabPanel";
+import ManageAcademyMenuChips from "../components/ManageAcademyMenuChips";
+import EditAcademyTabPanel from "../components/EditAcademyTabPanel";
+import DeleteAcademyTabPanel from "../components/DeleteAcademyTabPanel";
 
 import TabPanel from "../material/TabPanel";
 import { a11yProps } from "../material/TabPanel";
@@ -15,14 +14,16 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import "../styles/EditDeleteClassroom.css";
+import "../styles/EditDeleteAcademy.css";
 
-const EditDeleteClassroom = memo(({ history, match, location }) => {
+const EditDeleteAcademy = ({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     });
 
-    const [classroomId, setClassroomId] = useState(query.id);
+    const [academyId, setacAdemyId] = useState(query.id);
+    const [academy, setAcademy] = useState(null);
+    const [hasPermission, setHasPermission] = useState(null);
     const [value, setValue] = useState(0);
 
     const dispatch = useDispatch();
@@ -30,44 +31,50 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
         console.log("onFetchJoinedAcademyList()");
         dispatch(apiFetchJoinedAcademyList(userType, userId));
     };
-    const onFetchClassroom = (classroomId) => {
-        console.log("onFetchClassroom()");
-        dispatch(apiFetchClassroom(classroomId));
-    };
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const teacherId = useSelector((state) => state.teacherIdReducer.teacherId);
 
     useEffect(() => {
-        console.log("EditDeleteClassroom 렌더링");
+        console.log("EditDeleteAcademy 렌더링");
         onFetchJoinedAcademyList(userType, teacherId);
     }, []);
-
-    useEffect(() => {
-        onFetchClassroom(classroomId);
-    }, [classroomId]);
 
     const joinedAcademyList = useSelector(
         (state) => state.joinedAcademyListReducer.joinedAcademyList
     );
-    const classroom = useSelector((state) => state.classroomReducer.classroom);
     const isJoinedAcademy = joinedAcademyList.length !== 0;
+
+    useEffect(() => {
+        if (joinedAcademyList.length === 0) return;
+
+        const currentAcademy = joinedAcademyList.find(
+            (academy) => academy.id == academyId
+        );
+        if (currentAcademy != undefined) setAcademy(currentAcademy);
+    }, [academyId, joinedAcademyList]);
+
+    useEffect(() => {
+        if (academy === null) return;
+        setHasPermission(teacherId == academy.ownerId);
+    }, [joinedAcademyList, academyId, teacherId]);
 
     const handleChange = (e, newValue) => {
         setValue(newValue);
     };
 
     return (
-        <div className="edit_delete_classroom">
+        <div className="edit_delete_academy">
             <MenuBar_T
-                centerMenu="반 수정 및 삭제"
+                centerMenu="학원 수정 및 삭제"
                 isJoinedAcademy={isJoinedAcademy}
                 history={history}
                 match={match}
             />
 
-            <ManageClassroomMenuChips
-                currentChipLabel="반 수정 및 삭제"
+            <ManageAcademyMenuChips
+                currentChipLabel="학원 수정 및 삭제"
+                hasPermission={hasPermission}
                 history={history}
                 location={location}
             />
@@ -81,21 +88,21 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
                 </Box>
 
                 <TabPanel value={value} index={0}>
-                    <EditClassroomTabPanel
-                        classroomId={classroomId}
-                        beforeEditClassroom={classroom}
+                    <EditAcademyTabPanel
+                        academyId={academyId}
+                        beforeEditAcademy={academy}
                     />
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
-                    <DeleteClassroomTabPanel
-                        classroomId={classroomId}
-                        correctClassroom={classroom}
+                    <DeleteAcademyTabPanel
+                        academyId={academyId}
+                        correctAcademy={academy}
                     />
                 </TabPanel>
             </Box>
         </div>
     );
-});
+};
 
-export default EditDeleteClassroom;
+export default EditDeleteAcademy;

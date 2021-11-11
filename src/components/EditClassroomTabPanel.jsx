@@ -25,7 +25,7 @@ const getCheckedWeekStr = (checkedWeek) => {
 };
 
 const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
-    const [editedClassroomName, setEditedClassroomName] = useState();
+    const [editedClassroomName, setEditedClassroomName] = useState("");
     const [checkedWeek, setCheckedWeek] = useState(
         Array.from({ length: 7 }, () => false)
     ); // 요일 체크 state 배열
