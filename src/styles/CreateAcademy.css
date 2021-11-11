@@ -1,0 +1,134 @@
+div.create_academy {
+    display: flex;
+    flex-direction: column;
+}
+
+div.create_academy > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.create_academy p {
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+    position: relative;
+    left: -130px;
+}
+
+form.academy_create__form {
+    margin: 100px;
+}
+
+form.academy_create__form table {
+    border: 1px solid #bdbdbd;
+    border-collapse: collapse;
+}
+
+form.academy_create__form table td {
+    border: 1px solid #bdbdbd;
+    padding: 10px;
+}
+
+/* 학원 이름, 학원 주소, 학원 전화번호 */
+form.academy_create__form table td.academy_create__form__label {
+    font-size: 16px;
+    font-weight: 600;
+    width: 200px;
+}
+
+form.academy_create__form table td input {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    width: 450px;
+    height: 30px;
+    font-size: 16px;
+}
+
+form.academy_create__form table td input::placeholder {
+    font-weight: bold;
+}
+
+/* 학원 주소 입력 DaumPostCode */
+div.create_academy .form__address > div:first-child {
+    display: flex;
+}
+
+div.create_academy .form__address > div:first-child input.postcode__input {
+    width: 330px;
+}
+
+/* 우편번호 찾기 button */
+div.create_academy .form__address > div:first-child input.postcode_btn {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100px;
+    font-weight: 600;
+    border-radius: 7px;
+    /* background-color: lightgray; */
+    border-color: white;
+    background-color: #568df0;
+    color: white;
+    font-size: 13px;
+}
+
+div.create_academy .form__address > div:first-child input.postcode_btn:hover {
+    cursor: pointer;
+}
+
+div.create_academy .form__address > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
+div.create_academy .form__address input.address__input,
+div.create_academy .form__address input.detail_address__input {
+    margin-top: 5px;
+}
+
+/* DaumPostCode 창 닫기 button */
+div.create_academy .div__btn__close_post {
+    /* position: absolute;
+    bottom: 150px;
+    right: 600px; */
+    position: relative;
+    top: -350px;
+    left: 400px;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.create_academy .div__btn__close_pos:hover {
+    cursor: pointer;
+}
+
+div.create_academy .btn__close_post {
+    background-color: inherit;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 학원 개설 button */
+form.academy_create__form .div__btn__create_academy {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+form.academy_create__form .btn__create_academy {
+    width: 500px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #1565c0;
+    color: white;
+    font-size: 20px;
+}

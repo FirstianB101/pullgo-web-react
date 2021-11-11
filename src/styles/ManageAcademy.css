@@ -40,38 +40,3 @@ div.manage_academy_list .ul__academy_list {
     font-size: 17px;
     /* font-weight: 500; */
 }
-
-/* 학원 추가 Dialog Form */
-form.academy_create__form {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-form.academy_create__form input {
-    font-size: 16px;
-    display: inline-block;
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
-    margin-left: 10px;
-}
-
-form.academy_create__form input[name="academy_name"],
-form.academy_create__form input[name="academy_address"] {
-    margin-left: 40px;
-}
-
-form.academy_create__form input:focus {
-    outline: none;
-    border-bottom: 2px solid black;
-}
-
-/* 하단 취소, 확인 button */
-form.academy_create__form div.buttons__confirm_cancel {
-    display: flex;
-    justify-content: right;
-}
-
-form.academy_create__form div.buttons__confirm_cancel button {
-    font-size: 16px;
-    font-weight: 500;
-}

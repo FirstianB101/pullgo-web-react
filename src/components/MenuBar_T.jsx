@@ -14,7 +14,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 import CreateExamDialog from "./CreateExamDialog";
 import CreateClassroomDialog from "./CreateClassroomDialog";
-import CreateAcademyDialog from "./CreateAcademyDialog";
 import "../styles/MenuBar.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -180,18 +179,13 @@ const MenuBar_T = memo(
 
         const [createClassroomDialogOpen, setCreateClassroomDialogOpen] =
             useState(false);
-        const [createAcademyDialogOpen, setCreateAcademyDialogOpen] =
-            useState(false);
         const [createExamDialogOpen, setCreateExamDialogOpen] = useState(false);
 
         const onClickBtnRightMenu = (e) => {
-            if (centerMenu === "반 관리" || centerMenu === "반 가입요청")
+            if (centerMenu === "학원 관리" || centerMenu === "학원 가입요청")
+                history.push("/teacher/create_academy");
+            else if (centerMenu === "반 관리" || centerMenu === "반 가입요청")
                 setCreateClassroomDialogOpen(true);
-            else if (
-                centerMenu === "학원 관리" ||
-                centerMenu === "학원 가입요청"
-            )
-                setCreateAcademyDialogOpen(true);
             else if (centerMenu === "시험 관리") setCreateExamDialogOpen(true);
         };
 
@@ -246,12 +240,6 @@ const MenuBar_T = memo(
                 <CreateClassroomDialog
                     createClassroomDialogOpen={createClassroomDialogOpen}
                     setCreateClassroomDialogOpen={setCreateClassroomDialogOpen}
-                    match={match}
-                />
-
-                <CreateAcademyDialog
-                    createAcademyDialogOpen={createAcademyDialogOpen}
-                    setCreateAcademyDialogOpen={setCreateAcademyDialogOpen}
                     match={match}
                 />
             </>

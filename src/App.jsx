@@ -28,6 +28,8 @@ import ManageAcademy from "./routes/ManageAcademy";
 import ManageAcademyApply from "./routes/ManageAcademyApply";
 import ManageAcademyMembers from "./routes/ManageAcademyMembers";
 
+import CreateAcademy from "./routes/CreateAcademy";
+
 function App() {
     return (
         <BrowserRouter>
@@ -108,6 +110,12 @@ function App() {
                 <Route
                     path="/teacher/edit_delete_academy"
                     // component={}
+                />
+
+                {/* 학원 개설 페이지 */}
+                <Route
+                    path="/teacher/create_academy"
+                    component={CreateAcademy}
                 />
 
                 <LogInContainer />

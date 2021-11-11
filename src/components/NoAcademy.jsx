@@ -3,13 +3,9 @@ import { useSelector } from "react-redux";
 import MenuBar_S from "../components/MenuBar_S";
 import MenuBar_T from "./MenuBar_T";
 
-import CreateAcademyDialog from "./CreateAcademyDialog";
 import "../styles/NoAcademy.css";
 
 const NoAcademy = memo(({ history, match }) => {
-    const [createAcademyDialogOpen, setCreateAcademyDialogOpen] =
-        useState(false);
-
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const studentInfo = useSelector(
         (state) => state.studentInfoReducer.studentInfo
@@ -22,10 +18,6 @@ const NoAcademy = memo(({ history, match }) => {
         userType === "student"
             ? studentInfo.account?.fullName
             : teacherInfo.account?.fullName;
-
-    const onClickBtnCreateAcademy = (e) => {
-        setCreateAcademyDialogOpen(true);
-    };
 
     return (
         <div className="no_academy">
@@ -74,18 +66,18 @@ const NoAcademy = memo(({ history, match }) => {
                             >
                                 학원 가입하기
                             </button>
-                            <button onClick={onClickBtnCreateAcademy}>
-                                학원 개설하기
-                            </button>
+
+                            {userType === "teacher" ? (
+                                <button
+                                    onClick={() =>
+                                        history.push("/teacher/create_academy")
+                                    }
+                                >
+                                    학원 개설하기
+                                </button>
+                            ) : null}
                         </div>
                     </div>
-
-                    {/* 자식 컴포넌트에게 props로 함수 전달하여 자식이 부모의 state 변경 */}
-                    <CreateAcademyDialog
-                        createAcademyDialogOpen={createAcademyDialogOpen}
-                        setCreateAcademyDialogOpen={setCreateAcademyDialogOpen}
-                        match={match}
-                    />
                 </>
             )}
         </div>
