@@ -173,7 +173,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 });
 
 const MenuBar_T = memo(
-    ({ centerMenu, rightMenu, isJoinedAcademy, history, match }) => {
+    ({ centerMenu, rightMenu, isJoinedAcademy, history, match, location }) => {
         const classes = useStyles();
         const yearMonthStr = dateToYearMonthStr(new Date());
 
@@ -201,11 +201,11 @@ const MenuBar_T = memo(
 
                             <Button
                                 color="inherit"
-                                // onClick={() =>
-                                // 	history.push(
-                                // 		`/teacher/main/calendar/${yearMonthStr}`
-                                // 	)
-                                // }
+                            // onClick={() =>
+                            // 	history.push(
+                            // 		`/teacher/main/calendar/${yearMonthStr}`
+                            // 	)
+                            // }
                             >
                                 <Typography
                                     variant="h6"
@@ -235,6 +235,7 @@ const MenuBar_T = memo(
                     createExamDialogOpen={createExamDialogOpen}
                     setCreateExamDialogOpen={setCreateExamDialogOpen}
                     match={match}
+                    location={location}
                 />
 
                 <CreateClassroomDialog

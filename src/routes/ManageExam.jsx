@@ -57,6 +57,7 @@ const ManageExam = memo(({ history, match, location }) => {
                 isJoinedAcademy={isJoinedAcademy}
                 history={history}
                 match={match}
+                location={location}
             />
 
             <ManageClassroomMenuChips

@@ -1,6 +1,7 @@
 import React, { useState, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import qs from "qs";
 
 import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
@@ -20,7 +21,8 @@ const dateToStr = (date) => {
 const CreateExamDialog = ({
     createExamDialogOpen,
     setCreateExamDialogOpen,
-    match
+    match,
+    location
 }) => {
     // 시험 추가 Dialog form 요소 state들
     const [examName, setExamName] = useState("");
@@ -81,9 +83,17 @@ const CreateExamDialog = ({
         setPassScore(e.target.value);
     };
 
-    const classroomId = match?.params?.classroomId;
+    const query = location ? qs.parse(location.search, {
+        ignoreQueryPrefix: true
+    }) : null;
+
+    // const classroomId = match.params.classroomId;
+    const classroomId = query?.id;
     const creatorId = useSelector((state) => state.teacherIdReducer.teacherId);
     const authToken = useSelector((state) => state.authTokenReducer.authToken);
+
+    console.log("*****************");
+    console.log(classroomId);
 
     /* 시험 추가 Dialog Form Submit */
     const onSubmitForm = async (e) => {
@@ -129,7 +139,7 @@ const CreateExamDialog = ({
             await postCreateExam();
 
             // 페이지 새로고침 => 향후 문제 출제 페이지로 이동할 것
-            window.location.replace(`/teacher/manage_exam/${classroomId}`);
+            window.location.replace(`/teacher/manage_exam/classroom?id=${classroomId}`);
         }
 
         // 시험 추가 form state들 초기화
