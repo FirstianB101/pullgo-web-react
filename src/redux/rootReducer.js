@@ -34,6 +34,9 @@ import { academyAppliedCheckedTeacherListReducer } from "./fetchAcademyAppliedCh
 import { academyJoinedStudentListReducer } from "./fetchAcademyJoinedStudentList";
 import { academyJoinedTeacherListReducer } from "./fetchAcademyJoinedTeacherList";
 
+/* 시험 문제 제출 - 반 관리 -> 시험 관리 -> 시험 문제 관리 */
+import { examQuestionListReducer } from "./fetchExamQuestionList";
+
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
 import { teacherIdReducer } from "./teacher/fetchTeacherId";
@@ -70,6 +73,9 @@ export const rootReducer = combineReducers({
     academyAppliedCheckedTeacherListReducer,
     academyJoinedStudentListReducer,
     academyJoinedTeacherListReducer,
+
+    /* 시험 문제 제출 - 반 관리 -> 시험 관리 -> 시험 문제 관리 */
+    examQuestionListReducer,
 
     /* 학생 */
     studentIdReducer,
@@ -108,6 +114,9 @@ export const persistConfig = {
         "academyAppliedTeacherListReducer",
         "academyJoinedStudentListReducer",
         "academyJoinedTeacherListReducer",
+
+        /* 시험 문제 제출 - 반 관리 -> 시험 관리 -> 시험 문제 관리 */
+        "examQuestionListReducer",
 
         "studentIdReducer",
         "studentInfoReducer",

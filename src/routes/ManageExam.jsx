@@ -15,7 +15,6 @@ const ManageExam = memo(({ history, match, location }) => {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     });
-
     const [classroomId, setClassroomId] = useState(query.id);
     // const [classroomId, setClassroomId] = useState(match.params.classroomId);
 
@@ -67,7 +66,11 @@ const ManageExam = memo(({ history, match, location }) => {
             />
 
             {examList.length !== 0 ? (
-                <ManageExamList examList={examList} classroomId={classroomId} />
+                <ManageExamList
+                    examList={examList}
+                    classroomId={classroomId}
+                    history={history}
+                />
             ) : (
                 <h2 className="no_exam">등록된 시험이 없습니다!</h2>
             )}

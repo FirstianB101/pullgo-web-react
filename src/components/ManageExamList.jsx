@@ -4,13 +4,12 @@ import axios from "axios";
 
 import ExamAttenderStatus from "./ExamAttenderStatus";
 
+import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Paper from "@material-ui/core/Paper";
-import Draggable from "react-draggable";
 
 /* Date 객체를 인자로 받아서 "2021-08-09" 형식의 string으로 반환 */
 const dateToStr = (date) => {
@@ -53,18 +52,7 @@ const parsingExamInfo = (exam) => {
     };
 };
 
-const PaperComponent = memo((props) => {
-    return (
-        <Draggable
-            handle="#draggable-dialog-title"
-            cancel={'[class*="MuiDialogContent-root"]'}
-        >
-            <Paper {...props} />
-        </Draggable>
-    );
-});
-
-const ManageExamList = ({ examList, classroomId }) => {
+const ManageExamList = ({ examList, classroomId, history }) => {
     // 시험 클릭 여부(시험 응시현황 보기 확장 여부)
     const [isAttenderStatusOpened, setIsAttenderStatusOpened] = useState([]);
     // 시험 수정 선택한 시험의 examId
@@ -96,6 +84,8 @@ const ManageExamList = ({ examList, classroomId }) => {
     // const btnDeleteExamRefs = useRef([]);
     const btnFinishExamRefs = useRef([]);
     const btnCancelExamRefs = useRef([]);
+    const btnManageExamQuestionRefs = useRef([]);
+    // 시험 문제 출제 button
 
     const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
@@ -204,6 +194,22 @@ const ManageExamList = ({ examList, classroomId }) => {
                         >
                             🚫
                         </button>
+
+                        {/* 시험 문제 출제 */}
+                        <button
+                            onClick={(e) =>
+                                onClickBtnManageExamQuestion(
+                                    examList[i].id,
+                                    i,
+                                    e
+                                )
+                            }
+                            ref={(elem) =>
+                                (btnManageExamQuestionRefs.current[i] = elem)
+                            }
+                        >
+                            시험 문제 관리
+                        </button>
                     </div>
                 </div>
             );
@@ -212,6 +218,19 @@ const ManageExamList = ({ examList, classroomId }) => {
         }
 
         return listItems;
+    };
+
+    /* 시험 문제 출제 button 클릭 */
+    const onClickBtnManageExamQuestion = (examId, refIndex, e) => {
+        let clickedExam = examList[refIndex];
+
+        if (clickedExam.finished || clickedExam.cancelled) {
+            alert("이미 종료되었거나 취소된 시험입니다.");
+            return;
+        }
+
+        // 시험 문제 출제 페이지로 이동
+        history.push(`/teacher/manage_exam_question/exam?id=${examId}`);
     };
 
     const onClickExamInfo = (refIndex, e) => {

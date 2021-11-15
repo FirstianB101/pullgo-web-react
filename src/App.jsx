@@ -30,6 +30,9 @@ import ManageAcademyMembers from "./routes/ManageAcademyMembers";
 import EditDeleteAcademy from "./routes/EditDeleteAcademy";
 import CreateAcademy from "./routes/CreateAcademy";
 
+/* 시험 문제 출제 - 반 관리 -> 시험 관리 -> 시험 문제 출제 */
+import ManageExamQuestion from "./routes/ManageExamQuestion";
+
 function App() {
     return (
         <BrowserRouter>
@@ -116,6 +119,12 @@ function App() {
                 <Route
                     path="/teacher/create_academy"
                     component={CreateAcademy}
+                />
+
+                {/* 시험 문제 출제 - 반 관리 -> 시험 관리 -> 시험 문제 출제 */}
+                <Route
+                    path="/teacher/manage_exam_question"
+                    component={ManageExamQuestion}
                 />
 
                 <LogInContainer />
