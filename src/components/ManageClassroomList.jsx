@@ -17,7 +17,7 @@ const ManageClassroomList = memo(
                 const teacherName = classroom_teacher_week[1];
                 // const week = classroom_teacher_week[2];
                 let week = "";
-                for (let j = 0; j < classroom_teacher_week[2].length; j++)
+                for (let j = 0; j < classroom_teacher_week[2]?.length; j++)
                     week += classroom_teacher_week[2][j] + ", ";
                 week = week.substring(0, week.length - 2);
 
