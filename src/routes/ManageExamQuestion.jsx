@@ -17,7 +17,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
-// css
+import "../styles/ManageExamQuestion.css";
 
 const deleteQuestion = async (questionId, authToken) => {
     try {
@@ -180,6 +180,9 @@ const ManageExamQuestion = ({ history, match, location }) => {
             return;
         }
 
+        let confirmSubmit = window.confirm("시험 문제들을 출제 하시겠습니까?");
+        if (!confirmSubmit) return;
+
         // DELETE
         for (let i = 0; i < deletedQuestionIdList.length; i++) {
             await deleteQuestion(deletedQuestionIdList[i], authToken);
@@ -204,7 +207,10 @@ const ManageExamQuestion = ({ history, match, location }) => {
 
     /* 현재까지 작업한 문제들 모두 폐기 (서버에 저장된 question 그대로 유지) */
     const onClickBtnCancel = (e) => {
-        alert("취소");
+        let confirmCancel = window.confirm(
+            "새로 작업한 시험 문제들을 모두 취소 합니다.\n최근에 제출한 시험 문제를 유지합니다."
+        );
+        if (confirmCancel) history.push("/teacher/manage_classroom");
     };
 
     /* 현재 보고있는 문제 DELETE */
@@ -245,7 +251,7 @@ const ManageExamQuestion = ({ history, match, location }) => {
     };
 
     return (
-        <div className="manage_exam_question">
+        <>
             <MenuBar_T
                 centerMenu="시험 문제 관리"
                 isJoinedAcademy={isJoinedAcademy}
@@ -254,68 +260,61 @@ const ManageExamQuestion = ({ history, match, location }) => {
                 location={location}
             />
 
-            <h2>문제 {currentQuestionIndex}번</h2>
+            <div className="manage_exam_question">
+                <div className="question_number_group">
+                    <h2 className="question_number">
+                        문제 {currentQuestionIndex}번
+                    </h2>
 
-            <Stack spacing={2}>
-                <Pagination
-                    count={questionList.length}
-                    page={currentQuestionIndex}
-                    onChange={onChangePagination}
-                    color="primary"
-                />
-            </Stack>
+                    <div className="question_number_pagination">
+                        <Stack spacing={2}>
+                            <Pagination
+                                count={questionList.length}
+                                page={currentQuestionIndex}
+                                onChange={onChangePagination}
+                                color="primary"
+                            />
+                        </Stack>
+                    </div>
+                </div>
 
-            <div className="floating_action_buttons">
-                <Box sx={{ "& > :not(style)": { m: 1 } }}>
-                    {/* <Fab variant="extended" onClick={onClickBtnSave}>
-                        저 장
-                    </Fab> */}
-                    {/* <Fab variant="extended" onClick={onClickBtnCancel}>
-                        취 소
-                    </Fab> */}
-                    <Fab
-                        color="primary"
-                        aria-label="edit"
-                        onClick={onClickBtnDeleteQuestion}
-                        disabled={questionList.length === 0}
-                    >
-                        <DeleteForeverOutlinedIcon fontSize="large" />
-                    </Fab>
-                    <Fab
-                        color="primary"
-                        aria-label="add"
-                        onClick={onClickBtnAddQuestion}
-                    >
-                        <AddIcon />
-                    </Fab>
-                </Box>
+                <div className="floating_action_buttons">
+                    <Box sx={{ "& > :not(style)": { m: 1 } }}>
+                        <Fab
+                            color="primary"
+                            aria-label="edit"
+                            onClick={onClickBtnDeleteQuestion}
+                            disabled={questionList.length === 0}
+                        >
+                            <DeleteForeverOutlinedIcon fontSize="large" />
+                        </Fab>
+                        <Fab
+                            color="primary"
+                            aria-label="add"
+                            onClick={onClickBtnAddQuestion}
+                        >
+                            <AddIcon />
+                        </Fab>
+                    </Box>
+                </div>
+
+                {questionList.length !== 0 ? (
+                    <CreateEditExamQuestion
+                        // currentQuestion={questionList[currentQuestionIndex - 1]}
+                        currentQuestionIndex={currentQuestionIndex}
+                        questionList={questionList}
+                        setQuestionList={setQuestionList}
+                    />
+                ) : (
+                    <h2>출제한 문제가 없습니다!</h2>
+                )}
+
+                <div className="div__btn__submit_cancel">
+                    <button onClick={onClickBtnSubmit}>제 출</button>
+                    <button onClick={onClickBtnCancel}>취 소</button>
+                </div>
             </div>
-
-            {questionList.length !== 0 ? (
-                <CreateEditExamQuestion
-                    // currentQuestion={questionList[currentQuestionIndex - 1]}
-                    currentQuestionIndex={currentQuestionIndex}
-                    questionList={questionList}
-                    setQuestionList={setQuestionList}
-                />
-            ) : (
-                <h2>출제한 문제가 없습니다!</h2>
-            )}
-
-            {/* 현재까지 작업한 문제들 생성/수정/삭제 */}
-            <button onClick={onClickBtnSubmit}>제출</button>
-            {/* 현재까지 작업한 문제들 폐기(모두 취소) */}
-            <button onClick={onClickBtnCancel}>취소</button>
-
-            {/* 문제 추가 또는 수정 */}
-            {/* {currentQuestionIndex > 0 &&
-            // Object.keys(questionList[currentQuestionIndex - 1]).length === 0 ?
-            Object.keys(questionList[currentQuestionIndex - 1]).length === 1 ? (
-                <h2>문제 추가</h2>
-            ) : (
-                <h2>문제 수정</h2>
-            )} */}
-        </div>
+        </>
     );
 };
 

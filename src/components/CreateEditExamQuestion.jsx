@@ -1,7 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
 
-import Fab from "@mui/material/Fab";
-
 const CreateEditExamQuestion = ({
     // currentQuestion,
     currentQuestionIndex,
@@ -143,120 +141,134 @@ const CreateEditExamQuestion = ({
     return (
         <div className="create_edit_exam_question">
             <form className="question__form">
-                <img className="question_picture" src={imgPictureUrl} />
+                <div className="div__question__textarea_img">
+                    <textarea
+                        name="question_content"
+                        value={content}
+                        onChange={onChangeTextAreaContent}
+                        placeholder="문제 텍스트를 입력해주세요."
+                        required
+                    ></textarea>
 
-                <textarea
-                    name="question_content"
-                    value={content}
-                    onChange={onChangeTextAreaContent}
-                    placeholder="문제 텍스트를 입력해주세요."
-                    required
-                ></textarea>
+                    <div className="question_picture__group">
+                        <div className="question_picture__container">
+                            <img src={imgPictureUrl} />
+                        </div>
 
-                <input
-                    type="file"
-                    name="question_image"
-                    value={inputPictureUrl}
-                    onChange={onChangeInputPictureUrl}
-                    accept=".jpg,.jpeg,.png,.pdf"
-                />
+                        <input
+                            type="file"
+                            name="question_image"
+                            value={inputPictureUrl}
+                            onChange={onChangeInputPictureUrl}
+                            accept=".jpg,.jpeg,.png,.pdf"
+                        />
+                    </div>
+                </div>
 
-                <div className="question_choice_answer_group">
+                <div className="question_choice_answer__group">
                     <h3>
                         보기를 입력하고 정답을 선택해주세요. (복수 정답 선택
                         가능)
                     </h3>
 
-                    <span>1</span>
-                    <input
-                        type="text"
-                        name="question_choice"
-                        value={choice1}
-                        onChange={(e) => onChangeInputChoice(e, 1)}
-                        placeholder="1번 보기 작성"
-                    />
-                    <input
-                        type="checkbox"
-                        name="question_answer_checkbox"
-                        value={1}
-                        checked={answer != undefined && answer.includes(1)}
-                        onChange={(e) => onChangeInputAnswer(e, 1)}
-                    />
-                    <br />
+                    <div className="question_choice_answer__container">
+                        <span>①</span>
+                        <input
+                            type="text"
+                            name="question_choice"
+                            value={choice1}
+                            onChange={(e) => onChangeInputChoice(e, 1)}
+                            placeholder="1번 보기 작성"
+                        />
+                        <input
+                            type="checkbox"
+                            name="question_answer_checkbox"
+                            value={1}
+                            checked={answer != undefined && answer.includes(1)}
+                            onChange={(e) => onChangeInputAnswer(e, 1)}
+                        />
+                    </div>
 
-                    <span>2</span>
-                    <input
-                        type="text"
-                        name="question_choice"
-                        value={choice2}
-                        onChange={(e) => onChangeInputChoice(e, 2)}
-                        placeholder="2번 보기 작성"
-                    />
-                    <input
-                        type="checkbox"
-                        name="question_answer_checkbox"
-                        value={2}
-                        checked={answer != undefined && answer.includes(2)}
-                        onChange={(e) => onChangeInputAnswer(e, 2)}
-                    />
-                    <br />
+                    <div className="question_choice_answer__container">
+                        <span>②</span>
+                        <input
+                            type="text"
+                            name="question_choice"
+                            value={choice2}
+                            onChange={(e) => onChangeInputChoice(e, 2)}
+                            placeholder="2번 보기 작성"
+                        />
+                        <input
+                            type="checkbox"
+                            name="question_answer_checkbox"
+                            value={2}
+                            checked={answer != undefined && answer.includes(2)}
+                            onChange={(e) => onChangeInputAnswer(e, 2)}
+                        />
+                    </div>
 
-                    <span>3</span>
-                    <input
-                        type="text"
-                        name="question_choice"
-                        value={choice3}
-                        onChange={(e) => onChangeInputChoice(e, 3)}
-                        placeholder="3번 보기 작성"
-                    />
-                    <input
-                        type="checkbox"
-                        name="question_answer_checkbox"
-                        value={3}
-                        checked={answer != undefined && answer.includes(3)}
-                        onChange={(e) => onChangeInputAnswer(e, 3)}
-                    />
-                    <br />
+                    <div className="question_choice_answer__container">
+                        <span>③</span>
+                        <input
+                            type="text"
+                            name="question_choice"
+                            value={choice3}
+                            onChange={(e) => onChangeInputChoice(e, 3)}
+                            placeholder="3번 보기 작성"
+                        />
+                        <input
+                            type="checkbox"
+                            name="question_answer_checkbox"
+                            value={3}
+                            checked={answer != undefined && answer.includes(3)}
+                            onChange={(e) => onChangeInputAnswer(e, 3)}
+                        />
+                    </div>
 
-                    <span>4</span>
-                    <input
-                        type="text"
-                        name="question_choice"
-                        value={choice4}
-                        onChange={(e) => onChangeInputChoice(e, 4)}
-                        placeholder="4번 보기 작성"
-                    />
-                    <input
-                        type="checkbox"
-                        name="question_answer_checkbox"
-                        value={4}
-                        checked={answer != undefined && answer.includes(4)}
-                        onChange={(e) => onChangeInputAnswer(e, 4)}
-                    />
-                    <br />
+                    <div className="question_choice_answer__container">
+                        <span>④</span>
+                        <input
+                            type="text"
+                            name="question_choice"
+                            value={choice4}
+                            onChange={(e) => onChangeInputChoice(e, 4)}
+                            placeholder="4번 보기 작성"
+                        />
+                        <input
+                            type="checkbox"
+                            name="question_answer_checkbox"
+                            value={4}
+                            checked={answer != undefined && answer.includes(4)}
+                            onChange={(e) => onChangeInputAnswer(e, 4)}
+                        />
+                    </div>
 
-                    <span>5</span>
-                    <input
-                        type="text"
-                        name="question_choice"
-                        value={choice5}
-                        onChange={(e) => onChangeInputChoice(e, 5)}
-                        placeholder="5번 보기 작성"
-                    />
-                    <input
-                        type="checkbox"
-                        name="question_answer_checkbox"
-                        value={5}
-                        checked={answer != undefined && answer.includes(5)}
-                        onChange={(e) => onChangeInputAnswer(e, 5)}
-                    />
-                    <br />
+                    <div className="question_choice_answer__container">
+                        <span>⑤</span>
+                        <input
+                            type="text"
+                            name="question_choice"
+                            value={choice5}
+                            onChange={(e) => onChangeInputChoice(e, 5)}
+                            placeholder="5번 보기 작성"
+                        />
+                        <input
+                            type="checkbox"
+                            name="question_answer_checkbox"
+                            value={5}
+                            checked={answer != undefined && answer.includes(5)}
+                            onChange={(e) => onChangeInputAnswer(e, 5)}
+                        />
+                    </div>
                 </div>
             </form>
 
-            <Fab variant="extended" onClick={onClickBtnSave}>
+            <button
+                className="btn__current_question_save"
+                onClick={onClickBtnSave}
+            >
                 현재 문제 저장
-            </Fab>
+            </button>
         </div>
     );
 };
