@@ -19,6 +19,9 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 
 import "../styles/ManageExamQuestion.css";
 
+const API_KEY_IMGBB = "e6d453487f8963b0d370825c735b9654";
+
+/* 풀고 API - Question DELETE, POST, PATCH */
 const deleteQuestion = async (questionId, authToken) => {
     try {
         const response = await axios.delete(
@@ -82,6 +85,52 @@ const patchQuestion = async (questionId, question, authToken) => {
         console.log(e);
     }
 };
+
+/* 파라미터 File 객체 -> FormData 객체 변환 후, imgbb API 호출하여 pictureUrl 반환 */
+const getPictureUrl = async (pictureFile, imgPreviewUrl) => {
+    console.log(pictureFile);
+
+    const formData = new FormData();
+    formData.append("pictureFile", pictureFile, pictureFile.name);
+    // formData.append("pictureFile", pictureFile);
+
+    const imgbbUploader = require("imgbb-uploader");
+    console.log(imgbbUploader);
+
+    try {
+        const response = await imgbbUploader(API_KEY_IMGBB, imgPreviewUrl);
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+        alert("이미지 업로드 오류");
+    }
+
+    // console.log(formData);
+    // console.log(formData.has("pictureFile"));
+    // console.log(formData.get("pictureFile"));
+    // console.log(formData.getAll("pictureFile"));
+
+    // try {
+    //     const response = await axios.post("https://api.imgbb.com/1/upload", {
+    //         params: {
+    //             key: API_KEY_IMGBB,
+    //             image: formData
+    //         },
+    //         headers: {
+    //             "Content-Type": "multipart/form-data",
+    //             "Access-Control-Allow-Origin": "*"
+    //         }
+    //     });
+
+    //     console.log(response);
+    // } catch (e) {
+    //     console.log(e);
+    //     alert("이미지 업로드 오류");
+    // }
+};
+
+/* File 객체(pictureFile) -> FormData 객체 변환 */
+/* FormData 객체를 인자로 받아서 imgbb API 호출하여 pictureUrl 반환 */
 
 const ManageExamQuestion = ({ history, match, location }) => {
     const query = qs.parse(location.search, {
@@ -184,25 +233,42 @@ const ManageExamQuestion = ({ history, match, location }) => {
         if (!confirmSubmit) return;
 
         // DELETE
-        for (let i = 0; i < deletedQuestionIdList.length; i++) {
+        for (let i = 0; i < deletedQuestionIdList.length; i++)
             await deleteQuestion(deletedQuestionIdList[i], authToken);
-        }
 
         // POST, PATCH
         for (let i = 0; i < questionList.length; i++) {
+            console.log("******* for문 *******");
+
             // questionId가 있으면 PATCH, 없으면 POST
-            if (questionList[i]?.id == undefined)
+            // 각 POST 또는 PATCH에서 pictureFile이 있으면 imgbb API 호출
+            if (questionList[i]?.id == undefined) {
+                if (questionList[i]?.pictureFile != undefined) {
+                    getPictureUrl(
+                        questionList[i].pictureFile,
+                        questionList[i].imgPreviewUrl
+                    );
+                }
+
                 await postCreateQuestion(examId, questionList[i], authToken);
-            else
+            } else {
+                if (questionList[i]?.pictureFile != undefined) {
+                    getPictureUrl(
+                        questionList[i].pictureFile,
+                        questionList[i].imgPreviewUrl
+                    );
+                }
+
                 await patchQuestion(
                     questionList[i].id,
                     questionList[i],
                     authToken
                 );
+            }
         }
 
         alert("시험 문제를 출제하였습니다.");
-        history.push("/teacher/manage_classroom");
+        // history.push("/teacher/manage_classroom");
     };
 
     /* 현재까지 작업한 문제들 모두 폐기 (서버에 저장된 question 그대로 유지) */
