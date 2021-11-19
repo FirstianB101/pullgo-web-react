@@ -71,13 +71,19 @@ div.question_picture__group {
 }
 
 div.question_picture__container {
-    width: 350px;
+    /* width: 350px;
+    height: 300px; */
+    width: 500px;
     height: 300px;
     margin-left: 30px;
 }
 
 div.question_picture__container img {
     object-fit: cover;
+    width: 500px;
+    height: 300px;
+    /* width: 350px;
+    height: 300px; */
     /* div 컨테이너에 크기 맞추되, 가로 세로 비율 유지 */
 }
 

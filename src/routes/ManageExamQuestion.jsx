@@ -90,20 +90,20 @@ const patchQuestion = async (questionId, question, authToken) => {
 const getPictureUrl = async (pictureFile, imgPreviewUrl) => {
     console.log(pictureFile);
 
-    const formData = new FormData();
-    formData.append("pictureFile", pictureFile, pictureFile.name);
+    // const formData = new FormData();
+    // formData.append("pictureFile", pictureFile, pictureFile.name);
     // formData.append("pictureFile", pictureFile);
 
-    const imgbbUploader = require("imgbb-uploader");
-    console.log(imgbbUploader);
+    // const imgbbUploader = require("imgbb-uploader");
+    // console.log(imgbbUploader);
 
-    try {
-        const response = await imgbbUploader(API_KEY_IMGBB, imgPreviewUrl);
-        console.log(response);
-    } catch (e) {
-        console.log(e);
-        alert("이미지 업로드 오류");
-    }
+    // try {
+    //     const response = await imgbbUploader(API_KEY_IMGBB, imgPreviewUrl);
+    //     console.log(response);
+    // } catch (e) {
+    //     console.log(e);
+    //     alert("이미지 업로드 오류");
+    // }
 
     // console.log(formData);
     // console.log(formData.has("pictureFile"));
