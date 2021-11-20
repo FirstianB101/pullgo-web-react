@@ -1,0 +1,10 @@
+.div__assigned_exam_list_menu div.academy_classroom_name {
+    display: flex;
+    flex-direction: column;
+}
+
+.div__assigned_exam_list_menu div.academy_classroom_name span {
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}

@@ -33,6 +33,9 @@ import CreateAcademy from "./routes/CreateAcademy";
 /* 시험 문제 출제 - 반 관리 -> 시험 관리 -> 시험 문제 출제 */
 import ManageExamQuestion from "./routes/ManageExamQuestion";
 
+/* [학생] 시험 목록, 시험 응시 */
+import AssignedExam from "./routes/AssignedExam";
+
 function App() {
     return (
         <BrowserRouter>
@@ -126,6 +129,11 @@ function App() {
                     path="/teacher/manage_exam_question"
                     component={ManageExamQuestion}
                 />
+
+                {/* [학생] 시험 목록 */}
+                <Route path="/student/assigned_exam" component={AssignedExam} />
+
+                {/* [학생] 시험 응시 */}
 
                 <LogInContainer />
             </Switch>
