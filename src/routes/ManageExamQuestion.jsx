@@ -240,24 +240,24 @@ const ManageExamQuestion = ({ history, match, location }) => {
         for (let i = 0; i < questionList.length; i++) {
             console.log("******* for문 *******");
 
-            // questionId가 있으면 PATCH, 없으면 POST
-            // 각 POST 또는 PATCH에서 pictureFile이 있으면 imgbb API 호출
+            // 1. questionId가 있으면 PATCH, 없으면 POST
+            // 2. 각 POST 또는 PATCH에서 pictureFile이 있으면 imgbb API 호출
             if (questionList[i]?.id == undefined) {
-                if (questionList[i]?.pictureFile != undefined) {
-                    getPictureUrl(
-                        questionList[i].pictureFile,
-                        questionList[i].imgPreviewUrl
-                    );
-                }
+                // if (questionList[i]?.pictureFile != undefined) {
+                //     getPictureUrl(
+                //         questionList[i].pictureFile,
+                //         questionList[i].imgPreviewUrl
+                //     );
+                // }
 
                 await postCreateQuestion(examId, questionList[i], authToken);
             } else {
-                if (questionList[i]?.pictureFile != undefined) {
-                    getPictureUrl(
-                        questionList[i].pictureFile,
-                        questionList[i].imgPreviewUrl
-                    );
-                }
+                // if (questionList[i]?.pictureFile != undefined) {
+                //     getPictureUrl(
+                //         questionList[i].pictureFile,
+                //         questionList[i].imgPreviewUrl
+                //     );
+                // }
 
                 await patchQuestion(
                     questionList[i].id,
@@ -268,7 +268,7 @@ const ManageExamQuestion = ({ history, match, location }) => {
         }
 
         alert("시험 문제를 출제하였습니다.");
-        // history.push("/teacher/manage_classroom");
+        history.push("/teacher/manage_classroom");
     };
 
     /* 현재까지 작업한 문제들 모두 폐기 (서버에 저장된 question 그대로 유지) */

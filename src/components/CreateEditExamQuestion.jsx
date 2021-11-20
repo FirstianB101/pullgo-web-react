@@ -19,10 +19,9 @@ const CreateEditExamQuestion = ({
 
     const [content, setContent] = useState("");
     // <input type="file" /> 로 입력한 이미지 파일
-    const [inputPictureFile, setInputPictureFile] = useState("");
+    // const [inputPictureFile, setInputPictureFile] = useState("");
     // <img src="" /> 에 입력할 이미지 url (src 입력 url)
     const [imgPreviewUrl, setImgPreviewUrl] = useState("");
-    // const [pictureUrl, setPictureUrl] = useState("");
     const [answer, setAnswer] = useState([]);
     const [choice1, setChoice1] = useState("");
     const [choice2, setChoice2] = useState("");
@@ -30,16 +29,15 @@ const CreateEditExamQuestion = ({
     const [choice4, setChoice4] = useState("");
     const [choice5, setChoice5] = useState("");
 
-    const inputPictureFileRef = useRef();
+    // const inputPictureFileRef = useRef();
     // input file 태그에 보여지는 선택 파일 이름을 초기화하기 위한 ref
 
     useEffect(() => {
         if (isNewQuestion) {
             setContent("");
-            setInputPictureFile("");
-            inputPictureFileRef.current.value = "";
+            // setInputPictureFile("");
+            // inputPictureFileRef.current.value = "";
             setImgPreviewUrl("");
-            // setPictureUrl("");
             setAnswer([]);
             setChoice1("");
             setChoice2("");
@@ -52,10 +50,9 @@ const CreateEditExamQuestion = ({
             const currentQuestion = questionList[currentQuestionIndex - 1];
 
             setContent(currentQuestion.content);
-            setInputPictureFile("");
-            inputPictureFileRef.current.value = "";
+            // setInputPictureFile("");
+            // inputPictureFileRef.current.value = "";
             setImgPreviewUrl(currentQuestion.pictureUrl);
-            // setPictureUrl(currentQuestion.pictureUrl);
             setAnswer(currentQuestion.answer);
 
             if (currentQuestion?.choice != undefined) {
@@ -77,8 +74,7 @@ const CreateEditExamQuestion = ({
         // 기존 question 객체 복사 후, 수정 또는 추가한 내용 반영
         const currentQuestion = questionList[currentQuestionIndex - 1];
         currentQuestion.content = content;
-        // currentQuestion.pictureUrl = pictureUrl;
-        currentQuestion.pictureFile = inputPictureFile;
+        // currentQuestion.pictureFile = inputPictureFile;
         currentQuestion.answer = sortedAnswer;
         currentQuestion.choice = {
             1: choice1,
@@ -87,9 +83,11 @@ const CreateEditExamQuestion = ({
             4: choice4,
             5: choice5
         };
+        if (imgPreviewUrl == "" || imgPreviewUrl == undefined)
+            currentQuestion.pictureUrl = "";
+        else currentQuestion.pictureUrl = imgPreviewUrl;
 
-        // *********************************
-        currentQuestion.imgPreviewUrl = imgPreviewUrl;
+        // currentQuestion.imgPreviewUrl = imgPreviewUrl;
 
         // 부모 컴포넌트로부터 props로 받은 setQuestionList()로 변경
         const questionListCopy = questionList;
@@ -104,13 +102,13 @@ const CreateEditExamQuestion = ({
     const onChangeInputPictureFile = (e) => {
         e.preventDefault();
 
-        let fileReader = new FileReader();
-        let file = e.target.files[0]; // File 객체
-        fileReader.onloadend = () => {
-            setInputPictureFile(file);
-            setImgPreviewUrl(fileReader.result);
-        };
-        fileReader.readAsDataURL(file);
+        // let fileReader = new FileReader();
+        // let file = e.target.files[0]; // File 객체
+        // fileReader.onloadend = () => {
+        //     setInputPictureFile(file);
+        //     setImgPreviewUrl(fileReader.result);
+        // };
+        // fileReader.readAsDataURL(file);
     };
 
     // value: 보기 숫자 번호
@@ -163,19 +161,24 @@ const CreateEditExamQuestion = ({
                     ></textarea>
 
                     <div className="question_picture__group">
-                        <div className="question_picture__container">
-                            {/* <img src={pictureUrl} /> */}
-                            <img src={imgPreviewUrl} />
-                        </div>
+                        {imgPreviewUrl != "" && imgPreviewUrl != undefined ? (
+                            <div className="question_picture__container">
+                                <img src={imgPreviewUrl} />
+                            </div>
+                        ) : null}
 
-                        <input
+                        <span className="question_picture__alt">
+                            문제 사진 이미지 작업은 모바일에서 진행해주세요!
+                        </span>
+
+                        {/* <input
                             type="file"
                             name="question_image"
                             onChange={onChangeInputPictureFile}
                             ref={inputPictureFileRef}
                             accept={"image/*"}
                             // accept=".jpg,.jpeg,.png,.pdf"
-                        />
+                        /> */}
                     </div>
                 </div>
 
