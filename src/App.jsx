@@ -33,9 +33,12 @@ import CreateAcademy from "./routes/CreateAcademy";
 /* 시험 문제 출제 - 반 관리 -> 시험 관리 -> 시험 문제 출제 */
 import ManageExamQuestion from "./routes/ManageExamQuestion";
 
-/* [학생] 시험 목록, 응시완료 시험 목록 및 오답노트 */
+/* [학생] 시험 목록, 시험 응시 */
 import AssignedExam from "./routes/AssignedExam";
+
+/* [학생] 응시완료 시험 목록, 오답노트 */
 import CompletedExam from "./routes/CompletedExam";
+import ReviewExamNote from "./routes/ReviewExamNote";
 
 function App() {
     return (
@@ -131,20 +134,19 @@ function App() {
                     component={ManageExamQuestion}
                 />
 
-                {/* [학생] 시험 목록 */}
+                {/* [학생] 시험 목록, 시험 응시 */}
                 <Route path="/student/assigned_exam" component={AssignedExam} />
-
-                {/* [학생] 시험 응시 */}
                 {/* <Route
                     path="/student/take_exam"
                     component={}
                 /> */}
 
-                {/* [학생] 응시완료 시험 목록 */}
+                {/* [학생] 응시완료 시험 목록, 오답노트 */}
                 <Route
                     path="/student/completed_exam"
                     component={CompletedExam}
                 />
+                <Route path="/student/review_exam" component={ReviewExamNote} />
 
                 <LogInContainer />
             </Switch>
