@@ -1,35 +1,35 @@
-/* 등록된 시험이 없습니다! */
-div.assigned_exam h2.no_exam {
+/* 응시 완료한 시험이 없습니다! */
+div.completed_exam h2.no_completed_exam {
     text-align: center;
     margin-top: 200px;
 }
 
-.div__assigned_exam_list_menu div.academy_classroom_name {
+.div__completed_exam_list_menu div.academy_classroom_name {
     width: 500px;
     display: flex;
     justify-content: space-between;
 }
 
-.div__assigned_exam_list_menu div.academy_classroom_name span {
+.div__completed_exam_list_menu div.academy_classroom_name span {
     margin-bottom: 10px;
     font-size: 17px;
     font-weight: 600;
 }
 
-.div__assigned_exam_list_menu div.exam_name_date {
+.div__completed_exam_list_menu div.exam_name_date {
     width: 550px;
     display: flex;
     justify-content: space-between;
 }
 
-.div__assigned_exam_list_menu div.time_limit_pass_score {
+.div__completed_exam_list_menu div.time_limit_pass_score {
     width: 400px;
     display: flex;
     justify-content: space-between;
 }
 
-/* 시험 응시 button */
-.div__assigned_exam_list_menu button.btn__take_exam {
+/* 오답노트 확인 button */
+.div__completed_exam_list_menu button.btn__review_exam {
     width: 150px;
     height: 30px;
     border-radius: 8px;

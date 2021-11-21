@@ -58,6 +58,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
                     break;
 
                 case "오답 노트":
+                    history.push("/student/completed_exam");
                     break;
 
                 case "반 가입 요청":

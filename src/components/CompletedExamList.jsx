@@ -33,8 +33,8 @@ const parsingExamInfo = (exam) => {
     };
 };
 
-const AssignedExamList = ({
-    examList,
+const CompletedExamList = ({
+    completedExamList,
     joinedAcademyList,
     joinedClassroomList,
     history
@@ -42,12 +42,12 @@ const AssignedExamList = ({
     const showExamListItems = () => {
         const listItems = [];
 
-        for (let i = 0; i < examList.length; i++) {
-            const examInfo = parsingExamInfo(examList[i]);
+        for (let i = 0; i < completedExamList.length; i++) {
+            const examInfo = parsingExamInfo(completedExamList[i]);
 
             /* classroomName, academyName 찾기 */
             const classroomObj = joinedClassroomList.find(
-                (classroom) => classroom.id == examList[i].classroomId
+                (classroom) => classroom.id == completedExamList[i].classroomId
             );
             const classroomName = classroomObj.name.split(";")[0];
             const academyName = joinedAcademyList.find(
@@ -55,8 +55,8 @@ const AssignedExamList = ({
             ).name;
 
             const element = (
-                <div className="div__exam_list_menu div__assigned_exam_list_menu">
-                    <li key={examList[i].id}>
+                <div className="div__exam_list_menu div__completed_exam_list_menu">
+                    <li key={completedExamList[i].id}>
                         <div className="academy_classroom_name">
                             <span>학원: {academyName}</span>
                             <span>반: {classroomName}</span>
@@ -95,20 +95,14 @@ const AssignedExamList = ({
                             </span>
                         </div>
 
-                        {!examInfo.cancelled && !examInfo.finished ? (
-                            <button
-                                className="btn__take_exam"
-                                onClick={(e) =>
-                                    onClickBtnTakeExam(
-                                        examList[i].id,
-                                        examList[i].name,
-                                        e
-                                    )
-                                }
-                            >
-                                시험 응시
-                            </button>
-                        ) : null}
+                        <button
+                            className="btn__review_exam"
+                            onClick={(e) =>
+                                onClickBtnReviewExam(completedExamList[i].id, e)
+                            }
+                        >
+                            오답노트 확인
+                        </button>
                     </li>
                 </div>
             );
@@ -119,13 +113,9 @@ const AssignedExamList = ({
         return listItems;
     };
 
-    /* 시험 응시 button 클릭 */
-    const onClickBtnTakeExam = (examId, examName, e) => {
-        let confirmTakeExam = window.confirm(
-            `${examName} 시험을 응시하시겠습니까?`
-        );
-        if (confirmTakeExam)
-            history.push(`/student/take_exam/exam?id=${examId}`);
+    /* 오답노트 확인 button 클릭 */
+    const onClickBtnReviewExam = (examId, e) => {
+        history.push(`/student/review_exam/exam?id=${examId}`);
     };
 
     return (
@@ -135,4 +125,4 @@ const AssignedExamList = ({
     );
 };
 
-export default AssignedExamList;
+export default CompletedExamList;

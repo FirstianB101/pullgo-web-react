@@ -138,7 +138,7 @@ const ManageExamQuestion = ({ history, match, location }) => {
     });
     const [examId, setExamId] = useState(query.id);
     const [isInitialized, setIsInitialized] = useState(false);
-    // questionList가 최초 초기화되었는지를 나타내는 flag 함수
+    // questionList가 최초 초기화되었는지를 나타내는 flag 변수
 
     const dispatch = useDispatch();
     const onFetchJoinedAcademyList = (userType, userId) => {
