@@ -1,13 +1,12 @@
 import axios from "axios";
 
 /* action 정의 */
-const FETCH_ATTENDER_STATE_LIST_BY_STUDENT_ID =
-    "FETCH_ATTENDER_STATE_LIST_BY_STUDENT_ID";
+const FETCH_ATTENDER_STATE_LIST = "FETCH_ATTENDER_STATE_LIST";
 
 /* action 생성 함수 정의 */
-export const fetchAttenderStateListByStudentId = (attenderStateList) => {
+export const fetchAttenderStateList = (attenderStateList) => {
     return {
-        type: FETCH_ATTENDER_STATE_LIST_BY_STUDENT_ID,
+        type: FETCH_ATTENDER_STATE_LIST,
         attenderStateList
     };
 };
@@ -18,16 +17,25 @@ const initState = {
 };
 
 /* 서버 API로부터 studentId로 해당 반의 exam 목록들 수신 */
-export const apiFetchAttenderStateListByStudentId = (studentId) => {
+export const apiFetchAttenderStateList = (studentId, examId) => {
     return async (dispatch) => {
         try {
+            // examId 인자로 전달받으면, examId도 API query params에 추가
+            const params = examId
+                ? {
+                      studentId,
+                      examId
+                  }
+                : {
+                      studentId
+                  };
+
             const response = await axios.get("/v1/exam/attender-states?", {
-                params: {
-                    studentId
-                }
+                params
             });
+
             // action 생성 함수 dispatch
-            dispatch(fetchAttenderStateListByStudentId(response.data));
+            dispatch(fetchAttenderStateList(response.data));
         } catch (error) {
             throw error;
         }
@@ -35,12 +43,9 @@ export const apiFetchAttenderStateListByStudentId = (studentId) => {
 };
 
 /* reducer 정의 */
-export const attenderStateListByStudentIdReducer = (
-    state = initState,
-    action
-) => {
+export const attenderStateListReducer = (state = initState, action) => {
     switch (action.type) {
-        case FETCH_ATTENDER_STATE_LIST_BY_STUDENT_ID:
+        case FETCH_ATTENDER_STATE_LIST:
             return {
                 ...state,
                 attenderStateList: action.attenderStateList

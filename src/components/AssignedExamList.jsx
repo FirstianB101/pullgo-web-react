@@ -1,4 +1,6 @@
 import React, { memo } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 /* exam 1개를 인자로 받아서 exam 정보 속성들을 파싱해서 객체로 return */
 const parsingExamInfo = (exam) => {
@@ -35,15 +37,24 @@ const parsingExamInfo = (exam) => {
 
 const AssignedExamList = ({
     examList,
+    completedExamIdList,
     joinedAcademyList,
     joinedClassroomList,
     history
 }) => {
+    const studentId = useSelector((state) => state.studentIdReducer.studentId);
+
+    // const isCompleted
+
     const showExamListItems = () => {
         const listItems = [];
 
         for (let i = 0; i < examList.length; i++) {
             const examInfo = parsingExamInfo(examList[i]);
+            // 학생이 이미 응시한 시험인지 여부
+            const isCompletedExam = completedExamIdList.includes(
+                examList[i].id
+            );
 
             /* classroomName, academyName 찾기 */
             const classroomObj = joinedClassroomList.find(
@@ -95,7 +106,9 @@ const AssignedExamList = ({
                             </span>
                         </div>
 
-                        {!examInfo.cancelled && !examInfo.finished ? (
+                        {!examInfo.cancelled &&
+                        !examInfo.finished &&
+                        !isCompletedExam ? (
                             <button
                                 className="btn__take_exam"
                                 onClick={(e) =>
@@ -124,8 +137,11 @@ const AssignedExamList = ({
         let confirmTakeExam = window.confirm(
             `${examName} 시험을 응시하시겠습니까?`
         );
-        if (confirmTakeExam)
+        if (confirmTakeExam) {
+            // AttenderState 생성 (POST)
+
             history.push(`/student/take_exam/exam?id=${examId}`);
+        }
     };
 
     return (

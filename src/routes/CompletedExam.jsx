@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
 import { apiFetchJoinedClassroomList } from "../redux/fetchJoinedClassroomList";
 import { apiFetchExamListByStudentId } from "../redux/fetchExamListByStudentId";
-import { apiFetchAttenderStateListByStudentId } from "../redux/fetchAttenderStateListByStudentId";
+import { apiFetchAttenderStateList } from "../redux/fetchAttenderStateList";
 import MenuBar_S from "../components/MenuBar_S";
 import CompletedExamList from "../components/CompletedExamList";
 
@@ -24,9 +24,9 @@ const CompletedExam = ({ history, match, location }) => {
         console.log("onFetchExamListByStudentId()");
         dispatch(apiFetchExamListByStudentId(studentId));
     };
-    const onFetchAttenderStateListByStudentId = (studentId) => {
-        console.log("onFetchAttenderStateListByStudentId()");
-        dispatch(apiFetchAttenderStateListByStudentId(studentId));
+    const onFetchAttenderStateList = (studentId, examId) => {
+        console.log("onFetchAttenderStateList()");
+        dispatch(apiFetchAttenderStateList(studentId, examId));
     };
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
@@ -40,7 +40,7 @@ const CompletedExam = ({ history, match, location }) => {
 
     useEffect(() => {
         onFetchExamListByStudentId(studentId);
-        onFetchAttenderStateListByStudentId(studentId);
+        onFetchAttenderStateList(studentId);
     }, [studentId]);
 
     const joinedAcademyList = useSelector(
@@ -53,7 +53,7 @@ const CompletedExam = ({ history, match, location }) => {
         (state) => state.examListByStudentIdReducer.examList
     );
     const attenderStateList = useSelector(
-        (state) => state.attenderStateListByStudentIdReducer.attenderStateList
+        (state) => state.attenderStateListReducer.attenderStateList
     );
     const isJoinedAcademy = joinedAcademyList.length !== 0;
 
