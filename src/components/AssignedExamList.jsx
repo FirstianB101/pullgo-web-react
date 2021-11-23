@@ -43,8 +43,7 @@ const AssignedExamList = ({
     history
 }) => {
     const studentId = useSelector((state) => state.studentIdReducer.studentId);
-
-    // const isCompleted
+    const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     const showExamListItems = () => {
         const listItems = [];
@@ -133,15 +132,37 @@ const AssignedExamList = ({
     };
 
     /* 시험 응시 button 클릭 */
-    const onClickBtnTakeExam = (examId, examName, e) => {
+    const onClickBtnTakeExam = async (examId, examName, e) => {
         let confirmTakeExam = window.confirm(
-            `${examName} 시험을 응시하시겠습니까?`
+            `${examName} 시험을 응시 하시겠습니까?`
         );
-        if (confirmTakeExam) {
-            // AttenderState 생성 (POST)
+        if (!confirmTakeExam) return;
 
-            history.push(`/student/take_exam/exam?id=${examId}`);
-        }
+        // AttenderState 생성 POST (시험 응시 시작)
+        const postCreateAttenderState = async () => {
+            try {
+                const response = await axios.post(
+                    "/v1/exam/attender-states",
+                    {
+                        attenderId: studentId,
+                        examId
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}`
+                        }
+                    }
+                );
+            } catch (e) {
+                alert("토큰 만료. 로그인 페이지로 이동");
+                console.log(e);
+            }
+        };
+
+        await postCreateAttenderState(studentId, examId);
+        alert("시험을 시작합니다.");
+
+        history.push(`/student/take_exam/exam?id=${examId}`);
     };
 
     return (

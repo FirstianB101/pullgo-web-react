@@ -1,14 +1,21 @@
 import React, { useState, useEffect, memo } from "react";
 
-const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
+const ReviewExamNoteQuestion = ({
+    currentQuestionIndex,
+    questionList,
+    attenderAnswerList
+}) => {
     const [content, setContent] = useState("");
     const [imgPreviewUrl, setImgPreviewUrl] = useState("");
-    const [answer, setAnswer] = useState([]);
+    const [answer, setAnswer] = useState([]); // 문제 정답
     const [choice1, setChoice1] = useState("");
     const [choice2, setChoice2] = useState("");
     const [choice3, setChoice3] = useState("");
     const [choice4, setChoice4] = useState("");
     const [choice5, setChoice5] = useState("");
+
+    // 학생이 선택한 답안
+    const [attenderAnswer, setAttenderAnswer] = useState([]);
 
     useEffect(() => {
         const currentQuestion = questionList[currentQuestionIndex - 1];
@@ -16,7 +23,9 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
 
         setContent(currentQuestion.content);
         setImgPreviewUrl(currentQuestion.pictureUrl);
-        setAnswer(currentQuestion.answer);
+        const sortedAnswer = currentQuestion.answer;
+        sortedAnswer.sort((n1, n2) => n1 - n2);
+        setAnswer(sortedAnswer);
 
         if (currentQuestion?.choice != undefined) {
             setChoice1(currentQuestion.choice[1]);
@@ -26,6 +35,38 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
             setChoice5(currentQuestion.choice[5]);
         }
     }, [currentQuestionIndex, questionList]);
+
+    useEffect(() => {
+        if (attenderAnswerList[currentQuestionIndex - 1] == undefined) return;
+
+        const sortedAnswer =
+            attenderAnswerList[currentQuestionIndex - 1].answer;
+        sortedAnswer.sort((n1, n2) => n1 - n2);
+
+        setAttenderAnswer(sortedAnswer);
+    }, [currentQuestionIndex, attenderAnswerList]);
+
+    /* 문제 정답 문자열 빈환 */
+    const getQuestionAnswer = () => {
+        const currentQuestion = questionList[currentQuestionIndex - 1];
+        if (currentQuestion == undefined) return;
+
+        let answerStr = "";
+        for (let i = 0; i < answer.length; i++) {
+            answerStr += `${answer[i]}. ${currentQuestion.choice[answer[i]]} `;
+            answerStr += `\u00A0`; // 공백
+            answerStr += `\u00A0`;
+        }
+
+        return answerStr;
+    };
+
+    /* 문제 채점하여 O, X 반환 */
+    const gradeQuestion = () => {
+        return JSON.stringify(answer) === JSON.stringify(attenderAnswer)
+            ? "✔"
+            : "❌";
+    };
 
     return (
         <div className="create_edit_exam_question">
@@ -59,7 +100,10 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
                             type="checkbox"
                             name="question_answer_checkbox"
                             value={1}
-                            checked={answer != undefined && answer.includes(1)}
+                            checked={
+                                attenderAnswer != undefined &&
+                                attenderAnswer.includes(1)
+                            }
                             readOnly
                         />
                     </div>
@@ -76,7 +120,10 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
                             type="checkbox"
                             name="question_answer_checkbox"
                             value={2}
-                            checked={answer != undefined && answer.includes(2)}
+                            checked={
+                                attenderAnswer != undefined &&
+                                attenderAnswer.includes(2)
+                            }
                             readOnly
                         />
                     </div>
@@ -93,7 +140,10 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
                             type="checkbox"
                             name="question_answer_checkbox"
                             value={3}
-                            checked={answer != undefined && answer.includes(3)}
+                            checked={
+                                attenderAnswer != undefined &&
+                                attenderAnswer.includes(3)
+                            }
                             readOnly
                         />
                     </div>
@@ -110,7 +160,10 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
                             type="checkbox"
                             name="question_answer_checkbox"
                             value={4}
-                            checked={answer != undefined && answer.includes(4)}
+                            checked={
+                                attenderAnswer != undefined &&
+                                attenderAnswer.includes(4)
+                            }
                             readOnly
                         />
                     </div>
@@ -127,10 +180,18 @@ const ReviewExamNoteQuestion = ({ currentQuestionIndex, questionList }) => {
                             type="checkbox"
                             name="question_answer_checkbox"
                             value={5}
-                            checked={answer != undefined && answer.includes(5)}
+                            checked={
+                                attenderAnswer != undefined &&
+                                attenderAnswer.includes(5)
+                            }
                             readOnly
                         />
                     </div>
+                </div>
+
+                <div className="question_answer">
+                    <span>{gradeQuestion()}</span>
+                    <span>[정답] {getQuestionAnswer()}</span>
                 </div>
             </form>
         </div>

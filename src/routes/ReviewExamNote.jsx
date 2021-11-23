@@ -4,6 +4,8 @@ import qs from "qs";
 
 import { apiFetchJoinedAcademyList } from "../redux/fetchJoinedAcademyList";
 import { apiFetchExamQuestionList } from "../redux/fetchExamQuestionList";
+import { apiFetchAttenderStateList } from "../redux/fetchAttenderStateList";
+import { apiFetchAttenderAnswerList } from "../redux/fetchAttenderAnswerList";
 import MenuBar_S from "../components/MenuBar_S";
 import ReviewExamNoteQuestion from "../components/ReviewExamNoteQuestion";
 
@@ -30,6 +32,14 @@ const ReviewExamNote = ({ history, match, location }) => {
         console.log("onFetchExamQuestionList()");
         dispatch(apiFetchExamQuestionList(examId));
     };
+    const onFetchAttenderStateList = (studentId, examId) => {
+        console.log("onFetchAttenderStateList()");
+        dispatch(apiFetchAttenderStateList(studentId, examId));
+    };
+    const onFetchAttenderAnswerList = (attenderStateId) => {
+        console.log("onFetchAttenderAnswerList()");
+        dispatch(apiFetchAttenderAnswerList(attenderStateId));
+    };
 
     const userType = useSelector((state) => state.userTypeReducer.userType);
     const studentId = useSelector((state) => state.studentIdReducer.studentId);
@@ -43,8 +53,15 @@ const ReviewExamNote = ({ history, match, location }) => {
         onFetchExamQuestionList(examId);
     }, [examId]);
 
+    useEffect(() => {
+        onFetchAttenderStateList(studentId, examId);
+    }, [studentId, examId]);
+
     const joinedAcademyList = useSelector(
         (state) => state.joinedAcademyListReducer.joinedAcademyList
+    );
+    const attenderState = useSelector(
+        (state) => state.attenderStateListReducer.attenderStateList[0]
     );
     const isJoinedAcademy = joinedAcademyList.length !== 0;
 
@@ -52,6 +69,15 @@ const ReviewExamNote = ({ history, match, location }) => {
         useSelector((state) => state.examQuestionListReducer.questionList)
     );
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+    useEffect(() => {
+        onFetchAttenderAnswerList(attenderState.id);
+        console.log(attenderState.id);
+    }, [attenderState]);
+
+    const attenderAnswerList = useSelector(
+        (state) => state.attenderAnswerListReducer.attenderAnswerList
+    );
 
     // currentQuestionIndex 초기화
     useEffect(() => {
@@ -82,6 +108,8 @@ const ReviewExamNote = ({ history, match, location }) => {
                         문제 {currentQuestionIndex}번
                     </h2>
 
+                    <h3>{attenderState.score} 점</h3>
+
                     <div className="question_number_pagination">
                         <Stack spacing={2}>
                             <Pagination
@@ -97,6 +125,7 @@ const ReviewExamNote = ({ history, match, location }) => {
                 <ReviewExamNoteQuestion
                     currentQuestionIndex={currentQuestionIndex}
                     questionList={questionList}
+                    attenderAnswerList={attenderAnswerList}
                 />
             </div>
         </>
