@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -79,14 +79,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
     const [editedTimeLimitMinute, setEditedTimeLimitMinute] = useState("");
     const [editedPassScore, setEditedPassScore] = useState("");
 
-    const liExamInfoRefs = useRef([]);
-    const btnEditExamRefs = useRef([]);
-    // const btnDeleteExamRefs = useRef([]);
-    const btnFinishExamRefs = useRef([]);
-    const btnCancelExamRefs = useRef([]);
-    const btnManageExamQuestionRefs = useRef([]);
-    // 시험 문제 출제 button
-
     const authToken = useSelector((state) => state.authTokenReducer.authToken);
 
     /* isAttenderStatusOpened state 초기화 (examList 길이만큼 false로 채운 배열) */
@@ -105,7 +97,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                 <div className="div__exam_list_menu">
                     <li
                         key={examList[i].id}
-                        ref={(elem) => (liExamInfoRefs.current[i] = elem)}
                         onClick={(e) => onClickExamInfo(i, e)}
                     >
                         {/* 시험 정보 */}
@@ -154,7 +145,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                             onClick={(e) =>
                                 onClickBtnEditExam(examList[i].id, i, e)
                             }
-                            ref={(elem) => (btnEditExamRefs.current[i] = elem)}
                         >
                             📝
                         </button>
@@ -163,9 +153,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                         {/* <button
 							onClick={(e) =>
 								onClickBtnDeleteExam(examList[i].id, i, e)
-							}
-							ref={(elem) =>
-								(btnDeleteExamRefs.current[i] = elem)
 							}
 						>
 							❌
@@ -176,9 +163,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                             onClick={(e) =>
                                 onClickBtnFinishExam(examList[i].id, i, e)
                             }
-                            ref={(elem) =>
-                                (btnFinishExamRefs.current[i] = elem)
-                            }
                         >
                             ✔️
                         </button>
@@ -187,9 +171,6 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                         <button
                             onClick={(e) =>
                                 onClickBtnCancelExam(examList[i].id, i, e)
-                            }
-                            ref={(elem) =>
-                                (btnCancelExamRefs.current[i] = elem)
                             }
                         >
                             🚫
@@ -204,11 +185,21 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                                     e
                                 )
                             }
-                            ref={(elem) =>
-                                (btnManageExamQuestionRefs.current[i] = elem)
-                            }
                         >
                             시험 문제 관리
+                        </button>
+
+                        {/* 학생 응시현황 확인 */}
+                        <button
+                            onClick={(e) =>
+                                onClickBtnCheckAttenderState(
+                                    examList[i].id,
+                                    i,
+                                    e
+                                )
+                            }
+                        >
+                            응시현황
                         </button>
                     </div>
                 </div>
@@ -218,6 +209,21 @@ const ManageExamList = ({ examList, classroomId, history }) => {
         }
 
         return listItems;
+    };
+
+    /* 응시현황 확인 button 클릭 */
+    const onClickBtnCheckAttenderState = (examId, refIndex, e) => {
+        const examBegin = new Date(examList[refIndex].beginDateTime);
+        const today = new Date();
+
+        if (today < examBegin) {
+            alert("아직 시험 응시 날짜가 아닙니다.");
+            return;
+        }
+
+        history.push(
+            `/teacher/attender_state/?classroom=${classroomId}&exam=${examId}`
+        );
     };
 
     /* 시험 문제 출제 button 클릭 */

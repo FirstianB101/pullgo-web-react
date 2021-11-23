@@ -41,6 +41,7 @@ import { examQuestionListReducer } from "./fetchExamQuestionList";
 import { examListByStudentIdReducer } from "./fetchExamListByStudentId";
 import { attenderStateListReducer } from "./fetchAttenderStateList";
 import { attenderAnswerListReducer } from "./fetchAttenderAnswerList";
+import { attenderStateListByExamIdReducer } from "./fetchAttenderStateListByExamId";
 
 import { studentIdReducer } from "./student/fetchStudentId";
 import { studentInfoReducer } from "./student/fetchStudentInfo";
@@ -85,6 +86,7 @@ export const rootReducer = combineReducers({
     /* [학생] 시험 목록, 응시 현황 */
     examListByStudentIdReducer,
     attenderStateListReducer,
+    attenderStateListByExamIdReducer,
     attenderAnswerListReducer,
 
     /* 학생 */
@@ -131,6 +133,7 @@ export const persistConfig = {
         /* [학생] 시험 목록, 응시 현황 */
         "examListByStudentIdReducer",
         "attenderStateListReducer",
+        "attenderStateListByExamIdReducer",
         "attenderAnswerListReducer",
 
         "studentIdReducer",

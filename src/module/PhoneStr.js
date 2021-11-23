@@ -5,3 +5,13 @@ export const insertHyphen = (phoneWithoutHyphen) => {
         "$1-$2-$3"
     );
 };
+
+/* "01012345678" 형태의 phone을
+    "010-1234-5678" 형태의 parsedPhone 으로 반환 */
+export const parsingPhone = (phone) => {
+    if (phone?.length !== 11) return;
+
+    const parsedPhone =
+        phone.slice(0, 3) + "-" + phone.slice(3, 7) + "-" + phone.slice(7, 11);
+    return parsedPhone;
+};

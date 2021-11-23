@@ -2,22 +2,14 @@ import React, { useState, useRef, memo } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import { parsingPhone } from "../module/PhoneStr";
+
 import PaperComponent from "../material/PaperComponent";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
-/* "01012345678" 형태의 phone을
-    "010-1234-5678" 형태의 parsedPhone 으로 반환 */
-const parsingPhone = (phone) => {
-    if (phone?.length !== 11) return;
-
-    const parsedPhone =
-        phone.slice(0, 3) + "-" + phone.slice(3, 7) + "-" + phone.slice(7, 11);
-    return parsedPhone;
-};
 
 const ClassroomJoinedTeacherList = ({
     classroomId,

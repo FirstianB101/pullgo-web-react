@@ -41,6 +41,9 @@ import TakeExam from "./routes/TakeExam";
 import CompletedExam from "./routes/CompletedExam";
 import ReviewExamNote from "./routes/ReviewExamNote";
 
+/* [선생님] 시험 응시현황 확인 */
+import ExamAttenderState from "./routes/ExamAttenderState";
+
 function App() {
     return (
         <BrowserRouter>
@@ -145,6 +148,13 @@ function App() {
                     component={CompletedExam}
                 />
                 <Route path="/student/review_exam" component={ReviewExamNote} />
+
+                {/* [선생님] 시험 응시현황 확인 */}
+                <Route
+                    // path="/teacher/attender_state/classroom/exam"
+                    path="/teacher/attender_state/"
+                    component={ExamAttenderState}
+                />
 
                 <LogInContainer />
             </Switch>
