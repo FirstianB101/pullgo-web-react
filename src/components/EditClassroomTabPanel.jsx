@@ -40,9 +40,9 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
 
         setEditedClassroomName(beforeEditClassroom.name.split(";")[0]);
 
-        const weekStrKR = beforeEditClassroom.name.split(";")[2];
+        const weekStrKR = beforeEditClassroom.name.split(";")[1];
         const checkedWeekArr = Array.from({ length: 7 }, () => false);
-        for (let i = 0; i < weekStrKR.length; i++) {
+        for (let i = 0; i < weekStrKR?.length; i++) {
             const index = weekArrKR.indexOf(weekStrKR[i]);
             checkedWeekArr[index] = true;
         }
@@ -145,7 +145,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[0]}
                             checked={checkedWeek[0]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             className="sunday"
@@ -161,7 +161,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[1]}
                             checked={checkedWeek[1]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             htmlFor={weekArr[1]}
@@ -176,7 +176,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[2]}
                             checked={checkedWeek[2]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             htmlFor={weekArr[2]}
@@ -191,7 +191,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[3]}
                             checked={checkedWeek[3]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             htmlFor={weekArr[3]}
@@ -206,7 +206,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[4]}
                             checked={checkedWeek[4]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             htmlFor={weekArr[4]}
@@ -221,7 +221,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[5]}
                             checked={checkedWeek[5]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             htmlFor={weekArr[5]}
@@ -236,7 +236,7 @@ const EditClassroomTabPanel = memo(({ classroomId, beforeEditClassroom }) => {
                             name={weekArr[6]}
                             checked={checkedWeek[6]}
                             onChange={onChangeInputCheckedWeek}
-                            // required
+                        // required
                         />
                         <label
                             className="saturday"

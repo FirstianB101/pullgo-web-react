@@ -9,16 +9,15 @@ const ManageClassroomList = memo(
                 const academyName = getAcademyName(
                     joinedClassroomList[i].academyId
                 );
-                const classroom_teacher_week =
+                const classroom_week =
                     joinedClassroomList[i].name.split(";");
                 // 반 이름, 선생님 이름, 요일 => 세미콜론 기준으로 파싱
 
-                const classroomName = classroom_teacher_week[0];
-                const teacherName = classroom_teacher_week[1];
-                // const week = classroom_teacher_week[2];
+                const classroomName = classroom_week[0];
+                const teacherName = joinedClassroomList[i].creator.account.fullName;
                 let week = "";
-                for (let j = 0; j < classroom_teacher_week[2]?.length; j++)
-                    week += classroom_teacher_week[2][j] + ", ";
+                for (let j = 0; j < classroom_week[1]?.length; j++)
+                    week += classroom_week[1][j] + ", ";
                 week = week.substring(0, week.length - 2);
 
                 const element = (
