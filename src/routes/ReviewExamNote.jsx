@@ -13,7 +13,7 @@ import ReviewExamNoteQuestion from "../components/ReviewExamNoteQuestion";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-// import "../styles/ReviewExamNote.css";
+import "../styles/ReviewExamNote.css";
 
 const ReviewExamNote = ({ history, match, location }) => {
     const query = qs.parse(location.search, {
@@ -102,7 +102,7 @@ const ReviewExamNote = ({ history, match, location }) => {
                 location={location}
             />
 
-            <div className="manage_exam_question">
+            <div className="manage_exam_question review_exam">
                 <div className="question_number_group">
                     <h2 className="question_number">
                         문제 {currentQuestionIndex}번

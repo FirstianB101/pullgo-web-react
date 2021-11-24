@@ -8,7 +8,7 @@ import { apiFetchAttenderStateListByExamId } from "../redux/fetchAttenderStateLi
 import MenuBar_T from "../components/MenuBar_T";
 import ExamAttenderStateList from "../components/ExamAttenderStateList";
 
-// import "../styles/ExamAttenderState.css";
+import "../styles/ExamAttenderState.css";
 
 const ExamAttenderState = ({ history, match, location }) => {
     const query = qs.parse(location.search, {

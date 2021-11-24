@@ -34,6 +34,7 @@ h2.no_exam {
 
 .div__exam_list_menu_buttons {
     position: absolute;
+    bottom: 60px;
     left: 330px;
 }
 
@@ -64,6 +65,25 @@ li div.exam_list_info span.time_limit {
     color: #9398ff;
     font-size: 17px;
     font-weight: 500;
+}
+
+/* 시험 문제 관리, 응시현황 button */
+.div__exam_list_menu_buttons button.btn__manage_exam_question {
+    margin-left: 10px;
+    color: #cd726e;
+    font-weight: 600;
+}
+
+.div__exam_list_menu_buttons button.btn__check_attender_state {
+    margin-left: 10px;
+    font-weight: 600;
+    background-color: #8c9eff;
+    color: white;
+    width: 80px;
+    height: 120px;
+    border-radius: 20px;
+    position: relative;
+    top: 35px;
 }
 
 /* 시험 수정(📝), 시험 추가 Dialog form */

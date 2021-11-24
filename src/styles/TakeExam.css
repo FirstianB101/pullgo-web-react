@@ -1,0 +1,24 @@
+/* 저장, 제출 button */
+div.take_exam div.div__btn__save_submit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+div.take_exam div.div__btn__save_submit button {
+    margin-bottom: 30px;
+    width: 400px;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+}
+
+div.take_exam div.div__btn__save_submit button:first-child {
+    background-color: #9398ff;
+}
+
+div.take_exam div.div__btn__save_submit button:nth-child(2) {
+    background-color: #ff6056;
+}

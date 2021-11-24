@@ -1,5 +1,14 @@
 import React, { useState, useEffect, memo } from "react";
 
+// 문제 보기 번호 (1, 2, 3, 4, 5 원문자)
+const questionExampleIndex = {
+    1: "①",
+    2: "②",
+    3: "③",
+    4: "④",
+    5: "⑤"
+};
+
 const ReviewExamNoteQuestion = ({
     currentQuestionIndex,
     questionList,
@@ -53,7 +62,8 @@ const ReviewExamNoteQuestion = ({
 
         let answerStr = "";
         for (let i = 0; i < answer.length; i++) {
-            answerStr += `${answer[i]}. ${currentQuestion.choice[answer[i]]} `;
+            // answerStr += `${answer[i]}. ${currentQuestion.choice[answer[i]]} `;
+            answerStr += `${questionExampleIndex[answer[i]]} ${currentQuestion.choice[answer[i]]} `;
             answerStr += `\u00A0`; // 공백
             answerStr += `\u00A0`;
         }
@@ -61,11 +71,19 @@ const ReviewExamNoteQuestion = ({
         return answerStr;
     };
 
-    /* 문제 채점하여 O, X 반환 */
-    const gradeQuestion = () => {
+    /* 문제 맞으면 O 반환 */
+    const gradeQuestionCorrect = () => {
         return JSON.stringify(answer) === JSON.stringify(attenderAnswer)
-            ? "✔"
-            : "❌";
+            ?
+            < span className="grade_question_correct">O</span >
+            : null;
+    };
+
+    /* 문제 틀리면면 X 반환 */
+    const gradeQuestionWrong = () => {
+        return JSON.stringify(answer) !== JSON.stringify(attenderAnswer)
+            ? < span className="grade_question_wrong">❌</span >
+            : null;
     };
 
     return (
@@ -190,7 +208,8 @@ const ReviewExamNoteQuestion = ({
                 </div>
 
                 <div className="question_answer">
-                    <span>{gradeQuestion()}</span>
+                    {gradeQuestionCorrect()}
+                    {gradeQuestionWrong()}
                     <span>[정답] {getQuestionAnswer()}</span>
                 </div>
             </form>

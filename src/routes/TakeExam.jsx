@@ -5,13 +5,13 @@ import qs from "qs";
 
 import { apiFetchExamQuestionList } from "../redux/fetchExamQuestionList";
 import { apiFetchAttenderStateList } from "../redux/fetchAttenderStateList";
-import QuestionIndexPanel from "../components/QuestionIndexPanel";
+// import QuestionIndexPanel from "../components/QuestionIndexPanel";
 import TakeExamQuestion from "../components/TakeExamQuestion";
 
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-// import "../styles/TakeExam.css";
+import "../styles/TakeExam.css";
 
 const putAttenderAnswer = async (
     attenderStateId,
@@ -268,7 +268,7 @@ const TakeExam = ({ history, match, location }) => {
     }, [second]);
 
     return (
-        <div className="manage_exam_question">
+        <div className="manage_exam_question take_exam">
             <div className="question_number_group">
                 <h2 className="question_number">
                     문제 {currentQuestionIndex}번
@@ -314,7 +314,7 @@ const TakeExam = ({ history, match, location }) => {
                 setAttenderAnswerList={setAttenderAnswerList}
             />
 
-            <div className="div__btn__submit">
+            <div className="div__btn__save_submit">
                 <button onClick={onClickBtnSave}>저 장</button>
                 <button onClick={onClickBtnSubmit}>제 출</button>
             </div>

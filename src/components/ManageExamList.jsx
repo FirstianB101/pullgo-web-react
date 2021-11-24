@@ -176,8 +176,9 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                             🚫
                         </button>
 
-                        {/* 시험 문제 출제 */}
+                        {/* 시험 문제 관리 */}
                         <button
+                            className="btn__manage_exam_question"
                             onClick={(e) =>
                                 onClickBtnManageExamQuestion(
                                     examList[i].id,
@@ -191,6 +192,7 @@ const ManageExamList = ({ examList, classroomId, history }) => {
 
                         {/* 학생 응시현황 확인 */}
                         <button
+                            className="btn__check_attender_state"
                             onClick={(e) =>
                                 onClickBtnCheckAttenderState(
                                     examList[i].id,
@@ -199,7 +201,7 @@ const ManageExamList = ({ examList, classroomId, history }) => {
                                 )
                             }
                         >
-                            응시현황
+                            응시<br />현황
                         </button>
                     </div>
                 </div>
@@ -272,9 +274,9 @@ const ManageExamList = ({ examList, classroomId, history }) => {
 
         let timeLimitHour = examInfo.timeLimit.includes("시간")
             ? examInfo.timeLimit.substring(
-                  0,
-                  examInfo.timeLimit.indexOf("시간")
-              )
+                0,
+                examInfo.timeLimit.indexOf("시간")
+            )
             : 0;
         let timeLimitMinute;
         if (!examInfo.timeLimit.includes("분")) timeLimitMinute = 0;

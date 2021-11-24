@@ -1,0 +1,23 @@
+div.review_exam div.question_answer {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+div.review_exam div.question_answer span {
+    font-size: 20px;
+}
+
+/* 문제 정답 여부 표시: O, X */
+div.review_exam div.question_answer span.grade_question_correct,
+div.review_exam div.question_answer span.grade_question_wrong {
+    margin-right: 20px;
+}
+
+div.review_exam div.question_answer span.grade_question_correct {
+    color: #9398ff;
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+    bottom: 3px;
+}

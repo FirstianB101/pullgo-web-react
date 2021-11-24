@@ -59,6 +59,9 @@ const AssignedExamList = ({
             const classroomObj = joinedClassroomList.find(
                 (classroom) => classroom.id == examList[i].classroomId
             );
+
+            if (classroomObj == undefined) return;
+
             const classroomName = classroomObj.name.split(";")[0];
             const academyName = joinedAcademyList.find(
                 (academy) => academy.id == classroomObj.academyId
@@ -106,8 +109,8 @@ const AssignedExamList = ({
                         </div>
 
                         {!examInfo.cancelled &&
-                        !examInfo.finished &&
-                        !isCompletedExam ? (
+                            !examInfo.finished &&
+                            !isCompletedExam ? (
                             <button
                                 className="btn__take_exam"
                                 onClick={(e) =>

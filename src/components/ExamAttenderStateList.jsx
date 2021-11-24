@@ -27,18 +27,17 @@ const ExamAttenderStateList = ({ joinedStudentList, attenderStateList }) => {
         );
 
         if (attenderState == undefined)
-            return {
-                progress: "미응시"
-            };
+            return <span className="attender_state_progress__not_yet">미응시</span>;
 
         if (attenderState.progress === "ONGOING")
-            return { progress: "응시 중" };
-        else if (attenderState.progress === "COMPLETE") {
-            return {
-                progress: "응시 완료",
-                score: attenderState.score
-            };
-        }
+            return <span className="attender_state_progress__on_going">응시 중</span>;
+        else if (attenderState.progress == "COMPLETE")
+            return (<>
+                <span className="attender_state_progress__complete">응시 완료</span>
+                <span className="attender_state_score">
+                    {attenderState.score}점 / 100점
+                </span>
+            </>);
     };
 
     const showStudentListItems = () => {
@@ -46,9 +45,6 @@ const ExamAttenderStateList = ({ joinedStudentList, attenderStateList }) => {
 
         for (let i = 0; i < joinedStudentList.length; i++) {
             const studentInfo = parsingStudentInfo(joinedStudentList[i]);
-            const attenderStateProgress = getAttenderStateProgress(
-                joinedStudentList[i].id
-            );
 
             const element = (
                 <div className="div__student_list_menu">
@@ -66,14 +62,7 @@ const ExamAttenderStateList = ({ joinedStudentList, attenderStateList }) => {
                                 {studentInfo.schoolYear}학년
                             </span>
 
-                            <span className="attender_state_progress">
-                                {attenderStateProgress.progress}
-                            </span>
-                            {attenderStateProgress.progress === "응시 완료" ? (
-                                <span className="attender_state_score">
-                                    {attenderStateProgress.score}점 / 100점
-                                </span>
-                            ) : null}
+                            {getAttenderStateProgress(joinedStudentList[i].id)}
                         </div>
                     </li>
                 </div>

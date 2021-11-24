@@ -1,0 +1,23 @@
+div.exam_attender_state_list {
+    margin-top: 100px;
+}
+
+/* 미응시, 응시 중, 응시 완료 */
+div.exam_attender_state_list span.attender_state_progress__not_yet,
+div.exam_attender_state_list span.attender_state_progress__on_going,
+div.exam_attender_state_list span.attender_state_progress__complete {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+div.exam_attender_state_list span.attender_state_progress__not_yet {
+    color: red;
+}
+
+div.exam_attender_state_list span.attender_state_progress__on_going {
+    color: orange;
+}
+
+div.exam_attender_state_list span.attender_state_progress__complete {
+    color: #8c9eff;
+}
