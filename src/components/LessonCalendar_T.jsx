@@ -28,16 +28,9 @@ const dateToStr = (date) => {
     return year + "-" + month + "-" + day;
 };
 
-/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
-const dateToYearMonthStr = (date) => {
-    let year = date.getFullYear();
-    let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    return year + "-" + month;
-};
-
 /* state인 date("2021-08-09" 형태)와
- *  state인 시간을 나타내는 beginTime 또는 endTime ("14:05" 형태)을 인자로 받아서
- *  날짜 + 시간 형태의 Date 객체로 반환 */
+ * state인 시간을 나타내는 start 또는 end("14:05" 형태)를 인자로 받아서
+ * 날짜 + 시간 형태의 Date 객체로 반환 */
 const dateWithTime = (date, time) => {
     let year = date.slice(0, 4);
     let month = date.slice(5, 7);
@@ -50,18 +43,12 @@ const dateWithTime = (date, time) => {
     return new Date(year, month - 1, day, hour, min);
 };
 
-/* Date 객체를 인자로 받아서 sinceDate (문자열) 반환
- * e.g. getSinceDate(2021-09-09 Date 객체)
- * => sinceDate: "2021-09-01"
- */
-// const getSinceDate = (date) => {
-// 	let yearStr = String(date.getFullYear());
-// 	let monthStr = String(date.getMonth() + 1);
-// 	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
-
-// 	let sinceDate = yearStr + "-" + monthStr + "-01";
-// 	return sinceDate;
-// };
+/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
+const dateToYearMonthStr = (date) => {
+    let year = date.getFullYear();
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    return year + "-" + month;
+};
 
 /* 문자열 yearMonth(년, 월)를 인자로 받아서 sinceDate (문자열) 반환
  * e.g. getSinceDate("2021-09")
@@ -70,23 +57,6 @@ const dateWithTime = (date, time) => {
 const getSinceDate = (yearMonth) => {
     return yearMonth + "-01";
 };
-
-/* Date 객체를 인자로 받아서 untilDate (문자열) 반환
- * e.g. getUntilDate(2021-09-09 Date 객체)
- * => untilDate: "2021-10-01"
- */
-// const getUntilDate = (date) => {
-// 	let year = date.getFullYear();
-// 	let month = date.getMonth() + 2;
-// 	month = month > 12 ? 1 : month;
-
-// 	let yearStr = String(year);
-// 	let monthStr = String(month);
-// 	monthStr = monthStr.length === 1 ? "0" + monthStr : monthStr;
-
-// 	let untilDate = yearStr + "-" + monthStr + "-01";
-// 	return untilDate;
-// };
 
 /* 문자열 yearMonth(년, 월)를 인자로 받아서 untilDate (문자열) 반환
  * e.g. getUntilDate("2021-09")
@@ -152,6 +122,7 @@ const LessonCalendar_T = (({ history, match }) => {
     // 캘린더 선택(클릭) 일자, 선택한 일자에 등록된 수업들
     const [selectedDate, setSelectedDate] = useState(""); // 캘린더에서 클릭한 날짜
     const [selectedLessons, setSelectedLessons] = useState(null);
+
     // "수업 추가" form 입력 항목
     const [classroom, setClassroom] = useState(""); // 반 이름
     const [title, setTitle] = useState(""); // 수업 이름

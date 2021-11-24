@@ -79,7 +79,7 @@ function App() {
                 />
 
                 {/* Main 메뉴 => YesAcademy 또는 NoAcademy */}
-                <Route path="/student/main" component={MainPage} />
+                <Route path="/student/main/calendar/:year_month" component={MainPage} />
                 <Route
                     path="/teacher/main/calendar/:year_month"
                     component={MainPage}

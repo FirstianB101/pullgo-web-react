@@ -16,7 +16,7 @@ const YesAcademy = memo(({ history, match }) => {
 			{userType === "student" ? (
 				<>
 					<MenuBar_S isJoinedAcademy={true} history={history} />
-					<LessonCalendar_S />
+					<LessonCalendar_S history={history} match={match} />
 				</>
 			) : (
 				<>

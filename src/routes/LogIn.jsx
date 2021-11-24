@@ -149,7 +149,7 @@ const LogIn = memo(({ history }) => {
 
 			// 링크 이동 => 사용자 타입(student, teacher)에 따라서
 			userType === "student"
-				? history.push("/student/main")
+				? history.push(`/student/main/calendar/${yearMonthStr}`)
 				: history.push(`/teacher/main/calendar/${yearMonthStr}`);
 		}
 	};
