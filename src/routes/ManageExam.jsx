@@ -59,21 +59,23 @@ const ManageExam = memo(({ history, match, location }) => {
                 location={location}
             />
 
-            <ManageClassroomMenuChips
-                currentChipLabel="시험 관리"
-                history={history}
-                location={location}
-            />
-
-            {examList.length !== 0 ? (
-                <ManageExamList
-                    examList={examList}
-                    classroomId={classroomId}
+            <div className="wrapper__div__manage_exam_list">
+                <ManageClassroomMenuChips
+                    currentChipLabel="시험 관리"
                     history={history}
+                    location={location}
                 />
-            ) : (
-                <h2 className="no_exam">등록된 시험이 없습니다!</h2>
-            )}
+
+                {examList.length !== 0 ? (
+                    <ManageExamList
+                        examList={examList}
+                        classroomId={classroomId}
+                        history={history}
+                    />
+                ) : (
+                    <h2 className="no_exam">등록된 시험이 없습니다!</h2>
+                )}
+            </div>
         </div>
     );
 });

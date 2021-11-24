@@ -106,13 +106,15 @@ const AssignedExam = ({ history, match, location }) => {
             />
 
             {examList.length !== 0 ? (
-                <AssignedExamList
-                    examList={examList}
-                    completedExamIdList={completedExamIdList}
-                    joinedAcademyList={joinedAcademyList}
-                    joinedClassroomList={joinedClassroomList}
-                    history={history}
-                />
+                <div className="wrapper__div__assigend_exam_list">
+                    <AssignedExamList
+                        examList={examList}
+                        completedExamIdList={completedExamIdList}
+                        joinedAcademyList={joinedAcademyList}
+                        joinedClassroomList={joinedClassroomList}
+                        history={history}
+                    />
+                </div>
             ) : (
                 <h2 className="no_exam">등록된 시험이 없습니다!</h2>
             )}

@@ -93,6 +93,10 @@ const getSinceDate = (yearMonth) => {
  * => untilDate: "2021-10-01"
  */
 const getUntilDate = (yearMonth) => {
+    // ~년 12월 이면, 그 다음 년도 1월로 반환
+    if (yearMonth.slice(5) == "12")
+        return `${Number(yearMonth.slice(0, 4)) + 1}-01-01`;
+
     let year = yearMonth.slice(0, 4);
     let month = Number(yearMonth.slice(5, 7)) + 1;
     if (month === 13) month = "01";
@@ -120,7 +124,7 @@ const getOptionTag = (classroomList) => {
     ));
 };
 
-const LessonCalendar_T = memo(({ history, match }) => {
+const LessonCalendar_T = (({ history, match }) => {
     const localizer = momentLocalizer(moment);
 
     const dispatch = useDispatch();

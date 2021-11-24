@@ -4,6 +4,11 @@ div.assigned_exam h2.no_exam {
     margin-top: 200px;
 }
 
+div.wrapper__div__assigend_exam_list {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .div__assigned_exam_list_menu div.academy_classroom_name {
     width: 500px;
     display: flex;

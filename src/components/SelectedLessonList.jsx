@@ -84,7 +84,8 @@ const SelectedLessonList = memo(
 						selectedLessons[i].classroomId
 					)
 				);
-				const classroomName = selectedLessons[i].classRoom;
+				// const classroomName = selectedLessons[i].classRoom;
+				const classroomName = selectedLessons[i].classRoom.split(";")[0];
 				const lessonName = selectedLessons[i].title;
 				const beginTime = selectedLessons[i].schedule.beginTime.slice(
 					0,
@@ -335,7 +336,7 @@ const SelectedLessonList = memo(
 										type="text"
 										value={beforeEditClassroomName}
 										disabled
-										// readOnly
+									// readOnly
 									/>
 								</div>
 								<div>

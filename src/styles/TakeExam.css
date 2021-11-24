@@ -1,3 +1,8 @@
+div.take_exam {
+    width: 1600px;
+    margin: 0 auto;
+}
+
 /* 저장, 제출 button */
 div.take_exam div.div__btn__save_submit {
     display: flex;

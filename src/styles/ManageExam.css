@@ -3,6 +3,11 @@ h2.no_exam {
     margin-top: 250px;
 }
 
+div.wrapper__div__manage_exam_list {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .div__manage_exam_list {
     display: flex;
     flex-direction: column;
@@ -36,6 +41,7 @@ h2.no_exam {
     position: absolute;
     bottom: 60px;
     left: 330px;
+    margin-left: 100px;
 }
 
 /* 시험 수정(📝), 시험 삭제(❌) button */
