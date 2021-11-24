@@ -141,6 +141,7 @@ function App() {
                 {/* [학생] 시험 목록, 시험 응시 */}
                 <Route path="/student/assigned_exam" component={AssignedExam} />
                 <Route path="/student/take_exam" component={TakeExam} />
+                <Route path="/student/take_exam" component={TakeExam} />
 
                 {/* [학생] 응시완료 시험 목록, 오답노트 */}
                 <Route
