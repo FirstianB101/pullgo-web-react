@@ -10,8 +10,8 @@ const Banner = memo(() => {
         <>
             {isPC && (
                 <div className="banner__container">
-                    <h1>Firstian Project</h1>
-                    <span>학원 온라인 환경 지원</span>
+                    <h1>Pull Go</h1>
+                    <span>학원 온라인 환경 플랫폼</span>
                 </div>
             )}
         </>

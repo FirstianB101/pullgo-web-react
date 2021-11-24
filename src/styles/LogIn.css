@@ -26,12 +26,13 @@
 .logo__container {
     position: relative;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .logo__container img {
-    width: 200px;
+    width: 300px;
     height: 200px;
+    object-fit: contain;
 }
 
 .login__form {
