@@ -1,62 +1,67 @@
 /* "학생 수업 일정", "선생님 수업 일정" */
 h2.calendar_title {
-	text-align: center;
-	margin-top: 30px;
-	margin-bottom: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 /* "ㅇㅇㅇ 님, 안녕하세요 !!" */
 h4.teacher_full_name {
-	text-align: end;
-	margin-right: 20px;
+    text-align: end;
+    margin-right: 20px;
 }
 
 /* "ㅇㅇㅇ 님, 안녕하세요 !!" */
 h4.student_full_name {
-	text-align: end;
-	margin-right: 20px;
-	position: relative;
-	top: 50px;
+    text-align: end;
+    margin-right: 20px;
+    position: relative;
+    top: 50px;
+}
+
+.div__calendar .rbc-btn-group:first-child {
+    z-index: 10;
 }
 
 .rbc-toolbar-label {
-	position: relative;
-	bottom: 10px;
-	right: 90px;
-	font-size: 24px;
+    position: relative;
+    bottom: 10px;
+    right: 90px;
+    font-size: 24px;
+    /* width: 200px; */
 }
 
 .div__lesson_add__btn > button.MuiButton-outlined {
-	position: absolute;
-	right: 10px;
+    position: absolute;
+    right: 10px;
 }
 
 .div__selected_lesson_list {
-	margin-top: 150px;
+    margin-top: 150px;
 }
 
 .div__selected_lesson_list > h3 {
-	margin-left: 30px;
+    margin-left: 30px;
 }
 
 .ul__selected_lesson_list {
-	margin-left: 10px;
-	margin-bottom: 80px;
+    margin-left: 10px;
+    margin-bottom: 80px;
 }
 
 .div__selected_lesson_list_menu {
-	display: flex;
+    display: flex;
 }
 
 .div__selected_lesson_list_menu_buttons {
-	margin-left: 25px;
+    margin-left: 25px;
 }
 
 /* 수업 수정(📝), 수업 삭제(❌) button */
 .div__selected_lesson_list_menu_buttons button {
-	font-size: 18px;
-	margin-right: 3px;
-	background-color: inherit;
+    font-size: 18px;
+    margin-right: 3px;
+    background-color: inherit;
 }
 
 /* .div__selected_lesson_list_menu_buttons button:focus {
@@ -66,14 +71,14 @@ h4.student_full_name {
 } */
 
 .ul__selected_lesson_list li {
-	font-size: 18px;
-	font-weight: 550;
-	margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 550;
+    margin-bottom: 5px;
 }
 
 .ul__selected_lesson_list > span {
-	font-size: 18px;
-	font-weight: 550;
-	position: relative;
-	left: -20px;
+    font-size: 18px;
+    font-weight: 550;
+    position: relative;
+    left: -20px;
 }
