@@ -79,8 +79,8 @@ const ClassroomInfo = memo(({ history, match }) => {
             )}
 
             {/* 예외처리: 가입된 학원이 없을 경우, 학원 가입하기 유도 */}
-            {isJoinedAcademy === true ? (
-                <>
+            {isJoinedAcademy ? (
+                <div className="wrapper__div__classroom_list">
                     <JoinedClassroomList
                         joinedClassroomList={joinedClassroomList}
                     />
@@ -90,7 +90,7 @@ const ClassroomInfo = memo(({ history, match }) => {
                         studentId={studentId}
                         teacherId={teacherId}
                     />
-                </>
+                </div>
             ) : (
                 ""
             )}

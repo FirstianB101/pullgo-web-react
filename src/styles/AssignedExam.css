@@ -22,13 +22,17 @@ div.wrapper__div__assigend_exam_list {
 }
 
 .div__assigned_exam_list_menu div.exam_name_date {
-    width: 550px;
+    width: 675px;
     display: flex;
     justify-content: space-between;
 }
 
+.div__assigned_exam_list_menu div.exam_name_date span:last-child {
+    margin-left: 30px;
+}
+
 .div__assigned_exam_list_menu div.time_limit_pass_score {
-    width: 400px;
+    width: 515px;
     display: flex;
     justify-content: space-between;
 }

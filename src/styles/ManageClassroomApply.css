@@ -3,6 +3,11 @@ div.manage_classroom_apply {
     flex-direction: column;
 }
 
+div.manage_classroom_apply div.wrapper__div__manage_classroom_apply {
+    width: 1000px;
+    margin: auto;
+}
+
 div.classroom_applied_user_list {
     padding: 50px;
 }

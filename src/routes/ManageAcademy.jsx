@@ -32,23 +32,24 @@ const ManageAcademy = ({ history, match }) => {
 
     return (
         <div className="manage_academy">
-            {isJoinedAcademy ? (
-                <>
-                    <MenuBar_T
-                        centerMenu="학원 관리"
-                        rightMenu={rightMenu}
-                        isJoinedAcademy={isJoinedAcademy}
-                        history={history}
-                        match={match}
-                    />
+            <MenuBar_T
+                centerMenu="학원 관리"
+                rightMenu={rightMenu}
+                isJoinedAcademy={isJoinedAcademy}
+                history={history}
+                match={match}
+            />
+
+            {isJoinedAcademy ?
+                <div className="wrapper__div__manage_academy_list">
                     <ManageAcademyList
                         joinedAcademyList={joinedAcademyList}
                         history={history}
                     />
-                </>
-            ) : (
+                </div>
+                :
                 <AcademyInfo history={history} />
-            )}
+            }
         </div>
     );
 };

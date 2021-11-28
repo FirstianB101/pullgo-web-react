@@ -48,7 +48,9 @@ const ApplyClassroom = ({ history, match }) => {
 				/>
 			)}
 
-			<SearchClassroomListContainer />
+			<div className="wrapper__div__search_classroom_list">
+				<SearchClassroomListContainer />
+			</div>
 		</div>
 	);
 };

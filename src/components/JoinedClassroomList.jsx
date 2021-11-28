@@ -2,7 +2,6 @@ import React, { useState, useEffect, memo } from "react";
 import axios from "axios";
 
 const JoinedClassroomList = memo((props) => {
-    const [isFetched, setIsFetched] = useState(false);
     const [joinedClassroomList, setJoinedClassroomList] = useState(
         props.joinedClassroomList
     );
@@ -53,8 +52,6 @@ const JoinedClassroomList = memo((props) => {
                 fetchTeachersByClassroomId(classroom.id);
             });
         }
-
-        setIsFetched(true);
     }, [joinedClassroomList]);
 
     /* classroomName, academyName, teacherName 표시 */
@@ -62,41 +59,34 @@ const JoinedClassroomList = memo((props) => {
         const listItems = [];
 
         for (let i = 0; i < joinedClassroomList.length; i++) {
-            const classNameElement = <li>반: {joinedClassroomList[i].name.split(";")[0]}</li>;
-            let academyNameElement;
-            if (academyList[i])
-                academyNameElement = (
-                    <>
-                        <span className="span_academy_name">
-                            학원: {academyList[i].name}
-                        </span>
-                        <br />
-                    </>
-                );
+            const classroom_week =
+                joinedClassroomList[i].name.split(";");
+            // 반 이름, 선생님 이름, 요일 => 세미콜론 기준으로 파싱
+            let week = "";
+            for (let j = 0; j < classroom_week[1]?.length; j++)
+                week += classroom_week[1][j] + ", ";
+            week = week.substring(0, week.length - 2);
 
-            const teachersNameElement = [];
-            if (teachersList[i]) {
-                for (let j = 0; j < teachersList[i].length; j++) {
-                    const teacherNameElement = (
-                        <span className="span_teacher_name">
-                            {j === 0 ? "선생님: " : ""}
-                            {teachersList[i][j].account.fullName}
-                            {j !== teachersList[i].length - 1 ? ", " : " "}
-                        </span>
-                    );
-                    teachersNameElement.push(teacherNameElement);
-                }
-            }
-
-            const item = (
+            const element = (
                 <div className="classroom_list_item">
-                    {classNameElement}
-                    {academyNameElement}
-                    {teachersNameElement}
+                    <li key={joinedClassroomList[i].id}>
+                        <span className="classroom_name">
+                            {joinedClassroomList[i].name.split(";")[0]} 반
+                        </span>
+                        <span className="academy_name">
+                            {academyList[i]?.name} 학원
+                        </span>
+                        <span className="teacher_name">
+                            {joinedClassroomList[i].creator.account.fullName} 선생님
+                        </span>
+                        <span className="week">
+                            {week}
+                        </span>
+                    </li>
                 </div>
             );
 
-            listItems.push(item);
+            listItems.push(element);
         }
 
         return listItems;
@@ -106,15 +96,14 @@ const JoinedClassroomList = memo((props) => {
         <div className="joined_classroom_list">
             <h3>가입된 반 목록</h3>
             <ul>
-                {!isFetched ? (
-                    <></>
-                ) : joinedClassroomList.length !== 0 ? (
-                    showClassroomListItems()
-                ) : (
-                    <span className="no_joined_classroom">
-                        가입된 반이 없습니다!
-                    </span>
-                )}
+                {
+                    joinedClassroomList.length !== 0 ? (
+                        showClassroomListItems()
+                    ) : (
+                        <span className="no_joined_classroom">
+                            가입된 반이 없습니다!
+                        </span>
+                    )}
             </ul>
         </div>
     );

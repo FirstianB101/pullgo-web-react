@@ -4,6 +4,11 @@ h2.no_student {
     margin-top: 250px;
 }
 
+div.manage_classroom_members div.wrapper__div__manage_classroom_members {
+    width: 1000px;
+    margin: auto;
+}
+
 /* ClassroomJoinedStudentList, ClassroomJoinedTeacherList [Component] */
 .classroom_joined_student_list,
 .classroom_joined_teacher_list {

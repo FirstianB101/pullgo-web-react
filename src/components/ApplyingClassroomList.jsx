@@ -111,41 +111,31 @@ const ApplyingClassroomList = memo((props) => {
         const listItems = [];
 
         for (let i = 0; i < applyingClassroomList.length; i++) {
-            const classNameElement = (
-                <li>반: {applyingClassroomList[i].name.split(";")[0]}</li>
-            );
-            let academyNameElement;
-            if (academyList[i])
-                academyNameElement = (
-                    <>
-                        <span className="span_academy_name">
-                            학원: {academyList[i].name}
-                        </span>
-                        <br />
-                    </>
-                );
+            const classroom_week =
+                applyingClassroomList[i].name.split(";");
+            // 반 이름, 선생님 이름, 요일 => 세미콜론 기준으로 파싱
+            let week = "";
+            for (let j = 0; j < classroom_week[1]?.length; j++)
+                week += classroom_week[1][j] + ", ";
+            week = week.substring(0, week.length - 2);
 
-            const teachersNameElement = [];
-            if (teachersList[i]) {
-                for (let j = 0; j < teachersList[i].length; j++) {
-                    const teacherNameElement = (
-                        <span className="span_teacher_name">
-                            {j === 0 ? "선생님: " : ""}
-                            {teachersList[i][j].account.fullName}
-                            {j !== teachersList[i].length - 1 ? ", " : " "}
-                        </span>
-                    );
-                    teachersNameElement.push(teacherNameElement);
-                }
-            }
-
-            const item = (
+            const element = (
                 <div className="classroom_list_item">
-                    <div>
-                        {classNameElement}
-                        {academyNameElement}
-                        {teachersNameElement}
-                    </div>
+                    <li key={applyingClassroomList[i].id}>
+                        <span className="classroom_name">
+                            {applyingClassroomList[i].name.split(";")[0]} 반
+                        </span>
+                        <span className="academy_name">
+                            {academyList[i]?.name} 학원
+                        </span>
+                        <span className="teacher_name">
+                            {applyingClassroomList[i].creator.account.fullName} 선생님
+                        </span>
+                        <span className="week">
+                            {week}
+                        </span>
+                    </li>
+
                     <button
                         onClick={(e) =>
                             onClickBtnRemoveAppliedClassroom(
@@ -159,7 +149,7 @@ const ApplyingClassroomList = memo((props) => {
                 </div>
             );
 
-            listItems.push(item);
+            listItems.push(element);
         }
 
         return listItems;

@@ -66,33 +66,35 @@ const ManageClassroomMembers = memo(({ history, match, location }) => {
                 match={match}
             />
 
-            <ManageClassroomMenuChips
-                currentChipLabel="구성원 관리"
-                history={history}
-                location={location}
-            />
+            <div className="wrapper__div__manage_classroom_members">
+                <ManageClassroomMenuChips
+                    currentChipLabel="구성원 관리"
+                    history={history}
+                    location={location}
+                />
 
-            <div className="classroom_joined_user_list">
-                {joinedStudentList.length !== 0 ? (
-                    <ClassroomJoinedStudentList
-                        classroomId={classroomId}
-                        joinedStudentList={joinedStudentList}
-                    />
-                ) : (
-                    <h2 className="no_student">반에 가입된 학생이 없습니다!</h2>
-                )}
+                <div className="classroom_joined_user_list">
+                    {joinedStudentList.length !== 0 ? (
+                        <ClassroomJoinedStudentList
+                            classroomId={classroomId}
+                            joinedStudentList={joinedStudentList}
+                        />
+                    ) : (
+                        <h2 className="no_student">반에 가입된 학생이 없습니다!</h2>
+                    )}
 
-                {joinedTeacherList.length !== 0 ? (
-                    <ClassroomJoinedTeacherList
-                        classroomId={classroomId}
-                        joinedTeacherList={joinedTeacherList}
-                        teacherId={teacherId}
-                    />
-                ) : (
-                    <h2 className="no_teacher">
-                        반에 가입된 선생님이 없습니다!
-                    </h2>
-                )}
+                    {joinedTeacherList.length !== 0 ? (
+                        <ClassroomJoinedTeacherList
+                            classroomId={classroomId}
+                            joinedTeacherList={joinedTeacherList}
+                            teacherId={teacherId}
+                        />
+                    ) : (
+                        <h2 className="no_teacher">
+                            반에 가입된 선생님이 없습니다!
+                        </h2>
+                    )}
+                </div>
             </div>
         </div>
     );

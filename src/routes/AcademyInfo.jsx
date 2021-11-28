@@ -68,13 +68,15 @@ const AcademyInfo = memo(({ history, match }) => {
                 />
             )}
 
-            <JoinedAcademyList joinedAcademyList={joinedAcademyList} />
-            <ApplyingAcademyList
-                applyingAcademyList={applyingAcademyList}
-                userType={userType}
-                studentId={studentId}
-                teacherId={teacherId}
-            />
+            <div className="wrapper__div__academy_list">
+                <JoinedAcademyList joinedAcademyList={joinedAcademyList} />
+                <ApplyingAcademyList
+                    applyingAcademyList={applyingAcademyList}
+                    userType={userType}
+                    studentId={studentId}
+                    teacherId={teacherId}
+                />
+            </div>
 
             <button
                 className="btn_apply_academy"

@@ -72,35 +72,37 @@ const EditDeleteAcademy = ({ history, match, location }) => {
                 match={match}
             />
 
-            <ManageAcademyMenuChips
-                currentChipLabel="학원 수정 및 삭제"
-                hasPermission={hasPermission}
-                history={history}
-                location={location}
-            />
+            <div className="wrapper__div__edit_delete_academy">
+                <ManageAcademyMenuChips
+                    currentChipLabel="학원 수정 및 삭제"
+                    hasPermission={hasPermission}
+                    history={history}
+                    location={location}
+                />
 
-            <Box sx={{ width: "100%" }}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <Tabs value={value} onChange={handleChange}>
-                        <Tab label="수정" {...a11yProps(0)} />
-                        <Tab label="삭제" {...a11yProps(1)} />
-                    </Tabs>
+                <Box sx={{ width: "100%" }}>
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Tabs value={value} onChange={handleChange}>
+                            <Tab label="수정" {...a11yProps(0)} />
+                            <Tab label="삭제" {...a11yProps(1)} />
+                        </Tabs>
+                    </Box>
+
+                    <TabPanel value={value} index={0}>
+                        <EditAcademyTabPanel
+                            academyId={academyId}
+                            beforeEditAcademy={academy}
+                        />
+                    </TabPanel>
+
+                    <TabPanel value={value} index={1}>
+                        <DeleteAcademyTabPanel
+                            academyId={academyId}
+                            correctAcademyName={academy?.name}
+                        />
+                    </TabPanel>
                 </Box>
-
-                <TabPanel value={value} index={0}>
-                    <EditAcademyTabPanel
-                        academyId={academyId}
-                        beforeEditAcademy={academy}
-                    />
-                </TabPanel>
-
-                <TabPanel value={value} index={1}>
-                    <DeleteAcademyTabPanel
-                        academyId={academyId}
-                        correctAcademyName={academy?.name}
-                    />
-                </TabPanel>
-            </Box>
+            </div>
         </div>
     );
 };

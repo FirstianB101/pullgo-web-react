@@ -4,6 +4,11 @@ div.completed_exam h2.no_completed_exam {
     margin-top: 200px;
 }
 
+div.completed_exam div.wrapper__div__completed_exam_list {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .div__completed_exam_list_menu div.academy_classroom_name {
     width: 500px;
     display: flex;
@@ -17,13 +22,13 @@ div.completed_exam h2.no_completed_exam {
 }
 
 .div__completed_exam_list_menu div.exam_name_date {
-    width: 550px;
+    width: 675px;
     display: flex;
     justify-content: space-between;
 }
 
 .div__completed_exam_list_menu div.time_limit_pass_score {
-    width: 400px;
+    width: 515px;
     display: flex;
     justify-content: space-between;
 }

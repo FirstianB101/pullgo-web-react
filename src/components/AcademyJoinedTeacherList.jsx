@@ -55,8 +55,8 @@ const AcademyJoinedTeacherList = ({
                                             )
                                         }
                                         ref={(elem) =>
-                                            (btnKickTeacherRefs.current[i] =
-                                                elem)
+                                        (btnKickTeacherRefs.current[i] =
+                                            elem)
                                         }
                                     >
                                         ❌

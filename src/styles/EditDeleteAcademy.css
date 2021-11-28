@@ -1,5 +1,10 @@
+div.edit_delete_academy div.wrapper__div__edit_delete_academy {
+    width: 1000px;
+    margin: auto;
+}
+
 /* 상단 "수정", "삭제" Tab 버튼 */
-div.edit_delete_academy div:last-child div:first-child div {
+div.wrapper__div__edit_delete_academy > div.MuiBox-root div.MuiTabs-root div {
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -131,7 +136,7 @@ div.edit_academy_tab_panel .div__btn__edit_academy {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 div.edit_academy_tab_panel .div__btn__on_edit_academy > button,
@@ -190,6 +195,7 @@ div.delete_academy_tab_panel input[name="academy_name"] {
     height: 30px;
     font-size: 18px;
     border-bottom: 2px solid black;
+    background-color: inherit;
 }
 
 div.delete_academy_tab_panel input[name="academy_name"]::placeholder {

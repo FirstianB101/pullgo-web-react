@@ -66,6 +66,7 @@ const AlertDialog = memo(({ userType, academyId, academyName }) => {
             >
                 {academyName}
             </Button>
+
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -131,20 +132,19 @@ const SearchAcademyList = memo(
                 <ul className="academy_list">
                     {academyList.length !== 0
                         ? academyList.map((academy) => (
-                              <div
-                                  key={academy.id}
-                                  className="academy_list_item"
-                              >
-                                  <AlertDialog
-                                      userType={userType}
-                                      academyId={academy.id}
-                                      academyName={academy.name}
-                                  />
-                                  <br />
-                                  <span>주소: {academy.address}</span>
-                                  <span>전화번호: {academy.phone}</span>
-                              </div>
-                          ))
+                            <div
+                                key={academy.id}
+                                className="academy_list_item"
+                            >
+                                <AlertDialog
+                                    userType={userType}
+                                    academyId={academy.id}
+                                    academyName={academy.name}
+                                />
+                                <span>주소: {academy.address}</span>
+                                <span>전화번호: {academy.phone}</span>
+                            </div>
+                        ))
                         : ""}
                 </ul>
             </form>

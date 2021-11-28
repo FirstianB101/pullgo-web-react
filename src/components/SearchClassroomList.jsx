@@ -22,7 +22,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
+const AlertDialog = memo(({
+    // userType, classroomId, classroomName
+    userType, classroomId, classroom
+}) => {
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
@@ -37,9 +40,7 @@ const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
 
     const userId = userType === "student" ? studentId : teacherId;
 
-    const onClickBtnApplyClassroom = (clickedClassroom) => {
-        console.log(clickedClassroom);
-
+    const onClickBtnApplyClassroom = () => {
         const postApplyClassroom = async () => {
             try {
                 const response = await axios.post(
@@ -68,15 +69,32 @@ const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
         postApplyClassroom();
     };
 
+    console.log(classroom);
+
+    const classroomName = classroom.name.split(';')[0];
+    const totalWeek = classroom.name.split(';')[1];         // "월수금" 형태
+    let classroomWeek = "";
+    for (let i = 0; i < totalWeek.length; i++)
+        classroomWeek += totalWeek[i] + ", ";
+    classroomWeek = classroomWeek.substring(0, classroomWeek.length - 2);
+    const teacherName = classroom.creator.account.fullName;
+
     return (
-        <div>
+        <div className="search_classroom_list_item">
+            <li key={classroom.id}>
+                <span className="classroom_name">{classroomName} 반</span>
+                <span className="classroom_wek">{classroomWeek}</span>
+                <span className="teacher_name">{teacherName} 선생님</span>
+            </li>
+
             <Button
                 variant="outlined"
                 color="primary"
                 onClick={handleClickOpen}
             >
-                {classroomName}
+                가입 요청
             </Button>
+
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -84,7 +102,8 @@ const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {classroomName} 반에 가입을 요청 하시겠습니까?
+                    반에 가입을 요청 하시겠습니까?
+                    {/* {classroomName} 반에 가입을 요청 하시겠습니까? */}
                 </DialogTitle>
                 {/* <DialogContent>
 					<DialogContentText id="alert-dialog-description">
@@ -96,7 +115,7 @@ const AlertDialog = memo(({ userType, classroomId, classroomName }) => {
                         취소
                     </Button>
                     <Button
-                        onClick={() => onClickBtnApplyClassroom(classroomName)}
+                        onClick={() => onClickBtnApplyClassroom()}
                         color="primary"
                     >
                         확인
@@ -157,10 +176,10 @@ const SearchClassroomList = memo(
 
                             {joinedAcademyList.length !== 0
                                 ? joinedAcademyList.map((academy) => (
-                                      <MenuItem value={academy.id}>
-                                          {academy.name}
-                                      </MenuItem>
-                                  ))
+                                    <MenuItem value={academy.id}>
+                                        {academy.name}
+                                    </MenuItem>
+                                ))
                                 : ""}
                         </Select>
                         <FormHelperText>학원 선택</FormHelperText>
@@ -174,7 +193,7 @@ const SearchClassroomList = memo(
                         value={searchName}
                         onChange={onChangeInputSearchName}
                         placeholder="반 이름 또는 선생님 이름 입력"
-                        // required
+                    // required
                     />
                     <button type="submit" autoFocus>
                         검색
@@ -184,17 +203,18 @@ const SearchClassroomList = memo(
                 <ul className="classroom_list">
                     {classroomList.length !== 0
                         ? classroomList.map((classroom) => (
-                              <div
-                                  key={classroom.id}
-                                  className="classroom_list_item"
-                              >
-                                  <AlertDialog
-                                      userType={userType}
-                                      classroomId={classroom.id}
-                                      classroomName={classroom.name}
-                                  />
-                              </div>
-                          ))
+                            <div
+                                key={classroom.id}
+                                className="classroom_list_item"
+                            >
+                                <AlertDialog
+                                    userType={userType}
+                                    classroomId={classroom.id}
+                                    //   classroomName={classroom.name}
+                                    classroom={classroom}
+                                />
+                            </div>
+                        ))
                         : ""}
                 </ul>
             </form>

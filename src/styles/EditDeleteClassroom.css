@@ -1,3 +1,8 @@
+div.edit_delete_classroom div.wrapper__div__edit_delete_classroom {
+    width: 1000px;
+    margin: auto;
+}
+
 /* 상단 "수정", "삭제" Tab 버튼 */
 div.edit_delete_classroom div:last-child div:first-child div {
     margin-top: 10px;

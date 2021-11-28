@@ -42,26 +42,28 @@ const ManageClassroom = memo(({ history, match }) => {
 
     return (
         <div className="manage_classroom">
+            <MenuBar_T
+                centerMenu="반 관리"
+                rightMenu={rightMenu}
+                // rightMenu="+"
+                isJoinedAcademy={isJoinedAcademy}
+                history={history}
+                match={match}
+            />
+
             {isJoinedClassroom ? (
-                <>
-                    <MenuBar_T
-                        centerMenu="반 관리"
-                        rightMenu={rightMenu}
-                        // rightMenu="+"
-                        isJoinedAcademy={isJoinedAcademy}
-                        history={history}
-                        match={match}
-                    />
+                <div className="wrapper__div__manage_classroom_list">
                     <ManageClassroomList
                         joinedAcademyList={joinedAcademyList}
                         joinedClassroomList={joinedClassroomList}
                         history={history}
                     />
-                </>
+                </div>
             ) : (
                 <ClassroomInfo history={history} />
             )}
         </div>
+
     );
 });
 

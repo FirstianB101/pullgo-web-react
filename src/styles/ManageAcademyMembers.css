@@ -1,3 +1,8 @@
+div.manage_academy_members div.wrapper__div__manage_academy_members {
+    width: 1000px;
+    margin: auto;
+}
+
 .academy_joined_student_list > h2,
 .academy_joined_teacher_list > h2 {
     margin-left: 60px;
@@ -53,4 +58,12 @@ form.academy_student_kick__form div.buttons__kick_cancel button,
 form.academy_teacher_kick__form div.buttons__kick_cancel button {
     font-size: 16px;
     font-weight: 500;
+}
+
+div.manage_academy_members div.div__student_list_menu button {
+    margin-left: 200px;
+}
+
+div.manage_academy_members div.div__teacher_list_menu button {
+    margin-left: 200px;
 }

@@ -1,73 +1,73 @@
 form.search_academy_form {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 div.search_academy_input {
-	text-align: center;
-	margin-top: 70px;
+    text-align: center;
+    margin-top: 70px;
 }
 
 div.search_academy_input > input {
-	width: 420px;
-	height: 50px;
-	background-color: white;
-	border: 1px solid navy;
-	border-radius: 5px;
-	font-size: 17px;
-	padding-left: 10px;
+    width: 420px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid navy;
+    border-radius: 5px;
+    font-size: 17px;
+    padding-left: 10px;
 }
 
 div.search_academy_input > input::placeholder {
-	color: gray;
-	font-size: 15px;
+    color: gray;
+    font-size: 15px;
 }
 div.search_academy_input > input::focus {
-	outline: 1px solid black;
+    outline: 1px solid black;
 }
 
 div.search_academy_input > button {
-	margin-left: 20px;
-	width: 80px;
-	height: 50px;
-	border-radius: 5px;
-	background-color: #858ffb;
-	color: white;
-	font-size: 16px;
+    margin-left: 20px;
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #858ffb;
+    color: white;
+    font-size: 16px;
 }
 
 div.search_academy_input > button::focus {
-	border: 3px solid black;
+    border: 3px solid black;
 }
 
 ul.academy_list {
-	margin-top: 30px;
-	margin-left: 30px;
+    margin-top: 30px;
+    margin-left: 30vw;
 }
 
 ul.academy_list div.academy_list_item {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 ul.academy_list div.academy_list_item > span {
-	display: block;
-	font-size: 17px;
-	margin-top: 10px;
+    display: block;
+    font-size: 17px;
+    margin-top: 10px;
 }
 
 /* 학원 이름 */
 ul.academy_list div.academy_list_item button.MuiButtonBase-root {
-	background-color: #eff3f7;
-	border-color: #eff3f7;
-	color: #3f51b5;
-	font-size: 16px;
-	position: relative;
-	left: -15px;
+    background-color: #eff3f7;
+    border-color: #eff3f7;
+    color: #3f51b5;
+    font-size: 18px;
+    position: relative;
+    left: -15px;
 }
 
 /* 학원 가입, 반 가입 요청 확인 및 취소 Dialog */
 div.MuiDialogActions-root button.MuiButtonBase-root {
-	position: realtive;
-	top: -10px;
-	left: -10px;
+    position: realtive;
+    top: -10px;
+    left: -10px;
 }

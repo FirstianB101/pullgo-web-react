@@ -3,6 +3,11 @@ div.manage_academy_list {
     flex-direction: column;
 }
 
+div.manage_academy div.wrapper__div__manage_academy_list {
+    width: 1000px;
+    margin: auto;
+}
+
 div.manage_academy_list .ul__academy_list {
     margin-top: 50px;
 }

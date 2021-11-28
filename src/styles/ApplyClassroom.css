@@ -1,70 +1,92 @@
+div.apply_classroom div.wrapper__div__search_classroom_list {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 form.search_classroom_form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
 }
 
 div.select_academy div.MuiFormControl-root {
-	width: 200px;
-	position: relative;
-	left: -150px;
+    width: 200px;
+    position: relative;
+    left: -150px;
 }
 
 div.search_classroom_input {
-	text-align: center;
-	margin-top: 30px;
-	margin-bottom: 50px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 div.search_classroom_input > input {
-	width: 420px;
-	height: 50px;
-	background-color: white;
-	border: 1px solid navy;
-	border-radius: 5px;
-	font-size: 17px;
-	padding-left: 10px;
+    width: 420px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid navy;
+    border-radius: 5px;
+    font-size: 17px;
+    padding-left: 10px;
 }
 
 div.search_classroom_input > input::placeholder {
-	color: gray;
-	font-size: 15px;
+    color: gray;
+    font-size: 15px;
 }
 
 div.search_classroom_input > input::focus {
-	outline: 1px solid black;
+    outline: 1px solid black;
 }
 
 div.search_classroom_input > button {
-	margin-left: 20px;
-	width: 80px;
-	height: 50px;
-	border-radius: 5px;
-	background-color: #858ffb;
-	color: white;
-	font-size: 16px;
+    margin-left: 20px;
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #858ffb;
+    color: white;
+    font-size: 16px;
 }
 
 div.search_classroom_input > button::focus {
-	border: 3px solid black;
+    border: 3px solid black;
 }
 
 ul.classroom_list {
-	position: relative;
-	left: -320px;
+    position: relative;
+    left: -320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    margin-left: 40vw;
+    /* margin-right: 30vw; */
 }
 
 ul.classroom_list div.classroom_list_item {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
 }
 
 /* 반 이름 */
 ul.classroom_list div.classroom_list_item button.MuiButtonBase-root {
-	background-color: #eff3f7;
-	border-color: #eff3f7;
-	color: #3f51b5;
-	font-size: 16px;
-	position: relative;
-	left: -15px;
+    background-color: #eff3f7;
+    border-color: #eff3f7;
+    color: #3f51b5;
+    font-size: 16px;
+    position: relative;
+    left: -15px;
+}
+
+div.search_classroom_list_item {
+    display: flex;
+    justify-content: center;
+}
+
+div.search_classroom_list_item > li {
+    width: 500px;
 }

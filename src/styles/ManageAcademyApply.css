@@ -3,6 +3,11 @@ div.manage_academy_apply {
     flex-direction: column;
 }
 
+div.manage_academy_apply div.wrapper__div__manage_academy_apply {
+    width: 1000px;
+    margin: auto;
+}
+
 div.academy_applied_user_list {
     padding: 50px;
 }

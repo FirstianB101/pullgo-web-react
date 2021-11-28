@@ -103,12 +103,14 @@ const CompletedExam = ({ history, match, location }) => {
             />
 
             {completedExamList.length !== 0 ? (
-                <CompletedExamList
-                    completedExamList={completedExamList}
-                    joinedAcademyList={joinedAcademyList}
-                    joinedClassroomList={joinedClassroomList}
-                    history={history}
-                />
+                <div className="wrapper__div__completed_exam_list">
+                    <CompletedExamList
+                        completedExamList={completedExamList}
+                        joinedAcademyList={joinedAcademyList}
+                        joinedClassroomList={joinedClassroomList}
+                        history={history}
+                    />
+                </div>
             ) : (
                 <h2 className="no_completed_exam">
                     응시 완료한 시험이 없습니다!

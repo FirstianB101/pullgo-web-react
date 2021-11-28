@@ -177,61 +177,63 @@ const ManageAcademyApply = ({ history, match, location }) => {
                 match={match}
             />
 
-            <ManageAcademyMenuChips
-                currentChipLabel="요청 관리"
-                hasPermission={hasPermission}
-                history={history}
-                location={location}
-            />
+            <div className="wrapper__div__manage_academy_apply">
+                <ManageAcademyMenuChips
+                    currentChipLabel="요청 관리"
+                    hasPermission={hasPermission}
+                    history={history}
+                    location={location}
+                />
 
-            <div className="academy_applied_user_list">
-                {appliedStudentList.length !== 0 ? (
-                    <AcademyAppliedStudentList
-                        academyId={academyId}
-                        appliedStudentList={appliedStudentList}
-                    />
-                ) : (
-                    <>
-                        <h2>학생</h2>
-                        <h2 className="no_student">
-                            학원에 가입 요청한 학생이 없습니다!
-                        </h2>
-                    </>
-                )}
+                <div className="academy_applied_user_list">
+                    {appliedStudentList.length !== 0 ? (
+                        <AcademyAppliedStudentList
+                            academyId={academyId}
+                            appliedStudentList={appliedStudentList}
+                        />
+                    ) : (
+                        <>
+                            <h2>학생</h2>
+                            <h2 className="no_student">
+                                학원에 가입 요청한 학생이 없습니다!
+                            </h2>
+                        </>
+                    )}
 
-                {appliedTeacherList.length !== 0 ? (
-                    <AcademyAppliedTeacherList
-                        academyId={academyId}
-                        appliedTeacherList={appliedTeacherList}
-                    />
-                ) : (
-                    <>
-                        <h2>선생님</h2>
-                        <h2 className="no_teacher">
-                            학원에 가입 요청한 선생님이 없습니다!
-                        </h2>
-                    </>
-                )}
+                    {appliedTeacherList.length !== 0 ? (
+                        <AcademyAppliedTeacherList
+                            academyId={academyId}
+                            appliedTeacherList={appliedTeacherList}
+                        />
+                    ) : (
+                        <>
+                            <h2>선생님</h2>
+                            <h2 className="no_teacher">
+                                학원에 가입 요청한 선생님이 없습니다!
+                            </h2>
+                        </>
+                    )}
 
-                {appliedStudentList.length !== 0 ||
-                appliedTeacherList.length !== 0 ? (
-                    <div className="academy_apply_batch_buttons">
-                        <button
-                            onClick={onClickBatchAccept}
-                            className="btn__batch_accept"
-                        >
-                            일괄 승인
-                        </button>
-                        <button
-                            onClick={onClickBatchReject}
-                            className="btn__batch_reject"
-                        >
-                            일괄 거절
-                        </button>
-                    </div>
-                ) : (
-                    ""
-                )}
+                    {appliedStudentList.length !== 0 ||
+                        appliedTeacherList.length !== 0 ? (
+                        <div className="academy_apply_batch_buttons">
+                            <button
+                                onClick={onClickBatchAccept}
+                                className="btn__batch_accept"
+                            >
+                                일괄 승인
+                            </button>
+                            <button
+                                onClick={onClickBatchReject}
+                                className="btn__batch_reject"
+                            >
+                                일괄 거절
+                            </button>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
         </div>
     );

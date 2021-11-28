@@ -66,34 +66,36 @@ const EditDeleteClassroom = memo(({ history, match, location }) => {
                 match={match}
             />
 
-            <ManageClassroomMenuChips
-                currentChipLabel="반 수정 및 삭제"
-                history={history}
-                location={location}
-            />
+            <div className="wrapper__div__edit_delete_classroom">
+                <ManageClassroomMenuChips
+                    currentChipLabel="반 수정 및 삭제"
+                    history={history}
+                    location={location}
+                />
 
-            <Box sx={{ width: "100%" }}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <Tabs value={value} onChange={handleChange}>
-                        <Tab label="수정" {...a11yProps(0)} />
-                        <Tab label="삭제" {...a11yProps(1)} />
-                    </Tabs>
+                <Box sx={{ width: "100%" }}>
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Tabs value={value} onChange={handleChange}>
+                            <Tab label="수정" {...a11yProps(0)} />
+                            <Tab label="삭제" {...a11yProps(1)} />
+                        </Tabs>
+                    </Box>
+
+                    <TabPanel value={value} index={0}>
+                        <EditClassroomTabPanel
+                            classroomId={classroomId}
+                            beforeEditClassroom={classroom}
+                        />
+                    </TabPanel>
+
+                    <TabPanel value={value} index={1}>
+                        <DeleteClassroomTabPanel
+                            classroomId={classroomId}
+                            correctClassroom={classroom}
+                        />
+                    </TabPanel>
                 </Box>
-
-                <TabPanel value={value} index={0}>
-                    <EditClassroomTabPanel
-                        classroomId={classroomId}
-                        beforeEditClassroom={classroom}
-                    />
-                </TabPanel>
-
-                <TabPanel value={value} index={1}>
-                    <DeleteClassroomTabPanel
-                        classroomId={classroomId}
-                        correctClassroom={classroom}
-                    />
-                </TabPanel>
-            </Box>
+            </div>
         </div>
     );
 });

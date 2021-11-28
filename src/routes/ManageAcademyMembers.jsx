@@ -82,36 +82,38 @@ const ManageAcademyMembers = ({ history, match, location }) => {
                 match={match}
             />
 
-            <ManageAcademyMenuChips
-                currentChipLabel="구성원 관리"
-                hasPermission={hasPermission}
-                history={history}
-                location={location}
-            />
+            <div className="wrapper__div__manage_academy_members">
+                <ManageAcademyMenuChips
+                    currentChipLabel="구성원 관리"
+                    hasPermission={hasPermission}
+                    history={history}
+                    location={location}
+                />
 
-            <div className="academy_joined_user_list">
-                {joinedStudentList.length !== 0 ? (
-                    <AcademyJoinedStudentList
-                        academyId={academyId}
-                        joinedStudentList={joinedStudentList}
-                    />
-                ) : (
-                    <h2 className="no_student">
-                        학원에 가입된 학생이 없습니다!
-                    </h2>
-                )}
+                <div className="academy_joined_user_list">
+                    {joinedStudentList.length !== 0 ? (
+                        <AcademyJoinedStudentList
+                            academyId={academyId}
+                            joinedStudentList={joinedStudentList}
+                        />
+                    ) : (
+                        <h2 className="no_student">
+                            학원에 가입된 학생이 없습니다!
+                        </h2>
+                    )}
 
-                {joinedTeacherList.length !== 0 ? (
-                    <AcademyJoinedTeacherList
-                        academyId={academyId}
-                        joinedTeacherList={joinedTeacherList}
-                        teacherId={teacherId}
-                    />
-                ) : (
-                    <h2 className="no_teacher">
-                        학원에 가입된 선생님이 없습니다!
-                    </h2>
-                )}
+                    {joinedTeacherList.length !== 0 ? (
+                        <AcademyJoinedTeacherList
+                            academyId={academyId}
+                            joinedTeacherList={joinedTeacherList}
+                            teacherId={teacherId}
+                        />
+                    ) : (
+                        <h2 className="no_teacher">
+                            학원에 가입된 선생님이 없습니다!
+                        </h2>
+                    )}
+                </div>
             </div>
         </div>
     );
