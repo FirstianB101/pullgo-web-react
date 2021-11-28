@@ -1,15 +1,43 @@
 import React, { memo } from "react";
 import { connect } from "react-redux";
-// index 폴더에서 action import
+import axios from "axios";
 
-import "../styles/SignUp.css";
 import SignUpForm_S from "../components/SignUpForm_S";
 
-const SignUp_S = memo(() => {
-	const onSubmitForm = (e) => {
-		alert(`${e.id}, ${e.pw}, ${e.pw_check}, ${e.name},
-        ${e.phone_number}, ${e.phone_certification},
-        ${e.parent_phone_number}, ${e.school_name}, ${e.school_grade}`);
+import "../styles/SignUp.css";
+
+const SignUp_S = memo(({ history }) => {
+	const onSubmitForm = async (e) => {
+		// e.preventDefault();
+
+		const postCreateStudent = async () => {
+			try {
+				const response = await axios.post(
+					"/v1/students",
+					{
+						account: {
+							username: e.id,
+							password: e.pw,
+							fullName: e.name,
+							phone: e.phone_number
+						},
+						parentPhone: e.parent_phone_number,
+						schoolName: e.school_name,
+						schoolYear: e.school_grade
+					}
+				);
+
+				if (response.status === 201)
+					alert("회원가입 되었습니다.");
+			}
+			catch (e) {
+				alert("회원가입 오류");
+				console.log(e);
+			}
+		};
+
+		await postCreateStudent();
+		history.push("/");
 	};
 
 	return (

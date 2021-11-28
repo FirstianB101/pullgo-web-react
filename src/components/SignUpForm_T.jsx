@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import { Field, reduxForm } from "redux-form";
+
 // import { render } from "@testing-library/react";
+import { Field, reduxForm } from "redux-form";
 import { regID, regPW, deleteHyphenFromPhoneNum } from "../module/SignUp";
 
 const RenderField = memo(

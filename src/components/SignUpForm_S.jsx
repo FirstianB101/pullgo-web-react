@@ -1,6 +1,7 @@
 import React, { memo } from "react";
-import { Field, reduxForm } from "redux-form";
+
 // import { render } from "@testing-library/react";
+import { Field, reduxForm } from "redux-form";
 import { regID, regPW, deleteHyphenFromPhoneNum } from "../module/SignUp";
 
 const RenderField = memo(
@@ -92,7 +93,9 @@ function validate(values) {
 }
 
 // 부모 컴포넌트 SignUpStudent 로부터 props로 onSubmitForm 받음
-const SignUpForm_S = memo(({ handleSubmit, pristine, submitting }) => {
+const SignUpForm_S = memo(({
+	handleSubmit, pristine, submitting
+}) => {
 	return (
 		<form className="sign_up__form" onSubmit={handleSubmit}>
 			<Field
@@ -190,6 +193,6 @@ const SignUpForm_S = memo(({ handleSubmit, pristine, submitting }) => {
 
 export default reduxForm({
 	form: "SignUpForm_S",
-	validate
+	validate,
 	// onSubmit: onSubmitForm
 })(SignUpForm_S);

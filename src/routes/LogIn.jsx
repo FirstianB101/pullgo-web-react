@@ -85,7 +85,7 @@ const LogIn = memo(({ history }) => {
 	const [id, setId] = useState("");
 	const [pw, setPw] = useState("");
 
-	const onChangeTabs = (event, newValue) => {
+	const onChangeTabs = (e, newValue) => {
 		setValue(newValue);
 		setUserType(userTypeList[newValue]);
 	};
