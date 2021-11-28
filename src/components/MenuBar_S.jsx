@@ -75,6 +75,7 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
 
                 case "로그아웃":
                     logOut();
+                    history.push("/");
                     break;
             }
         };

@@ -90,7 +90,7 @@ const getClassroomName = (classroomList, classroomId) => {
 /* joinedClassroomList를 <option> 태그에 담아서 return */
 const getOptionTag = (classroomList) => {
     return classroomList.map((classroom) => (
-        <option value={classroom.name}>{classroom.name}</option>
+        <option value={classroom.name}>{classroom.name.split(";")[0]}</option>
     ));
 };
 
@@ -283,7 +283,7 @@ const LessonCalendar_T = (({ history, match }) => {
         };
 
         let confirmCreateLesson = window.confirm(
-            `${classroom} 반 ${date} 날짜 ${beginTime} ~ ${endTime} ${title} 수업을 추가 하시겠습니까?`
+            `${classroom.split(";")[0]} 반 ${date} 날짜 ${beginTime} ~ ${endTime} ${title} 수업을 추가 하시겠습니까?`
         );
         if (confirmCreateLesson) {
             await postCreateLesson();
