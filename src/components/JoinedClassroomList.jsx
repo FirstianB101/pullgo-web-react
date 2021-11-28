@@ -62,7 +62,7 @@ const JoinedClassroomList = memo((props) => {
         const listItems = [];
 
         for (let i = 0; i < joinedClassroomList.length; i++) {
-            const classNameElement = <li>반: {joinedClassroomList[i].name}</li>;
+            const classNameElement = <li>반: {joinedClassroomList[i].name.split(";")[0]}</li>;
             let academyNameElement;
             if (academyList[i])
                 academyNameElement = (
