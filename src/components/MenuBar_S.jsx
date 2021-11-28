@@ -33,6 +33,13 @@ const logOut = () => {
     alert("로그아웃");
 };
 
+/* Date 객체를 인자로 받아서 "2021-08" 형식(년, 월)의 string으로 반환 */
+const dateToYearMonthStr = (date) => {
+    let year = date.getFullYear();
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    return year + "-" + month;
+};
+
 const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -50,7 +57,8 @@ const MenuDrawer = memo(({ isJoinedAcademy, history }) => {
         const onClickBtn = (btnText) => {
             switch (btnText) {
                 case "수업 일정":
-                    history.push("/student/main");
+                    const yearMonthStr = dateToYearMonthStr(new Date());
+                    history.push(`/student/main/calendar/${yearMonthStr}`);
                     break;
 
                 case "시험 목록":
